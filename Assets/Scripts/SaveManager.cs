@@ -17,6 +17,7 @@ namespace Multipliers
         [SerializeField] private TextMeshProUGUI _easyScore;
         [SerializeField] private TextMeshProUGUI _lastGameScore;
         [SerializeField] private GameObject _lastGameImage;
+        [SerializeField] private GameObject _resumeButton;
         [SerializeField] private TextMeshProUGUI _longText;
 
         private void Start()
@@ -60,7 +61,6 @@ namespace Multipliers
             {
                 _gameData.LastGameScore = Int32.Parse(_lastGameScore.text);
             }
-            //Сложность
 
             _storage.Save(_gameData);
         }
@@ -86,7 +86,12 @@ namespace Multipliers
             }
 
             _lastGameScore.text = $"{_gameData.LastGameScore}";
-            SetLastGame(_gameData.LastGameDifficulty);
+            SetLastGame(_gameData.SelectedDifficulty);
+
+            if(_gameData.GameIsOver == false)
+            {
+                _resumeButton.SetActive(true);
+            }
         }
 
         private void SetLastGame(int lastGameDifficulty)
