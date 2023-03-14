@@ -15,15 +15,12 @@ namespace Multipliers
         {
             _storage = new Storage();
             Load();
-
-            _soundsToggle.onValueChanged.AddListener(OnSwitch);
-            _musicToggle.onValueChanged.AddListener(OnSwitch);
         }
 
         public void Save()
         {
             _gameData.SoundsIsActive = _soundsToggle.isOn;
-            _gameData.MusicIsActive = _musicToggle.isOn;            
+            _gameData.MusicIsActive = _musicToggle.isOn;
 
             _storage.Save(_gameData);
         }
@@ -35,7 +32,7 @@ namespace Multipliers
             _soundsToggle.isOn = _gameData.SoundsIsActive;
             _musicToggle.isOn = _gameData.MusicIsActive;
 
-            if(SecondaryInformation.IsContinuation == true)
+            if (SecondaryInformation.IsContinuation == true)
             {
                 //загрузка сэйва
             }
@@ -54,11 +51,6 @@ namespace Multipliers
                         break;
                 }
             }
-        }
-
-        private void OnSwitch(bool on)
-        {
-            Save();
         }
     }
 }

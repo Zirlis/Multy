@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 131207391}
   - component: {fileID: 131207392}
+  - component: {fileID: 131207393}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -175,7 +176,19 @@ MonoBehaviour:
   _lastGameScore: {fileID: 1040879733}
   _lastGameImage: {fileID: 1022940542}
   _resumeButton: {fileID: 972947087}
-  _longText: {fileID: 688633301}
+--- !u!114 &131207393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131207390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e800cea10b2535844bd893b9d61cdec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 0}
 --- !u!1 &204912970
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501421950}
   - component: {fileID: 501421951}
+  - component: {fileID: 501421952}
   m_Layer: 5
   m_Name: SoundsToggle
   m_TagString: Untagged
@@ -639,6 +653,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &501421952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501421949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b3d0edf831edc41997ca48b599397f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 131207392}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1161,8 @@ GameObject:
   - component: {fileID: 688633300}
   - component: {fileID: 688633302}
   - component: {fileID: 688633301}
+  - component: {fileID: 688633303}
+  - component: {fileID: 688633304}
   m_Layer: 5
   m_Name: DailyText
   m_TagString: Untagged
@@ -1259,6 +1288,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688633299}
   m_CullTransparentMesh: 1
+--- !u!114 &688633303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688633299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081598b672350a74cbc6c8cb1b7e0811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &688633304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688633299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 688633301}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &887091060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887091061}
   - component: {fileID: 887091062}
+  - component: {fileID: 887091063}
   m_Layer: 5
   m_Name: MusicToggle
   m_TagString: Untagged
@@ -1345,6 +1431,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &887091063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887091060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b3d0edf831edc41997ca48b599397f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 0}
 --- !u!1 &972947087
 GameObject:
   m_ObjectHideFlags: 0

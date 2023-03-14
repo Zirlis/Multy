@@ -17,17 +17,12 @@ namespace Multipliers
         [SerializeField] private TextMeshProUGUI _easyScore;
         [SerializeField] private TextMeshProUGUI _lastGameScore;
         [SerializeField] private GameObject _lastGameImage;
-        [SerializeField] private GameObject _resumeButton;
-        [SerializeField] private TextMeshProUGUI _longText;
+        [SerializeField] private GameObject _resumeButton;        
 
-        private void Start()
+        private void Awake()
         {
             _storage = new Storage();
             Load();
-            NewLongText();
-
-            _soundsToggle.onValueChanged.AddListener(OnSwitch);
-            _musicToggle.onValueChanged.AddListener(OnSwitch);
         }
 
         public void Save()
@@ -111,16 +106,6 @@ namespace Multipliers
                     _lastGameImage.SetActive(false);
                     break;
             }
-        }
-
-        private void OnSwitch(bool on)
-        {
-            Save();
-        }
-
-        private void NewLongText()
-        {
-            //рандом свитч кейс текст
         }
     }
 }
