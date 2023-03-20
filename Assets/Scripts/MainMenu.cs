@@ -9,6 +9,7 @@ namespace Multipliers
         [SerializeField] private Button _hardButton;
         [SerializeField] private Button _mediumButton;
         [SerializeField] private Button _easyButton;
+        [SerializeField] private SaveManager _saveManager;
 
         private SceneTransition _sceneTransition;
         private GameData _gameData;
@@ -27,19 +28,22 @@ namespace Multipliers
 
         private void HardDifficulty()
         {
-            _gameData.SelectedDifficulty = 3;
+            _saveManager.GameData.SelectedDifficulty = 3;
+            _saveManager.Save();
             _sceneTransition.GameScene();            
         }
 
         private void MediumDifficulty()
         {
-            _gameData.SelectedDifficulty = 2;
+            _saveManager.GameData.SelectedDifficulty = 2;
+            _saveManager.Save();
             _sceneTransition.GameScene();
         }
 
         private void EasyDifficulty()
         {
-            _gameData.SelectedDifficulty = 1;
+            _saveManager.GameData.SelectedDifficulty = 1;
+            _saveManager.Save();
             _sceneTransition.GameScene();
         }
     }

@@ -168,6 +168,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b1eba3423ad8d4fbe70ac6159859b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameDataInSaveManager:
+    SoundsIsActive: 1
+    MusicIsActive: 1
+    HardScore: 0
+    MediumScore: 0
+    EasyScore: 0
+    LastGameScore: 0
+    SelectedDifficulty: 0
+    GameIsOver: 1
   _soundsToggle: {fileID: 501421951}
   _musicToggle: {fileID: 887091062}
   _hardScore: {fileID: 1022488293}
@@ -188,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e800cea10b2535844bd893b9d61cdec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveManager: {fileID: 0}
 --- !u!1 &204912970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2170,7 @@ MonoBehaviour:
   _hardButton: {fileID: 1212367216}
   _mediumButton: {fileID: 231440047}
   _easyButton: {fileID: 243297096}
+  _saveManager: {fileID: 131207392}
 --- !u!1 &1947042529
 GameObject:
   m_ObjectHideFlags: 0

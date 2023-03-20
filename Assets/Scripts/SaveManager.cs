@@ -8,7 +8,7 @@ namespace Multipliers
     public class SaveManager : MonoBehaviour
     {
         private Storage _storage;
-        private GameData _gameData;
+        [HideInInspector] public GameData GameData;
 
         [SerializeField] private Toggle _soundsToggle;
         [SerializeField] private Toggle _musicToggle;
@@ -27,63 +27,63 @@ namespace Multipliers
 
         public void Save()
         {
-            _gameData.SoundsIsActive = _soundsToggle.isOn;
-            _gameData.MusicIsActive = _musicToggle.isOn;
+            GameData.SoundsIsActive = _soundsToggle.isOn;
+            GameData.MusicIsActive = _musicToggle.isOn;
 
             if (_hardScore.text != "")
             {
                 if (Int32.Parse(_hardScore.text) > 0)
                 {
-                    _gameData.HardScore = Int32.Parse(_hardScore.text);
+                    GameData.HardScore = Int32.Parse(_hardScore.text);
                 }
             }
             if (_mediumScore.text != "")
             {
                 if (Int32.Parse(_mediumScore.text) > 0)
                 {
-                    _gameData.MediumScore = Int32.Parse(_mediumScore.text);
+                    GameData.MediumScore = Int32.Parse(_mediumScore.text);
                 }
             }
             if (_easyScore.text != "")
             {
                 if (Int32.Parse(_easyScore.text) > 0)
                 {
-                    _gameData.EasyScore = Int32.Parse(_easyScore.text);
+                    GameData.EasyScore = Int32.Parse(_easyScore.text);
                 }
             }
 
             if (_lastGameScore.text != "")
             {
-                _gameData.LastGameScore = Int32.Parse(_lastGameScore.text);
+                GameData.LastGameScore = Int32.Parse(_lastGameScore.text);
             }
 
-            _storage.Save(_gameData);
+            _storage.Save(GameData);
         }
 
         public void Load()
         {
-            _gameData = (GameData)_storage.Load(new GameData());
+            GameData = (GameData)_storage.Load(new GameData());
 
-            _soundsToggle.isOn = _gameData.SoundsIsActive;
-            _musicToggle.isOn = _gameData.MusicIsActive;
+            _soundsToggle.isOn = GameData.SoundsIsActive;
+            _musicToggle.isOn = GameData.MusicIsActive;
 
-            if (_gameData.HardScore > 0)
+            if (GameData.HardScore > 0)
             {
-                _hardScore.text = $"{_gameData.HardScore}";
+                _hardScore.text = $"{GameData.HardScore}";
             }
-            if (_gameData.MediumScore > 0)
+            if (GameData.MediumScore > 0)
             {
-                _mediumScore.text = $"{_gameData.MediumScore}";
+                _mediumScore.text = $"{GameData.MediumScore}";
             }
-            if (_gameData.EasyScore > 0)
+            if (GameData.EasyScore > 0)
             {
-                _easyScore.text = $"{_gameData.EasyScore}";
+                _easyScore.text = $"{GameData.EasyScore}";
             }
 
-            _lastGameScore.text = $"{_gameData.LastGameScore}";
-            SetLastGame(_gameData.SelectedDifficulty);
+            _lastGameScore.text = $"{GameData.LastGameScore}";
+            SetLastGame(GameData.SelectedDifficulty);
 
-            if(_gameData.GameIsOver == false)
+            if(GameData.GameIsOver == false)
             {
                 _resumeButton.SetActive(true);
             }
