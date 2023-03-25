@@ -2706,6 +2706,7 @@ GameObject:
   - component: {fileID: 549912791}
   - component: {fileID: 549912793}
   - component: {fileID: 549912792}
+  - component: {fileID: 549912794}
   m_Layer: 5
   m_Name: Multiplier1
   m_TagString: Untagged
@@ -2830,6 +2831,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549912790}
   m_CullTransparentMesh: 1
+--- !u!114 &549912794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549912790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86afd776569f9bf47a4dad73d77f0d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MultiplierClone: {fileID: 0}
+  MultiplierMove: {fileID: 6754055293432131408, guid: b98060fc23373cf4386f4c4e015ad8b3, type: 3}
 --- !u!1 &563533956
 GameObject:
   m_ObjectHideFlags: 0
