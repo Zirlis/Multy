@@ -10,73 +10,73 @@ namespace Multipliers
         #region Panels
         #region FirstPanel
         [Header("FirstPanel")]
-        [SerializeField] private TextMeshProUGUI _firstCompositionRight;
-        [SerializeField] private TextMeshProUGUI _firstCompositionLeft;
+        public TextMeshProUGUI FirstCompositionRight;
+        public TextMeshProUGUI FirstCompositionLeft;
         [Space(5)]
-        [SerializeField] private TextMeshProUGUI _firstMultiplier1;
-        [SerializeField] private TextMeshProUGUI _firstMultiplier2;
-        [SerializeField] private TextMeshProUGUI _firstMultiplier3;
-        [SerializeField] private TextMeshProUGUI _firstMultiplier4;
-        [SerializeField] private TextMeshProUGUI _firstMultiplier5;
-        [SerializeField] private TextMeshProUGUI _firstMultiplier6;
+        public TextMeshProUGUI FirstMultiplier1;
+        public TextMeshProUGUI FirstMultiplier2;
+        public TextMeshProUGUI FirstMultiplier3;
+        public TextMeshProUGUI FirstMultiplier4;
+        public TextMeshProUGUI FirstMultiplier5;
+        public TextMeshProUGUI FirstMultiplier6;
         [Space(5)]
-        [SerializeField] private GameObject _firstMultiplication12;
-        [SerializeField] private GameObject _firstMultiplication23;
-        [SerializeField] private GameObject _firstMultiplication34;
-        [SerializeField] private GameObject _firstMultiplication45;
-        [SerializeField] private GameObject _firstMultiplication56;
+        public GameObject FirstMultiplication12;
+        public GameObject FirstMultiplication23;
+        public GameObject FirstMultiplication34;
+        public GameObject FirstMultiplication45;
+        public GameObject FirstMultiplication56;
         #endregion
 
         #region SecondPanel
         [Header("SecondPanel")]
-        [SerializeField] private TextMeshProUGUI _secondCompositionRight;
-        [SerializeField] private TextMeshProUGUI _secondCompositionLeft;
+        public TextMeshProUGUI SecondCompositionRight;
+        public TextMeshProUGUI SecondCompositionLeft;
         [Space(5)]
-        [SerializeField] private TextMeshProUGUI _secondMultiplier1;
-        [SerializeField] private TextMeshProUGUI _secondMultiplier2;
-        [SerializeField] private TextMeshProUGUI _secondMultiplier3;
-        [SerializeField] private TextMeshProUGUI _secondMultiplier4;
-        [SerializeField] private TextMeshProUGUI _secondMultiplier5;
-        [SerializeField] private TextMeshProUGUI _secondMultiplier6;
+        public TextMeshProUGUI SecondMultiplier1;
+        public TextMeshProUGUI SecondMultiplier2;
+        public TextMeshProUGUI SecondMultiplier3;
+        public TextMeshProUGUI SecondMultiplier4;
+        public TextMeshProUGUI SecondMultiplier5;
+        public TextMeshProUGUI SecondMultiplier6;
         [Space(5)]
-        [SerializeField] private GameObject _secondMultiplication12;
-        [SerializeField] private GameObject _secondMultiplication23;
-        [SerializeField] private GameObject _secondMultiplication34;
-        [SerializeField] private GameObject _secondMultiplication45;
-        [SerializeField] private GameObject _secondMultiplication56;
+        public GameObject SecondMultiplication12;
+        public GameObject SecondMultiplication23;
+        public GameObject SecondMultiplication34;
+        public GameObject SecondMultiplication45;
+        public GameObject SecondMultiplication56;
         #endregion
 
         #region ThiedPanel
         [Header("ThiedPanel")]
-        [SerializeField] private TextMeshProUGUI _thirdCompositionRight;
-        [SerializeField] private TextMeshProUGUI _thirdCompositionLeft;
+        public TextMeshProUGUI ThirdCompositionRight;
+        public TextMeshProUGUI ThirdCompositionLeft;
         [Space(5)]
-        [SerializeField] private TextMeshProUGUI _thirdMultiplier1;
-        [SerializeField] private TextMeshProUGUI _thirdMultiplier2;
-        [SerializeField] private TextMeshProUGUI _thirdMultiplier3;
-        [SerializeField] private TextMeshProUGUI _thirdMultiplier4;
-        [SerializeField] private TextMeshProUGUI _thirdMultiplier5;
-        [SerializeField] private TextMeshProUGUI _thirdMultiplier6;
+        public TextMeshProUGUI ThirdMultiplier1;
+        public TextMeshProUGUI ThirdMultiplier2;
+        public TextMeshProUGUI ThirdMultiplier3;
+        public TextMeshProUGUI ThirdMultiplier4;
+        public TextMeshProUGUI ThirdMultiplier5;
+        public TextMeshProUGUI ThirdMultiplier6;
         [Space(5)]
-        [SerializeField] private GameObject _thirdMultiplication12;
-        [SerializeField] private GameObject _thirdMultiplication23;
-        [SerializeField] private GameObject _thirdMultiplication34;
-        [SerializeField] private GameObject _thirdMultiplication45;
-        [SerializeField] private GameObject _thirdMultiplication56;
+        public GameObject ThirdMultiplication12;
+        public GameObject ThirdMultiplication23;
+        public GameObject ThirdMultiplication34;
+        public GameObject ThirdMultiplication45;
+        public GameObject ThirdMultiplication56;
         #endregion
 
         #region Reserve
         [Header("Reserve")]
-        [SerializeField] private TextMeshProUGUI _reservMultiplier1;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier2;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier3;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier4;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier5;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier6;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier7;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier8;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier9;
-        [SerializeField] private TextMeshProUGUI _reservMultiplier10;
+        public TextMeshProUGUI ReservMultiplier1;
+        public TextMeshProUGUI ReservMultiplier2;
+        public TextMeshProUGUI ReservMultiplier3;
+        public TextMeshProUGUI ReservMultiplier4;
+        public TextMeshProUGUI ReservMultiplier5;
+        public TextMeshProUGUI ReservMultiplier6;
+        public TextMeshProUGUI ReservMultiplier7;
+        public TextMeshProUGUI ReservMultiplier8;
+        public TextMeshProUGUI ReservMultiplier9;
+        public TextMeshProUGUI ReservMultiplier10;
         #endregion
         #endregion
 
@@ -101,6 +101,8 @@ namespace Multipliers
 
         private void GenerateAvailableMultipliers(int selectedDifficulty)
         {
+
+            //жижа
             switch (selectedDifficulty)
             {
                 case 1:
@@ -134,9 +136,9 @@ namespace Multipliers
 
         public void NewLevel()
         {
-            _firstCompositionRight.SetText($"{GenerateLine()}");
-            _secondCompositionRight.SetText($"{GenerateLine()}");
-            _thirdCompositionRight.SetText($"{GenerateLine()}");
+            FirstCompositionRight.SetText($"{GenerateLine()}");
+            SecondCompositionRight.SetText($"{GenerateLine()}");
+            ThirdCompositionRight.SetText($"{GenerateLine()}");
 
             AddReserv();
             foreach (int multiplier in _levelMultipliers)
@@ -145,85 +147,85 @@ namespace Multipliers
             }
 
             int firstCompositionLeft = 0;
-            if(_firstMultiplier1.text != "")
+            if(FirstMultiplier1.text != "")
             {
-                firstCompositionLeft = Int32.Parse(_firstMultiplier1.text);
-                if (_firstMultiplier2.text != "")
+                firstCompositionLeft = Int32.Parse(FirstMultiplier1.text);
+                if (FirstMultiplier2.text != "")
                 {
-                    firstCompositionLeft *= Int32.Parse(_firstMultiplier2.text);
-                    if (_firstMultiplier3.text != "")
+                    firstCompositionLeft *= Int32.Parse(FirstMultiplier2.text);
+                    if (FirstMultiplier3.text != "")
                     {
-                        firstCompositionLeft *= Int32.Parse(_firstMultiplier3.text);
-                        if (_firstMultiplier4.text != "")
+                        firstCompositionLeft *= Int32.Parse(FirstMultiplier3.text);
+                        if (FirstMultiplier4.text != "")
                         {
-                            firstCompositionLeft *= Int32.Parse(_firstMultiplier4.text);
-                            if (_firstMultiplier5.text != "")
+                            firstCompositionLeft *= Int32.Parse(FirstMultiplier4.text);
+                            if (FirstMultiplier5.text != "")
                             {
-                                firstCompositionLeft *= Int32.Parse(_firstMultiplier5.text);
-                                if (_firstMultiplier6.text != "")
+                                firstCompositionLeft *= Int32.Parse(FirstMultiplier5.text);
+                                if (FirstMultiplier6.text != "")
                                 {
-                                    firstCompositionLeft *= Int32.Parse(_firstMultiplier6.text);
+                                    firstCompositionLeft *= Int32.Parse(FirstMultiplier6.text);
                                 }
                             }
                         }
                     }
                 }
             }
-            _firstCompositionLeft.SetText($"{firstCompositionLeft}");
+            FirstCompositionLeft.SetText($"{firstCompositionLeft}");
 
             int secondCompositionLeft = 0;
-            if (_secondMultiplier1.text != "")
+            if (SecondMultiplier1.text != "")
             {
-                secondCompositionLeft = Int32.Parse(_secondMultiplier1.text);
-                if (_secondMultiplier2.text != "")
+                secondCompositionLeft = Int32.Parse(SecondMultiplier1.text);
+                if (SecondMultiplier2.text != "")
                 {
-                    secondCompositionLeft *= Int32.Parse(_secondMultiplier2.text);
-                    if (_secondMultiplier3.text != "")
+                    secondCompositionLeft *= Int32.Parse(SecondMultiplier2.text);
+                    if (SecondMultiplier3.text != "")
                     {
-                        secondCompositionLeft *= Int32.Parse(_secondMultiplier3.text);
-                        if (_secondMultiplier4.text != "")
+                        secondCompositionLeft *= Int32.Parse(SecondMultiplier3.text);
+                        if (SecondMultiplier4.text != "")
                         {
-                            secondCompositionLeft *= Int32.Parse(_secondMultiplier4.text);
-                            if (_secondMultiplier5.text != "")
+                            secondCompositionLeft *= Int32.Parse(SecondMultiplier4.text);
+                            if (SecondMultiplier5.text != "")
                             {
-                                secondCompositionLeft *= Int32.Parse(_secondMultiplier5.text);
-                                if (_secondMultiplier6.text != "")
+                                secondCompositionLeft *= Int32.Parse(SecondMultiplier5.text);
+                                if (SecondMultiplier6.text != "")
                                 {
-                                    secondCompositionLeft *= Int32.Parse(_secondMultiplier6.text);
+                                    secondCompositionLeft *= Int32.Parse(SecondMultiplier6.text);
                                 }
                             }
                         }
                     }
                 }
             }
-            _secondCompositionLeft.SetText($"{secondCompositionLeft}");
+            SecondCompositionLeft.SetText($"{secondCompositionLeft}");
 
             int thirdCompositionLeft = 0;
-            if (_thirdMultiplier1.text != "")
+            if (ThirdMultiplier1.text != "")
             {
-                thirdCompositionLeft = Int32.Parse(_thirdMultiplier1.text);
-                if (_thirdMultiplier2.text != "")
+                thirdCompositionLeft = Int32.Parse(ThirdMultiplier1.text);
+                if (ThirdMultiplier2.text != "")
                 {
-                    thirdCompositionLeft *= Int32.Parse(_thirdMultiplier2.text);
-                    if (_thirdMultiplier3.text != "")
+                    thirdCompositionLeft *= Int32.Parse(ThirdMultiplier2.text);
+                    if (ThirdMultiplier3.text != "")
                     {
-                        thirdCompositionLeft *= Int32.Parse(_thirdMultiplier3.text);
-                        if (_thirdMultiplier4.text != "")
+                        thirdCompositionLeft *= Int32.Parse(ThirdMultiplier3.text);
+                        if (ThirdMultiplier4.text != "")
                         {
-                            thirdCompositionLeft *= Int32.Parse(_thirdMultiplier4.text);
-                            if (_thirdMultiplier5.text != "")
+                            thirdCompositionLeft *= Int32.Parse(ThirdMultiplier4.text);
+                            if (ThirdMultiplier5.text != "")
                             {
-                                thirdCompositionLeft *= Int32.Parse(_thirdMultiplier5.text);
-                                if (_thirdMultiplier6.text != "")
+                                thirdCompositionLeft *= Int32.Parse(ThirdMultiplier5.text);
+                                if (ThirdMultiplier6.text != "")
                                 {
-                                    thirdCompositionLeft *= Int32.Parse(_thirdMultiplier6.text);
+                                    thirdCompositionLeft *= Int32.Parse(ThirdMultiplier6.text);
                                 }
                             }
                         }
                     }
                 }
             }
-            _thirdCompositionLeft.SetText($"{thirdCompositionLeft}");
+            ThirdCompositionLeft.SetText($"{thirdCompositionLeft}");
         }
 
         private int GenerateLine()
@@ -332,45 +334,45 @@ namespace Multipliers
             switch (rnd)
             {                
                 case 0:
-                    if (_reservMultiplier1.text == "")
+                    if (ReservMultiplier1.text == "")
                     {
-                        _reservMultiplier1.SetText($"{multiplier}");
+                        ReservMultiplier1.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier2.text == "")
+                    else if (ReservMultiplier2.text == "")
                     {
-                        _reservMultiplier2.SetText($"{multiplier}");
+                        ReservMultiplier2.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier3.text == "")
+                    else if (ReservMultiplier3.text == "")
                     {
-                        _reservMultiplier3.SetText($"{multiplier}");
+                        ReservMultiplier3.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier4.text == "")
+                    else if (ReservMultiplier4.text == "")
                     {
-                        _reservMultiplier4.SetText($"{multiplier}");
+                        ReservMultiplier4.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier5.text == "")
+                    else if (ReservMultiplier5.text == "")
                     {
-                        _reservMultiplier5.SetText($"{multiplier}");
+                        ReservMultiplier5.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier6.text == "")
+                    else if (ReservMultiplier6.text == "")
                     {
-                        _reservMultiplier6.SetText($"{multiplier}");
+                        ReservMultiplier6.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier7.text == "")
+                    else if (ReservMultiplier7.text == "")
                     {
-                        _reservMultiplier7.SetText($"{multiplier}");
+                        ReservMultiplier7.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier8.text == "")
+                    else if (ReservMultiplier8.text == "")
                     {
-                        _reservMultiplier8.SetText($"{multiplier}");
+                        ReservMultiplier8.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier9.text == "")
+                    else if (ReservMultiplier9.text == "")
                     {
-                        _reservMultiplier9.SetText($"{multiplier}");
+                        ReservMultiplier9.SetText($"{multiplier}");
                     }
-                    else if (_reservMultiplier10.text == "")
+                    else if (ReservMultiplier10.text == "")
                     {
-                        _reservMultiplier10.SetText($"{multiplier}");
+                        ReservMultiplier10.SetText($"{multiplier}");
                     }
                     else
                     {
@@ -378,34 +380,34 @@ namespace Multipliers
                     }
                         break;
                 case 1:
-                    if (_firstMultiplier1.text == "")
+                    if (FirstMultiplier1.text == "")
                     {
-                        _firstMultiplier1.SetText($"{multiplier}");
+                        FirstMultiplier1.SetText($"{multiplier}");
                     }
-                    else if (_firstMultiplier2.text == "")
+                    else if (FirstMultiplier2.text == "")
                     {
-                        _firstMultiplier2.SetText($"{multiplier}");
-                        _firstMultiplication12.SetActive(true);
+                        FirstMultiplier2.SetText($"{multiplier}");
+                        FirstMultiplication12.SetActive(true);
                     }
-                    else if (_firstMultiplier3.text == "")
+                    else if (FirstMultiplier3.text == "")
                     {
-                        _firstMultiplier3.SetText($"{multiplier}");
-                        _firstMultiplication23.SetActive(true);
+                        FirstMultiplier3.SetText($"{multiplier}");
+                        FirstMultiplication23.SetActive(true);
                     }
-                    else if (_firstMultiplier4.text == "")
+                    else if (FirstMultiplier4.text == "")
                     {
-                        _firstMultiplier4.SetText($"{multiplier}");
-                        _firstMultiplication34.SetActive(true);
+                        FirstMultiplier4.SetText($"{multiplier}");
+                        FirstMultiplication34.SetActive(true);
                     }
-                    else if (_firstMultiplier5.text == "")
+                    else if (FirstMultiplier5.text == "")
                     {
-                        _firstMultiplier5.SetText($"{multiplier}");
-                        _firstMultiplication45.SetActive(true);
+                        FirstMultiplier5.SetText($"{multiplier}");
+                        FirstMultiplication45.SetActive(true);
                     }
-                    else if (_firstMultiplier6.text == "")
+                    else if (FirstMultiplier6.text == "")
                     {
-                        _firstMultiplier6.SetText($"{multiplier}");
-                        _firstMultiplication56.SetActive(true);
+                        FirstMultiplier6.SetText($"{multiplier}");
+                        FirstMultiplication56.SetActive(true);
                     }
                     else
                     {
@@ -413,34 +415,34 @@ namespace Multipliers
                     }
                     break;
                 case 2:
-                    if (_secondMultiplier1.text == "")
+                    if (SecondMultiplier1.text == "")
                     {
-                        _secondMultiplier1.SetText($"{multiplier}");
+                        SecondMultiplier1.SetText($"{multiplier}");
                     }
-                    else if (_secondMultiplier2.text == "")
+                    else if (SecondMultiplier2.text == "")
                     {
-                        _secondMultiplier2.SetText($"{multiplier}");
-                        _secondMultiplication12.SetActive(true);
+                        SecondMultiplier2.SetText($"{multiplier}");
+                        SecondMultiplication12.SetActive(true);
                     }
-                    else if (_secondMultiplier3.text == "")
+                    else if (SecondMultiplier3.text == "")
                     {
-                        _secondMultiplier3.SetText($"{multiplier}");
-                        _secondMultiplication23.SetActive(true);
+                        SecondMultiplier3.SetText($"{multiplier}");
+                        SecondMultiplication23.SetActive(true);
                     }
-                    else if (_secondMultiplier4.text == "")
+                    else if (SecondMultiplier4.text == "")
                     {
-                        _secondMultiplier4.SetText($"{multiplier}");
-                        _secondMultiplication34.SetActive(true);
+                        SecondMultiplier4.SetText($"{multiplier}");
+                        SecondMultiplication34.SetActive(true);
                     }
-                    else if (_secondMultiplier5.text == "")
+                    else if (SecondMultiplier5.text == "")
                     {
-                        _secondMultiplier5.SetText($"{multiplier}");
-                        _secondMultiplication45.SetActive(true);
+                        SecondMultiplier5.SetText($"{multiplier}");
+                        SecondMultiplication45.SetActive(true);
                     }
-                    else if (_secondMultiplier6.text == "")
+                    else if (SecondMultiplier6.text == "")
                     {
-                        _secondMultiplier6.SetText($"{multiplier}");
-                        _secondMultiplication56.SetActive(true);
+                        SecondMultiplier6.SetText($"{multiplier}");
+                        SecondMultiplication56.SetActive(true);
                     }
                     else
                     {
@@ -448,34 +450,34 @@ namespace Multipliers
                     }
                     break;
                 case 3:
-                    if (_thirdMultiplier1.text == "")
+                    if (ThirdMultiplier1.text == "")
                     {
-                        _thirdMultiplier1.SetText($"{multiplier}");
+                        ThirdMultiplier1.SetText($"{multiplier}");
                     }
-                    else if (_thirdMultiplier2.text == "")
+                    else if (ThirdMultiplier2.text == "")
                     {
-                        _thirdMultiplier2.SetText($"{multiplier}");
-                        _thirdMultiplication12.SetActive(true);
+                        ThirdMultiplier2.SetText($"{multiplier}");
+                        ThirdMultiplication12.SetActive(true);
                     }
-                    else if (_thirdMultiplier3.text == "")
+                    else if (ThirdMultiplier3.text == "")
                     {
-                        _thirdMultiplier3.SetText($"{multiplier}");
-                        _thirdMultiplication23.SetActive(true);
+                        ThirdMultiplier3.SetText($"{multiplier}");
+                        ThirdMultiplication23.SetActive(true);
                     }
-                    else if (_thirdMultiplier4.text == "")
+                    else if (ThirdMultiplier4.text == "")
                     {
-                        _thirdMultiplier4.SetText($"{multiplier}");
-                        _thirdMultiplication34.SetActive(true);
+                        ThirdMultiplier4.SetText($"{multiplier}");
+                        ThirdMultiplication34.SetActive(true);
                     }
-                    else if (_thirdMultiplier5.text == "")
+                    else if (ThirdMultiplier5.text == "")
                     {
-                        _thirdMultiplier5.SetText($"{multiplier}");
-                        _thirdMultiplication45.SetActive(true);
+                        ThirdMultiplier5.SetText($"{multiplier}");
+                        ThirdMultiplication45.SetActive(true);
                     }
-                    else if (_thirdMultiplier6.text == "")
+                    else if (ThirdMultiplier6.text == "")
                     {
-                        _thirdMultiplier6.SetText($"{multiplier}");
-                        _thirdMultiplication56.SetActive(true);
+                        ThirdMultiplier6.SetText($"{multiplier}");
+                        ThirdMultiplication56.SetActive(true);
                     }
                     else
                     {
