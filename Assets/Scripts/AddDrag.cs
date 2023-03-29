@@ -5,17 +5,17 @@ namespace Multipliers
 {
     public class AddDrag : MonoBehaviour
     {
+        private AddBeginDrag _addBeginDrag;
+
         private void Start()
         {
             if (!GetComponent<EventTrigger>())
             {
                 gameObject.AddComponent<EventTrigger>();
             }
-            EventTrigger trigger = GetComponent<EventTrigger>();
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.Drag;
-            entry.callback.AddListener((data) => Move());
-            trigger.triggers.Add(entry);
+            Add();
+
+            _addBeginDrag = GetComponent<AddBeginDrag>();
         }
 
         public void Add()
@@ -29,7 +29,10 @@ namespace Multipliers
 
         public void Move()
         {
-            transform.position = Input.mousePosition;
+            if (_addBeginDrag.BeginDrag == true)
+            {
+                transform.position = Input.mousePosition;
+            }
         }
     }
 }

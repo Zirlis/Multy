@@ -8,6 +8,8 @@ namespace Multipliers
     public class AddBeginDrag : MonoBehaviour
     {
         public static event Action<GameObject> OnBeginDrag;
+        public bool AllowBeginDrag = true;
+        public bool BeginDrag = false;
 
         public GameObject Original;
         private void Start()
@@ -30,10 +32,14 @@ namespace Multipliers
 
         public void SetParentData()
         {
-            var parentText = Original.GetComponent<TextMeshProUGUI>();
-            GetComponent<TextMeshProUGUI>().SetText($"{parentText.text}");
-            parentText.SetText("");
-            OnBeginDrag?.Invoke(gameObject);
+            if (AllowBeginDrag)
+            {
+                var parentText = Original.GetComponent<TextMeshProUGUI>();
+                GetComponent<TextMeshProUGUI>().SetText($"{parentText.text}");
+                parentText.SetText("");
+                BeginDrag = true;
+                OnBeginDrag?.Invoke(gameObject);
+            }
         }
     }
 }

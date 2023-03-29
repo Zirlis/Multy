@@ -5,6 +5,8 @@ namespace Multipliers
 {
     public class AddEndDrag : MonoBehaviour
     {
+        private AddBeginDrag _addBeginDrag;
+
         private void Start()
         {
             if (!GetComponent<EventTrigger>())
@@ -16,10 +18,13 @@ namespace Multipliers
             entry.eventID = EventTriggerType.EndDrag;
             entry.callback.AddListener((data) => EndDrag());
             trigger.triggers.Add(entry);
+
+            _addBeginDrag = GetComponent<AddBeginDrag>();
         }
 
         public void EndDrag()
         {
+            _addBeginDrag.BeginDrag = false;
             GetComponent<BoxCollider2D>().enabled = true;
         }
     }
