@@ -1,16 +1,18 @@
 using System;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 namespace Multipliers
 {
     public class NewInLine : MonoBehaviour
     {
-        private LevelGenerator LevelGenerator;
         private Movement Movement;
+
+        private bool _collisionWithSomethingOtherThanBack = false;
+
         private void Start()
         {
-            LevelGenerator = GetComponent<LevelGenerator>();
             Movement = GetComponent<Movement>();
 
             AddBeginDrag.OnBeginDrag += RecalculationOnBeginDrag;
@@ -24,16 +26,17 @@ namespace Multipliers
                 switch (panel.name)
                 {
                     case "Back":
-                        RecalculationOnEndDrag(multiplier, multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                        StartCoroutine(CollisionWithBack(multiplier, multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject));
                         break;
 
                     default:
-                        for (int i = 0; i < panel.transform.childCount; i++)
+                        _collisionWithSomethingOtherThanBack = true;                        
+
+                        for (int i = 0; i < multiplier.transform.parent.childCount; i++)
                         {
 
                             var mTMP = panel.transform.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>();
-                            var text = mTMP.text;
-                            if (text == "")
+                            if (mTMP.text == "")
                             {
                                 mTMP.SetText(multiplier.GetComponent<TextMeshProUGUI>().text);
                                 if(i != 0)
@@ -42,7 +45,7 @@ namespace Multipliers
                                 }
                                 break;
                             }
-                            if (i == panel.transform.childCount - 1)
+                            if (i == multiplier.transform.parent.childCount - 1)
                             {
                                 RecalculationOnEndDrag(multiplier, multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
                             }
@@ -54,30 +57,30 @@ namespace Multipliers
                         break;   
                 }
 
-                var siblingIndex = multiplier.transform.GetSiblingIndex();
-                if (siblingIndex != 0)
-                {
-                    multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.GetChild(siblingIndex + 5).gameObject.SetActive(true);
-                }
-
                 //сейв
             }
-
-            multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            else
+            {
+                multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            }
         }
 
         private void RecalculationOnBeginDrag(GameObject multiplier)
         {
-            switch (multiplier.name)
+            if (multiplier.GetComponent<TextMeshProUGUI>().text != "")
             {
-                case "Multiplier6 (1)":
-                    LevelGenerator.FirstMultiplication56.SetActive(false);
-                    break;
-                default:
-                    Movement.Coroutine(multiplier);
-                    break;
+                switch (multiplier.name)
+                {
+                    case "Multiplier6 (1)":
+                        multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.GetChild(multiplier.transform.GetSiblingIndex() + 5)
+                            .gameObject.SetActive(false);
+                        break;
+                    default:
+                        Movement.Coroutine(multiplier);
+                        break;
+                }
+                Recalculation(multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
             }
-            Recalculation(multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
         }
 
         private void Recalculation(GameObject panel)
@@ -107,6 +110,16 @@ namespace Multipliers
             }
 
             //if победка
+        }
+
+        private IEnumerator CollisionWithBack(GameObject multiplier, GameObject panel)
+        {
+            yield return new WaitForEndOfFrame();
+            if (!_collisionWithSomethingOtherThanBack)
+            {
+                RecalculationOnEndDrag(multiplier, panel);
+            }
+            _collisionWithSomethingOtherThanBack = false;
         }
     }
 }

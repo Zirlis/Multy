@@ -32,8 +32,7 @@ namespace Multipliers
 
         private IEnumerator MovementOnLine (GameObject obj)
         {
-            var objAddBeginDrag = obj.GetComponent<AddBeginDrag>();
-            var parent = objAddBeginDrag.Original;
+            var parent = obj.GetComponent<AddBeginDrag>().Original;
 
             var originalMultiplicator = parent.transform.parent.GetChild(obj.transform.GetSiblingIndex() + 6).gameObject;
             originalMultiplicator.SetActive(false);
@@ -52,21 +51,14 @@ namespace Multipliers
             var panelCollider = parent.transform.parent.GetComponent<BoxCollider2D>();
             panelCollider.enabled = false;            
 
-            for (int i = 5; i > 0; i--)
+            for (int i = 5; i > obj.transform.GetSiblingIndex(); i--)
             {
-                if (obj.transform.parent.GetChild(i).gameObject != obj)
-                {
-                    obj.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText
+                obj.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText
                         (parent.transform.parent.GetChild(i - 1).gameObject.GetComponent<TextMeshProUGUI>().text);
-                    requiringRelocation.Add(obj.transform.parent.GetChild(i).gameObject.GetComponent<RectTransform>());
-                    if (i != 5)
-                    {
-                        requiringRelocation.Add(parent.transform.parent.GetChild(i + 6).gameObject.GetComponent<RectTransform>());
-                    }
-                }
-                else
+                requiringRelocation.Add(obj.transform.parent.GetChild(i).gameObject.GetComponent<RectTransform>());
+                if (i != 5)
                 {
-                    break;
+                    requiringRelocation.Add(parent.transform.parent.GetChild(i + 6).gameObject.GetComponent<RectTransform>());
                 }
             }
 
@@ -76,7 +68,20 @@ namespace Multipliers
                 {
                     obj.transform.parent.GetChild(i).gameObject.GetComponent<AddBeginDrag>().AllowBeginDrag = false;
                 }
+            }
 
+            int siblingIndex = obj.transform.GetSiblingIndex();
+            if (siblingIndex != 0 && siblingIndex != obj.transform.parent.childCount - 1)
+            {
+                if (obj.GetComponent<AddBeginDrag>().Original.transform.parent.GetChild(obj.transform.GetSiblingIndex()).gameObject
+                    .GetComponent<TextMeshProUGUI>().text == "")
+                {
+                    obj.GetComponent<AddBeginDrag>().Original.transform.parent.GetChild(obj.transform.GetSiblingIndex() + 5).gameObject.SetActive(false);
+                }
+            }                    
+
+            for (int i = 5; i >= obj.transform.GetSiblingIndex(); i--)
+            {
                 parent.transform.parent.GetChild(i).gameObject.SetActive(false);
             }
 
@@ -97,10 +102,13 @@ namespace Multipliers
                 rectTransform.anchoredPosition = Vector2.zero;
             }
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 5; i >= obj.transform.GetSiblingIndex(); i--)
             {
                 parent.transform.parent.GetChild(i).gameObject.SetActive(true);
+            }
 
+            for (int i = 0; i < 6; i++)
+            {
                 if (i != obj.transform.GetSiblingIndex())
                 {
                     var cloneInPanel = obj.transform.parent.GetChild(i).gameObject;
@@ -117,7 +125,10 @@ namespace Multipliers
                 }
             }
 
-            originalMultiplicator.SetActive(true);
+            if (siblingIndex != 5 && parent.transform.parent.GetChild(siblingIndex + 1).gameObject.GetComponent<TextMeshProUGUI>().text != "")
+            {
+                originalMultiplicator.SetActive(true);
+            }
 
             panelCollider.enabled = true;
         }
