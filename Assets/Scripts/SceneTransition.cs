@@ -4,12 +4,12 @@ namespace Multipliers
 {
     public class SceneTransition 
     {
-        public void GameScene()
+        public void GoToGameScene()
         {
             //анимация
             //коенц анимации
 
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("GoToGameScene");
         }
     }
 }

@@ -81,8 +81,8 @@ namespace Multipliers
         #endregion
 
         private SaveManagerGameScene _saveManagerGameScene;
-        [HideInInspector] public List<int> AvailableMultipliers = new List<int>();
-        private List<int> _levelMultipliers = new List<int>();
+        [HideInInspector] public List<int> AvailableMultipliers;
+        private List<int> _levelMultipliers;
         public int DifficultyInGame;        
 
         void Start()
@@ -94,9 +94,16 @@ namespace Multipliers
             else
             {
                 _saveManagerGameScene = GetComponent<SaveManagerGameScene>();
-                GenerateAvailableMultipliers(_saveManagerGameScene.GameData.SelectedDifficulty);
                 NewLevel();
             }
+        }
+
+        public void NewLevel()
+        {
+            AvailableMultipliers = new List<int>();
+            _levelMultipliers = new List<int>();
+            GenerateAvailableMultipliers(_saveManagerGameScene.GameData.SelectedDifficulty);
+            GenerateLevel();
         }
 
         private void GenerateAvailableMultipliers(int selectedDifficulty)
@@ -134,7 +141,7 @@ namespace Multipliers
             }
         }
 
-        public void NewLevel()
+        public void GenerateLevel()
         {
             FirstCompositionRight.SetText($"{GenerateLine()}");
             SecondCompositionRight.SetText($"{GenerateLine()}");

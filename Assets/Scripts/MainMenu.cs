@@ -30,21 +30,21 @@ namespace Multipliers
         {
             _saveManager.GameData.SelectedDifficulty = 3;
             _saveManager.Save();
-            _sceneTransition.GameScene();            
+            _sceneTransition.GoToGameScene();            
         }
 
         private void MediumDifficulty()
         {
             _saveManager.GameData.SelectedDifficulty = 2;
             _saveManager.Save();
-            _sceneTransition.GameScene();
+            _sceneTransition.GoToGameScene();
         }
 
         private void EasyDifficulty()
         {
             _saveManager.GameData.SelectedDifficulty = 1;
             _saveManager.Save();
-            _sceneTransition.GameScene();
+            _sceneTransition.GoToGameScene();
         }
     }
 }

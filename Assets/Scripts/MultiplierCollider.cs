@@ -8,7 +8,6 @@ namespace Multipliers
         public static event Action<GameObject, GameObject> OnEndDrag;
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision.name);
             OnEndDrag?.Invoke(gameObject, collision.gameObject);
             GetComponent<BoxCollider2D>().enabled = false;            
         }

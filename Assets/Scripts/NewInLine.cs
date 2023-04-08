@@ -2,33 +2,20 @@ using System;
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.UI;
 
 namespace Multipliers
 {
     public class NewInLine : MonoBehaviour
     {
-        private Movement Movement;
+        private Movement _movement;
+        private Victory _victory;
 
-        private bool _collisionWithSomethingOtherThanBack = false;
-
-        [Header("Compositions")]
-        [SerializeField] private TextMeshProUGUI _firstCompositionRight;
-        [SerializeField] private TextMeshProUGUI _firstCompositionLeft;
-        [SerializeField] private TextMeshProUGUI _secondCompositionRight;
-        [SerializeField] private TextMeshProUGUI _secondCompositionLeft;
-        [SerializeField] private TextMeshProUGUI _thirdCompositionRight;
-        [SerializeField] private TextMeshProUGUI _thirdCompositionLeft;
-
-        [Header("VictoryPanel")]
-        [SerializeField] private RectTransform _victoryPanel;
-        [SerializeField] private TextMeshProUGUI _scoreText;
-        [SerializeField] private Image _randomImageOnVicroryPanel1;
-        [SerializeField] private Image _randomImageOnVicroryPanel2;
+        private bool _collisionWithSomethingOtherThanBack = false;            
 
         private void Start()
         {
-            Movement = GetComponent<Movement>();
+            _movement = GetComponent<Movement>();
+            _victory = GetComponent<Victory>();
 
             AddBeginDrag.OnBeginDrag += RecalculationOnBeginDrag;
             MultiplierCollider.OnEndDrag += RecalculationOnEndDrag;
@@ -113,7 +100,7 @@ namespace Multipliers
                                 .gameObject.SetActive(false);
                             break;
                         default:
-                            Movement.Coroutine(multiplier);
+                            _movement.Coroutine(multiplier);
                             break;
                     }
                     Recalculation(multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject, multiplier);
@@ -147,7 +134,7 @@ namespace Multipliers
                 panel.transform.GetChild(12).gameObject.GetComponent<TextMeshProUGUI>().SetText($"{composition}");
             }
 
-            CheckVictory(multiplier);
+            _victory.CheckVictory(multiplier);
         }
 
         private IEnumerator CollisionWithBack(GameObject multiplier, GameObject panel)
@@ -158,49 +145,6 @@ namespace Multipliers
                 RecalculationOnEndDrag(multiplier, panel);
             }
             _collisionWithSomethingOtherThanBack = false;
-        }
-
-        private void CheckVictory(GameObject multiplier)
-        {
-            bool first;
-            bool second;
-            bool third;
-
-            if(_firstCompositionLeft.text == _firstCompositionRight.text)
-            {
-                //анимация первой панели
-                first = true;
-            }
-            else
-            {
-                //анимация первой панели
-                first = false;
-            }
-            if (_secondCompositionLeft.text == _secondCompositionRight.text)
-            {
-                //анимация второй панели
-                second = true;
-            }
-            else
-            {
-                //анимация второй панели
-                second = false;
-            }
-            if (_thirdCompositionLeft.text == _thirdCompositionRight.text)
-            {
-                //анимация третьей панели
-                third = true;
-            }
-            else
-            {
-                //анимация третьей панели
-                third = false;
-            }
-            
-            if(first && second && third)
-            {
-
-            }
-        }
+        }        
     }
 }
