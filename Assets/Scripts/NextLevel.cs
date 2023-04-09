@@ -15,6 +15,7 @@ namespace Multipliers
         [Header("Other")]
         [SerializeField] private GameObject _plug;
         [SerializeField] private LevelGenerator _levelGenerator;
+        [SerializeField] private RectTransform _victoryPanel;
 
         private void Start()
         {
@@ -24,14 +25,19 @@ namespace Multipliers
         private void Invoke()
         {
             //включить анимацию
+
             ClearLine(_firstPlane);
             ClearLine(_secondPlane);
             ClearLine(_thirdPlane);
             ClearLine(_reserve);
             _levelGenerator.NewLevel();
+
             //выключить анимацию
+
             _plug.SetActive(false);
-            //----------------------------------------скрыть победную панель
+            _victoryPanel.anchoredPosition = new Vector2(0,
+                -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
+
             //возобновить таймер
         }
 

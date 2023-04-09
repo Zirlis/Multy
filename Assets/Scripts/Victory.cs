@@ -85,6 +85,7 @@ namespace Multipliers
 
         private IEnumerator VictoryPanelMovement()
         {
+            _currentDistance = 0f;
             while (_currentDistance < _distance)
             {
                 _currentDistance += _distance / MovementTime * Time.deltaTime;
