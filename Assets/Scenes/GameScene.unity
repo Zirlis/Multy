@@ -4308,9 +4308,15 @@ MonoBehaviour:
   TimeOnTimer: 100
   _plug: {fileID: 144562637}
   _lossPanel: {fileID: 13479854}
+  _levelGenerator: {fileID: 526370410}
+  _newInLine: {fileID: 526370411}
   _distance: 0
   MovementTime: 0.3
   _currentDistance: 0
+  _firstPanel: {fileID: 1188541060}
+  _secondPanel: {fileID: 1244546162}
+  _thirdPanel: {fileID: 1665596178}
+  _reserve: {fileID: 337571850}
 --- !u!1 &421848178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4914,6 +4920,9 @@ MonoBehaviour:
   ReservMultiplier10: {fileID: 1816086037}
   AvailableMultipliers: 
   DifficultyInGame: 0
+  FirstPanelMultipliers: 
+  SecondPanelMultipliers: 
+  ThirdPanelMultipliers: 
 --- !u!114 &526370411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4926,6 +4935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39550a08867c44d9223f29185f857b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastTouched: {fileID: 0}
 --- !u!114 &526370412
 MonoBehaviour:
   m_ObjectHideFlags: 0

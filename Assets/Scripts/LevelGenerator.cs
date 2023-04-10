@@ -83,7 +83,10 @@ namespace Multipliers
         private SaveManagerGameScene _saveManagerGameScene;
         [HideInInspector] public List<int> AvailableMultipliers;
         private List<int> _levelMultipliers;
-        public int DifficultyInGame;        
+        public int DifficultyInGame;
+        public List<int> FirstPanelMultipliers;
+        public List<int> SecondPanelMultipliers;
+        public List<int> ThirdPanelMultipliers;
 
         void Start()
         {
@@ -143,9 +146,13 @@ namespace Multipliers
 
         public void GenerateLevel()
         {
-            FirstCompositionRight.SetText($"{GenerateLine()}");
-            SecondCompositionRight.SetText($"{GenerateLine()}");
-            ThirdCompositionRight.SetText($"{GenerateLine()}");
+            FirstPanelMultipliers.Clear();
+            SecondPanelMultipliers.Clear();
+            ThirdPanelMultipliers.Clear();
+
+            FirstCompositionRight.SetText($"{GenerateLine(FirstPanelMultipliers)}");
+            SecondCompositionRight.SetText($"{GenerateLine(SecondPanelMultipliers)}");
+            ThirdCompositionRight.SetText($"{GenerateLine(ThirdPanelMultipliers)}");
 
             AddReserv();
             foreach (int multiplier in _levelMultipliers)
@@ -178,7 +185,15 @@ namespace Multipliers
                     }
                 }
             }
-            FirstCompositionLeft.SetText($"{firstCompositionLeft}");
+
+            if (firstCompositionLeft != 0)
+            {
+                FirstCompositionLeft.SetText($"{firstCompositionLeft}");
+            }
+            else
+            {
+                FirstCompositionLeft.SetText("");
+            }
 
             int secondCompositionLeft = 0;
             if (SecondMultiplier1.text != "")
@@ -205,7 +220,15 @@ namespace Multipliers
                     }
                 }
             }
-            SecondCompositionLeft.SetText($"{secondCompositionLeft}");
+
+            if (secondCompositionLeft != 0)
+            {
+                SecondCompositionLeft.SetText($"{secondCompositionLeft}");
+            }
+            else
+            {
+                SecondCompositionLeft.SetText("");
+            }
 
             int thirdCompositionLeft = 0;
             if (ThirdMultiplier1.text != "")
@@ -232,10 +255,18 @@ namespace Multipliers
                     }
                 }
             }
-            ThirdCompositionLeft.SetText($"{thirdCompositionLeft}");
+
+            if (thirdCompositionLeft != 0)
+            {
+                ThirdCompositionLeft.SetText($"{thirdCompositionLeft}");
+            }
+            else
+            {
+                ThirdCompositionLeft.SetText("");
+            }
         }
 
-        private int GenerateLine()
+        private int GenerateLine(List<int> multipliers)
         {
             int multiplier1 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
             int multiplier2 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
@@ -261,11 +292,19 @@ namespace Multipliers
                         _levelMultipliers.Add(multiplier5);
                         _levelMultipliers.Add(multiplier6);
                         var composition = multiplier1 * multiplier2 * multiplier3 * multiplier4 * multiplier5 * multiplier6;
+
+                        multipliers.Add(multiplier1);
+                        multipliers.Add(multiplier2);
+                        multipliers.Add(multiplier3);
+                        multipliers.Add(multiplier4);
+                        multipliers.Add(multiplier5);
+                        multipliers.Add(multiplier6);
+                        
                         return composition;
                     }
                     else
                     {
-                        return GenerateLine();
+                        return GenerateLine(multipliers);
                     }
                 }
                 else
@@ -279,11 +318,18 @@ namespace Multipliers
                         _levelMultipliers.Add(multiplier5);
 
                         var composition = multiplier1 * multiplier2 * multiplier3 * multiplier4 * multiplier5;
+
+                        multipliers.Add(multiplier1);
+                        multipliers.Add(multiplier2);
+                        multipliers.Add(multiplier3);
+                        multipliers.Add(multiplier4);
+                        multipliers.Add(multiplier5);
+
                         return composition;
                     }
                     else
                     {
-                        return GenerateLine();
+                        return GenerateLine(multipliers);
                     }
                 }
             }  
@@ -298,13 +344,19 @@ namespace Multipliers
                     _levelMultipliers.Add(multiplier4);
 
                     var composition = multiplier1 * multiplier2 * multiplier3 * multiplier4;
+
+                    multipliers.Add(multiplier1);
+                    multipliers.Add(multiplier2);
+                    multipliers.Add(multiplier3);
+                    multipliers.Add(multiplier4);
+
                     return composition;
                 }
                 else
                 {
-                    return GenerateLine();
+                    return GenerateLine(multipliers);
                 }
-            }
+            }            
         }
 
         private void AddReserv()

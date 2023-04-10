@@ -10,7 +10,9 @@ namespace Multipliers
         private Movement _movement;
         private Victory _victory;
 
-        private bool _collisionWithSomethingOtherThanBack = false;            
+        private bool _collisionWithSomethingOtherThanBack = false;
+
+        public GameObject LastTouched;
 
         private void Start()
         {
@@ -50,7 +52,7 @@ namespace Multipliers
                         multiplier.GetComponent<TextMeshProUGUI>().SetText("");
                         multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         break;
-                    default:
+                    case "FirstPanel":
                         _collisionWithSomethingOtherThanBack = true;                        
 
                         for (int i = 0; i < 6; i++)
@@ -74,7 +76,57 @@ namespace Multipliers
                         Recalculation(panel, multiplier);
                         multiplier.GetComponent<TextMeshProUGUI>().SetText("");
                         multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                        break;   
+                        break;
+                    case "SecondPanel":
+                        _collisionWithSomethingOtherThanBack = true;
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            var mTMP = panel.transform.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>();
+                            if (mTMP.text == "")
+                            {
+                                mTMP.SetText(multiplier.GetComponent<TextMeshProUGUI>().text);
+                                if (i != 0)
+                                {
+                                    panel.transform.GetChild(i + 5).gameObject.SetActive(true);
+                                }
+                                break;
+                            }
+                            if (i == 5)
+                            {
+                                RecalculationOnEndDrag(multiplier, multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                            }
+                        }
+
+                        Recalculation(panel, multiplier);
+                        multiplier.GetComponent<TextMeshProUGUI>().SetText("");
+                        multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                        break;
+                    case "ThirdPanel":
+                        _collisionWithSomethingOtherThanBack = true;
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            var mTMP = panel.transform.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>();
+                            if (mTMP.text == "")
+                            {
+                                mTMP.SetText(multiplier.GetComponent<TextMeshProUGUI>().text);
+                                if (i != 0)
+                                {
+                                    panel.transform.GetChild(i + 5).gameObject.SetActive(true);
+                                }
+                                break;
+                            }
+                            if (i == 5)
+                            {
+                                RecalculationOnEndDrag(multiplier, multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                            }
+                        }
+
+                        Recalculation(panel, multiplier);
+                        multiplier.GetComponent<TextMeshProUGUI>().SetText("");
+                        multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                        break;
                 }
 
                 //ρειβ
@@ -88,6 +140,8 @@ namespace Multipliers
 
         private void RecalculationOnBeginDrag(GameObject multiplier)
         {
+            LastTouched = multiplier;
+
             if (multiplier.GetComponent<TextMeshProUGUI>().text != "")
             {
                 if (multiplier.transform.parent.name != "ReserveClones")

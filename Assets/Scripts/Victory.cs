@@ -76,6 +76,8 @@ namespace Multipliers
             {
                 //остановить таймер
                 //сейв
+
+                multiplier.GetComponent<AddBeginDrag>().BeginDrag = false;
                 multiplier.GetComponent<TextMeshProUGUI>().SetText("");
                 multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 _plug.SetActive(true);
