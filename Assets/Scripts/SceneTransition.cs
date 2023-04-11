@@ -9,7 +9,7 @@ namespace Multipliers
             //анимация
             //коенц анимации
 
-            SceneManager.LoadScene("GoToGameScene");
+            SceneManager.LoadScene("GameScene");
         }
     }
 }

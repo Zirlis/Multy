@@ -28,6 +28,8 @@ namespace Multipliers
 
         [Header("Other")]
         [SerializeField] private GameObject _plug;
+        [SerializeField] private Timer _timer;
+        [SerializeField] private NewInLine _newInLine;
 
         private void Start()
         {
@@ -35,7 +37,7 @@ namespace Multipliers
                 -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
             _distance = -_victoryPanel.anchoredPosition.y;
         }
-        public void CheckVictory(GameObject multiplier)
+        public void CheckVictory()
         {
             bool first;
             bool second;
@@ -74,12 +76,16 @@ namespace Multipliers
 
             if (first && second && third)
             {
-                //остановить таймер
+                _timer.StopTimer();
                 //сейв
+                if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+                {
+                    _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
+                    _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
+                        _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                    _newInLine.CollisionWithSomethingOtherThanBack = false;
+                }
 
-                multiplier.GetComponent<AddBeginDrag>().BeginDrag = false;
-                multiplier.GetComponent<TextMeshProUGUI>().SetText("");
-                multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 _plug.SetActive(true);
                 StartCoroutine(VictoryPanelMovement());
             }

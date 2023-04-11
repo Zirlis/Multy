@@ -10,9 +10,9 @@ namespace Multipliers
         private Movement _movement;
         private Victory _victory;
 
-        private bool _collisionWithSomethingOtherThanBack = false;
+        [HideInInspector] public bool CollisionWithSomethingOtherThanBack = false;
 
-        public GameObject LastTouched;
+        [HideInInspector] public GameObject LastTouched;
 
         private void Start()
         {
@@ -23,7 +23,7 @@ namespace Multipliers
             MultiplierCollider.OnEndDrag += RecalculationOnEndDrag;
         }
 
-        private void RecalculationOnEndDrag(GameObject multiplier, GameObject panel)
+        public void RecalculationOnEndDrag(GameObject multiplier, GameObject panel)
         {
             if (multiplier.GetComponent<TextMeshProUGUI>().text != "")
             {
@@ -33,7 +33,7 @@ namespace Multipliers
                         StartCoroutine(CollisionWithBack(multiplier, multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject));
                         break;
                     case "Reserve":
-                        _collisionWithSomethingOtherThanBack = true;
+                        CollisionWithSomethingOtherThanBack = true;
 
                         for (int i = 0; i < panel.transform.childCount; i++)
                         {
@@ -53,7 +53,7 @@ namespace Multipliers
                         multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         break;
                     case "FirstPanel":
-                        _collisionWithSomethingOtherThanBack = true;                        
+                        CollisionWithSomethingOtherThanBack = true;                        
 
                         for (int i = 0; i < 6; i++)
                         {
@@ -73,12 +73,12 @@ namespace Multipliers
                             }
                         }
 
-                        Recalculation(panel, multiplier);
+                        Recalculation(panel);
                         multiplier.GetComponent<TextMeshProUGUI>().SetText("");
                         multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         break;
                     case "SecondPanel":
-                        _collisionWithSomethingOtherThanBack = true;
+                        CollisionWithSomethingOtherThanBack = true;
 
                         for (int i = 0; i < 6; i++)
                         {
@@ -98,12 +98,12 @@ namespace Multipliers
                             }
                         }
 
-                        Recalculation(panel, multiplier);
+                        Recalculation(panel);
                         multiplier.GetComponent<TextMeshProUGUI>().SetText("");
                         multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         break;
                     case "ThirdPanel":
-                        _collisionWithSomethingOtherThanBack = true;
+                        CollisionWithSomethingOtherThanBack = true;
 
                         for (int i = 0; i < 6; i++)
                         {
@@ -123,7 +123,7 @@ namespace Multipliers
                             }
                         }
 
-                        Recalculation(panel, multiplier);
+                        Recalculation(panel);
                         multiplier.GetComponent<TextMeshProUGUI>().SetText("");
                         multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         break;
@@ -134,7 +134,7 @@ namespace Multipliers
             else
             {
                 multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                _collisionWithSomethingOtherThanBack = false;
+                CollisionWithSomethingOtherThanBack = false;
             }
         }
 
@@ -157,12 +157,12 @@ namespace Multipliers
                             _movement.Coroutine(multiplier);
                             break;
                     }
-                    Recalculation(multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject, multiplier);
+                    Recalculation(multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
                 }                
             }
         }
 
-        private void Recalculation(GameObject panel, GameObject multiplier)
+        private void Recalculation(GameObject panel)
         {
             int composition = 1;
 
@@ -188,17 +188,17 @@ namespace Multipliers
                 panel.transform.GetChild(12).gameObject.GetComponent<TextMeshProUGUI>().SetText($"{composition}");
             }
 
-            _victory.CheckVictory(multiplier);
+            _victory.CheckVictory();
         }
 
         private IEnumerator CollisionWithBack(GameObject multiplier, GameObject panel)
         {
             yield return new WaitForEndOfFrame();
-            if (!_collisionWithSomethingOtherThanBack)
+            if (!CollisionWithSomethingOtherThanBack)
             {
                 RecalculationOnEndDrag(multiplier, panel);
             }
-            _collisionWithSomethingOtherThanBack = false;
+            CollisionWithSomethingOtherThanBack = false;
         }        
     }
 }

@@ -83,10 +83,11 @@ namespace Multipliers
         private SaveManagerGameScene _saveManagerGameScene;
         [HideInInspector] public List<int> AvailableMultipliers;
         private List<int> _levelMultipliers;
-        public int DifficultyInGame;
+        public int DifficultyIndex;
         public List<int> FirstPanelMultipliers;
         public List<int> SecondPanelMultipliers;
         public List<int> ThirdPanelMultipliers;
+        public List<int> ReserveMultipliers;
 
         void Start()
         {
@@ -116,17 +117,17 @@ namespace Multipliers
             switch (selectedDifficulty)
             {
                 case 1:
-                    DifficultyInGame = 9;
+                    DifficultyIndex = 9;
                     MultipliersGeneration();
                     AvailableMultipliers.Add(2);
                     AvailableMultipliers.Add(5);
                     break;
                 case 2:
-                    DifficultyInGame = 15;
+                    DifficultyIndex = 15;
                     MultipliersGeneration();
                     break;
                 case 3:
-                    DifficultyInGame = 21;
+                    DifficultyIndex = 21;
                     MultipliersGeneration();
                     AvailableMultipliers.Add(7);
                     AvailableMultipliers.Add(11);
@@ -138,7 +139,7 @@ namespace Multipliers
 
         private void MultipliersGeneration()
         {
-            for(int i = 2; i <= DifficultyInGame; i++)
+            for(int i = 2; i <= DifficultyIndex; i++)
             {
                 AvailableMultipliers.Add(i);
             }
@@ -149,6 +150,8 @@ namespace Multipliers
             FirstPanelMultipliers.Clear();
             SecondPanelMultipliers.Clear();
             ThirdPanelMultipliers.Clear();
+            ReserveMultipliers.Clear();
+            //добавить генерацию резерва
 
             FirstCompositionRight.SetText($"{GenerateLine(FirstPanelMultipliers)}");
             SecondCompositionRight.SetText($"{GenerateLine(SecondPanelMultipliers)}");
@@ -361,22 +364,22 @@ namespace Multipliers
 
         private void AddReserv()
         {
-            if (UnityEngine.Random.Range(0, 100) < DifficultyInGame)
+            if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
             {
                 _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                if (UnityEngine.Random.Range(0, 100) < DifficultyInGame)
+                if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
                 {
                     _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                    if (UnityEngine.Random.Range(0, 100) < DifficultyInGame)
+                    if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
                     {
                         _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                        if (UnityEngine.Random.Range(0, 100) < DifficultyInGame)
+                        if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
                         {
                             _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                            if (UnityEngine.Random.Range(0, 100) < DifficultyInGame)
+                            if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
                             {
                                 _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                                if (UnityEngine.Random.Range(0, 100) < DifficultyInGame)
+                                if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
                                 {
                                     _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
                                 }

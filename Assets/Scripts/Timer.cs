@@ -18,6 +18,7 @@ namespace Multipliers
         [SerializeField] private RectTransform _lossPanel;
         [SerializeField] private LevelGenerator _levelGenerator;
         [SerializeField] private NewInLine _newInLine;
+        [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
 
         [Header("LossPanelMovement")]
         [SerializeField] private float _distance;
@@ -72,10 +73,15 @@ namespace Multipliers
         private void TimeIsEnd()
         {
             //сейв
+            if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+            {
+                _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
+                _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched, _newInLine.LastTouched.
+                    GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                _newInLine.CollisionWithSomethingOtherThanBack = false;
+            }
 
-            _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
-            _newInLine.LastTouched.GetComponent<TextMeshProUGUI>().SetText("");
-            _newInLine.LastTouched.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            _saveManagerGameScene.GameData.GameIsOver = true;
 
             StopTimer();
             _plug.SetActive(true);
@@ -169,11 +175,19 @@ namespace Multipliers
         }
         private void ReturnOfIntersectionsOnReserve()
         {
-            //добавить сравнение с начальными
+            List<int> startPanelMultipliers = _levelGenerator.ReserveMultipliers;
 
-            for(int i = 0; i < _reserve.childCount; i++)
+            for (int i = 0; i < _reserve.childCount; i++)
             {
-                _reserve.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText("");
+                if (i < startPanelMultipliers.Count)
+                {
+                    _reserve.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().
+                        SetText(startPanelMultipliers[i].ToString());                    
+                }
+                else
+                {
+                    _reserve.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText("");
+                }
             }
         }
     }

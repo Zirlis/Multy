@@ -4310,6 +4310,7 @@ MonoBehaviour:
   _lossPanel: {fileID: 13479854}
   _levelGenerator: {fileID: 526370410}
   _newInLine: {fileID: 526370411}
+  _saveManagerGameScene: {fileID: 526370408}
   _distance: 0
   MovementTime: 0.3
   _currentDistance: 0
@@ -4840,8 +4841,31 @@ MonoBehaviour:
     LastGameScore: 0
     SelectedDifficulty: 0
     GameIsOver: 1
+    TimeOnTimer: 0
+    DifficultyIndex: 0
+    FirstPanelMultipliers: 
+    SecondPanelMultipliers: 
+    ThirdPanelMultipliers: 
+    ReserveMultipliers: 
+    FirstPlaneMultipliers: []
+    FirstPlaneMultiplication: 
+    FirstPlaneCompositionRight: 
+    SecondPlaneMultipliers: []
+    SecondPlaneMultiplication: 
+    SecondPlaneCompositionRight: 
+    ThirdPlaneMultipliers: []
+    ThirdPlaneMultiplication: 
+    ThirdPlaneCompositionRight: 
+    ReservePlaneMultipliers: []
   _soundsToggle: {fileID: 1136258546}
   _musicToggle: {fileID: 914086715}
+  _timer: {fileID: 412634343}
+  _levelGenerator: {fileID: 526370410}
+  _newInLine: {fileID: 526370411}
+  _firstPanel: {fileID: 1188541059}
+  _secondPanel: {fileID: 1244546161}
+  _thirdPanel: {fileID: 1665596177}
+  _reservePanel: {fileID: 337571849}
 --- !u!4 &526370409
 Transform:
   m_ObjectHideFlags: 0
@@ -4919,10 +4943,11 @@ MonoBehaviour:
   ReservMultiplier9: {fileID: 476717142}
   ReservMultiplier10: {fileID: 1816086037}
   AvailableMultipliers: 
-  DifficultyInGame: 0
+  DifficultyIndex: 0
   FirstPanelMultipliers: 
   SecondPanelMultipliers: 
   ThirdPanelMultipliers: 
+  ReserveMultipliers: 
 --- !u!114 &526370411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4935,6 +4960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39550a08867c44d9223f29185f857b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollisionWithSomethingOtherThanBack: 0
   LastTouched: {fileID: 0}
 --- !u!114 &526370412
 MonoBehaviour:
@@ -4977,6 +5003,8 @@ MonoBehaviour:
   MovementTime: 0.3
   _currentDistance: 0
   _plug: {fileID: 144562637}
+  _timer: {fileID: 412634343}
+  _newInLine: {fileID: 526370411}
 --- !u!1 &538325959
 GameObject:
   m_ObjectHideFlags: 0
@@ -9547,7 +9575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1178376631}
   - component: {fileID: 1178376633}
-  - component: {fileID: 1178376632}
+  - component: {fileID: 1178376634}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -9575,18 +9603,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1178376632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178376630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4cd746fdfec3d749b9fd2faf4b518cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1178376633
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9613,6 +9629,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1920, y: 1080}
   m_EdgeRadius: 0
+--- !u!114 &1178376634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178376630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765c52b6a3562904bad2744a6e4937fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1188541059
 GameObject:
   m_ObjectHideFlags: 0
