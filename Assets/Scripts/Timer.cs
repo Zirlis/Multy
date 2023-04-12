@@ -19,6 +19,7 @@ namespace Multipliers
         [SerializeField] private LevelGenerator _levelGenerator;
         [SerializeField] private NewInLine _newInLine;
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
+        [SerializeField] private TextMeshProUGUI _scoreText;
 
         [Header("LossPanelMovement")]
         [SerializeField] private float _distance;
@@ -72,25 +73,29 @@ namespace Multipliers
 
         private void TimeIsEnd()
         {
-            //ρειβ
-            if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+            if (_newInLine.LastTouched != null)
             {
-                _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
-                _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched, _newInLine.LastTouched.
-                    GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
-                _newInLine.CollisionWithSomethingOtherThanBack = false;
+                if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+                {
+                    _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
+                    _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched, _newInLine.LastTouched.
+                        GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                    _newInLine.CollisionWithSomethingOtherThanBack = false;
+                }
             }
 
             _saveManagerGameScene.GameData.GameIsOver = true;
 
             StopTimer();
             _plug.SetActive(true);
+            _scoreText.SetText($"Score {_saveManagerGameScene.GameData.LastGameScore}");
             StartCoroutine(LossPanelMovement());
             ReturnOfIntersections(_firstPanel, _levelGenerator.FirstPanelMultipliers);
             ReturnOfIntersections(_secondPanel, _levelGenerator.SecondPanelMultipliers);
             ReturnOfIntersections(_thirdPanel, _levelGenerator.ThirdPanelMultipliers);
             ReturnOfIntersectionsOnReserve();
 
+            _saveManagerGameScene.Save();
         }
 
         private IEnumerator LossPanelMovement()

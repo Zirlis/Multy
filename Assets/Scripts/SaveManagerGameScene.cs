@@ -24,7 +24,7 @@ namespace Multipliers
         [SerializeField] private GameObject _thirdPanel;
         [SerializeField] private GameObject _reservePanel;
 
-        private void Awake()
+        private void Start()
         {
             _storage = new Storage();
             Load();
@@ -73,7 +73,7 @@ namespace Multipliers
                 GetComponent<TextMeshProUGUI>().text;
             GameData.SecondPlaneCompositionRight = _secondPanel.transform.GetChild(11).
                 GetComponent<TextMeshProUGUI>().text;
-            GameData.ThirdPlaneCompositionRight = _secondPanel.transform.GetChild(11).
+            GameData.ThirdPlaneCompositionRight = _thirdPanel.transform.GetChild(11).
                 GetComponent<TextMeshProUGUI>().text;
 
             _storage.Save(GameData);
@@ -120,8 +120,13 @@ namespace Multipliers
                     SetText(GameData.FirstPlaneCompositionRight);
                 _secondPanel.transform.GetChild(11).GetComponent<TextMeshProUGUI>().
                     SetText(GameData.SecondPlaneCompositionRight);
-                _secondPanel.transform.GetChild(11).GetComponent<TextMeshProUGUI>().
+                _thirdPanel.transform.GetChild(11).GetComponent<TextMeshProUGUI>().
                     SetText(GameData.ThirdPlaneCompositionRight);
+
+                _newInLine.Recalculation(_firstPanel);
+                _newInLine.Recalculation(_secondPanel);
+                _newInLine.Recalculation(_thirdPanel);
+
             }
 
             _soundsToggle.isOn = GameData.SoundsIsActive;

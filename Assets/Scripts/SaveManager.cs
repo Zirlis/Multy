@@ -91,6 +91,8 @@ namespace Multipliers
 
         private void SetLastGame(int lastGameDifficulty)
         {
+            //смена картинки от сложности
+
             switch (lastGameDifficulty)
             {
                 case 3:
@@ -102,9 +104,16 @@ namespace Multipliers
                 case 1:
                     //easy
                     break;
-                default:
+                case 0:
                     _lastGameImage.SetActive(false);
                     break;
+            }
+
+            _lastGameScore.SetText($"{GameData.LastGameScore}");
+
+            if(!GameData.GameIsOver)
+            {
+                _resumeButton.SetActive(true);
             }
         }
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Multipliers
 {
@@ -7,6 +8,9 @@ namespace Multipliers
     {
         [SerializeField] private Button _pauseButton;
         [SerializeField] private GameObject _popupMenu;
+        [SerializeField] private Timer _timer;
+        [SerializeField] private TextMeshProUGUI _currentScore;
+        [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
 
         private void Awake()
         {
@@ -15,7 +19,9 @@ namespace Multipliers
 
         private void OnPause()
         {
-            //остановить таймер
+            _timer.StopTimer();
+
+            _currentScore.SetText($"{_saveManagerGameScene.GameData.LastGameScore}");
             _popupMenu.SetActive(true);
         }
     }

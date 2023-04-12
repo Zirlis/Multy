@@ -30,12 +30,11 @@ namespace Multipliers
         [SerializeField] private GameObject _plug;
         [SerializeField] private Timer _timer;
         [SerializeField] private NewInLine _newInLine;
+        [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
 
         private void Start()
         {
-            _victoryPanel.anchoredPosition = new Vector2(0,
-                -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
-            _distance = -_victoryPanel.anchoredPosition.y;
+            ChekContinuation();
         }
         public void CheckVictory()
         {
@@ -77,17 +76,25 @@ namespace Multipliers
             if (first && second && third)
             {
                 _timer.StopTimer();
-                //сейв
-                if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+
+                if (_newInLine.LastTouched != null)
                 {
-                    _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
-                    _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
-                        _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
-                    _newInLine.CollisionWithSomethingOtherThanBack = false;
+                    if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+                    {
+                        _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
+                        _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
+                            _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                        _newInLine.CollisionWithSomethingOtherThanBack = false;
+                    }
                 }
 
                 _plug.SetActive(true);
+                _saveManagerGameScene.GameData.LastGameScore++;
+                _scoreText.SetText($"Score {_saveManagerGameScene.GameData.LastGameScore}");
                 StartCoroutine(VictoryPanelMovement());
+                
+                _saveManagerGameScene.GameData.LevelIsOver = true;
+                _saveManagerGameScene.Save();
             }
         }
 
@@ -105,6 +112,21 @@ namespace Multipliers
             _victoryPanel.anchoredPosition = Vector2.zero;
 
             //рекламка
+        }
+
+        private void ChekContinuation()
+        {
+            if(SecondaryInformation.IsContinuation && _saveManagerGameScene.GameData.LevelIsOver)
+            {
+                _victoryPanel.anchoredPosition = Vector2.zero;
+                _plug.SetActive(true);
+            }
+            else
+            {
+                _victoryPanel.anchoredPosition = new Vector2(0,
+                -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
+                _distance = -_victoryPanel.anchoredPosition.y;
+            }
         }
     }
 }

@@ -11,5 +11,13 @@ namespace Multipliers
 
             SceneManager.LoadScene("GameScene");
         }
+
+        public void GoToMainScene()
+        {
+            //анимация
+            //коенц анимации
+
+            SceneManager.LoadScene("MainScene");
+        }
     }
 }

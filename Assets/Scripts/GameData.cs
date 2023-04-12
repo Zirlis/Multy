@@ -18,7 +18,7 @@ namespace Multipliers
 
         public bool GameIsOver;
 
-        //--------------------------------------------------------
+        public bool LevelIsOver;
 
         public float TimeOnTimer;
         public int DifficultyIndex;
@@ -56,7 +56,7 @@ namespace Multipliers
 
             GameIsOver = true;
 
-            //------------------------------------------------------------
+            LevelIsOver = false;
 
             TimeOnTimer = 0f;
             DifficultyIndex = 0;

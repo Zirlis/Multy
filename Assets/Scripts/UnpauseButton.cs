@@ -7,6 +7,7 @@ namespace Multipliers
     {
         [SerializeField] private Button _unpauseButton;
         [SerializeField] private GameObject _popupMenu;
+        [SerializeField] private Timer _timer;
 
         private void Awake()
         {
@@ -15,8 +16,9 @@ namespace Multipliers
 
         private void UnPause()
         {
-            //возобновить таймер
             _popupMenu.SetActive(false);
+
+            _timer.StartTimer();
         }
     }
 }

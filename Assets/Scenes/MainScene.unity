@@ -177,6 +177,51 @@ MonoBehaviour:
     LastGameScore: 0
     SelectedDifficulty: 0
     GameIsOver: 1
+    LevelIsOver: 0
+    TimeOnTimer: 0
+    DifficultyIndex: 0
+    FirstPanelMultipliers: 
+    SecondPanelMultipliers: 
+    ThirdPanelMultipliers: 
+    ReserveMultipliers: 
+    FirstPlaneMultipliers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    FirstPlaneMultiplication: 0000000000
+    FirstPlaneCompositionRight: 
+    SecondPlaneMultipliers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    SecondPlaneMultiplication: 0000000000
+    SecondPlaneCompositionRight: 
+    ThirdPlaneMultipliers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    ThirdPlaneMultiplication: 0000000000
+    ThirdPlaneCompositionRight: 
+    ReservePlaneMultipliers:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   _soundsToggle: {fileID: 501421951}
   _musicToggle: {fileID: 887091062}
   _hardScore: {fileID: 1022488293}
@@ -1548,7 +1593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6198825, b: 0.6198825, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2171,6 +2216,7 @@ MonoBehaviour:
   _mediumButton: {fileID: 231440047}
   _easyButton: {fileID: 243297096}
   _saveManager: {fileID: 131207392}
+  _resumeButton: {fileID: 972947089}
 --- !u!1 &1947042529
 GameObject:
   m_ObjectHideFlags: 0

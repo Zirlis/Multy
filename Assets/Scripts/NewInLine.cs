@@ -9,12 +9,13 @@ namespace Multipliers
     {
         private Movement _movement;
         private Victory _victory;
+        [SerializeField] SaveManagerGameScene _saveManagerGameScene;
 
         [HideInInspector] public bool CollisionWithSomethingOtherThanBack = false;
 
         [HideInInspector] public GameObject LastTouched;
 
-        private void Start()
+        private void Awake()
         {
             _movement = GetComponent<Movement>();
             _victory = GetComponent<Victory>();
@@ -129,7 +130,7 @@ namespace Multipliers
                         break;
                 }
 
-                //ρειβ
+                _saveManagerGameScene.Save();
             }
             else
             {
@@ -162,7 +163,7 @@ namespace Multipliers
             }
         }
 
-        private void Recalculation(GameObject panel)
+        public void Recalculation(GameObject panel)
         {
             int composition = 1;
 

@@ -91,13 +91,11 @@ namespace Multipliers
 
         void Start()
         {
-            if (SecondaryInformation.IsContinuation == true)
-            {
-                //загрузка
-            }
-            else
-            {
-                _saveManagerGameScene = GetComponent<SaveManagerGameScene>();
+            _saveManagerGameScene = GetComponent<SaveManagerGameScene>();
+
+            if (!SecondaryInformation.IsContinuation)
+            {                
+                _saveManagerGameScene.GameData.LastGameScore = 0;
                 NewLevel();
             }
         }
@@ -108,6 +106,10 @@ namespace Multipliers
             _levelMultipliers = new List<int>();
             GenerateAvailableMultipliers(_saveManagerGameScene.GameData.SelectedDifficulty);
             GenerateLevel();
+            
+            _saveManagerGameScene.GameData.LevelIsOver = false;
+            _saveManagerGameScene.GameData.GameIsOver = false;
+            _saveManagerGameScene.Save();
         }
 
         private void GenerateAvailableMultipliers(int selectedDifficulty)
