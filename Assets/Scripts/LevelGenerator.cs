@@ -119,32 +119,25 @@ namespace Multipliers
             switch (selectedDifficulty)
             {
                 case 1:
-                    DifficultyIndex = 9;
-                    MultipliersGeneration();
+                    DifficultyIndex = 3;
                     AvailableMultipliers.Add(2);
-                    AvailableMultipliers.Add(5);
                     break;
                 case 2:
-                    DifficultyIndex = 15;
-                    MultipliersGeneration();
+                    DifficultyIndex = 5;
+                    //+1 у резерву
                     break;
                 case 3:
-                    DifficultyIndex = 21;
-                    MultipliersGeneration();
-                    AvailableMultipliers.Add(7);
-                    AvailableMultipliers.Add(11);
-                    AvailableMultipliers.Add(13);
-                    AvailableMultipliers.Add(17);
+                    DifficultyIndex = 7;
+                    //+2 к резерву
                     break;
             }
-        }
 
-        private void MultipliersGeneration()
-        {
-            for(int i = 2; i <= DifficultyIndex; i++)
+            for (int i = 2; i <= DifficultyIndex; i++)
             {
                 AvailableMultipliers.Add(i);
             }
+
+            //добавить генерацию резерва
         }
 
         public void GenerateLevel()
@@ -152,8 +145,7 @@ namespace Multipliers
             FirstPanelMultipliers.Clear();
             SecondPanelMultipliers.Clear();
             ThirdPanelMultipliers.Clear();
-            ReserveMultipliers.Clear();
-            //добавить генерацию резерва
+            ReserveMultipliers.Clear();            
 
             FirstCompositionRight.SetText($"{GenerateLine(FirstPanelMultipliers)}");
             SecondCompositionRight.SetText($"{GenerateLine(SecondPanelMultipliers)}");

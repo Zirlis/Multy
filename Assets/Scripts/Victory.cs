@@ -94,6 +94,8 @@ namespace Multipliers
                 StartCoroutine(VictoryPanelMovement());
                 
                 _saveManagerGameScene.GameData.LevelIsOver = true;
+                _timer.AddTime();
+                _timer.SetTimeOnTimer();
                 _saveManagerGameScene.Save();
             }
         }

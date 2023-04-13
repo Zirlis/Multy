@@ -19,9 +19,18 @@ namespace Multipliers
         {
             _movement = GetComponent<Movement>();
             _victory = GetComponent<Victory>();
+        }
 
+        private void OnEnable()
+        {
             AddBeginDrag.OnBeginDrag += RecalculationOnBeginDrag;
             MultiplierCollider.OnEndDrag += RecalculationOnEndDrag;
+        }
+
+        private void OnDestroy()
+        {
+            AddBeginDrag.OnBeginDrag -= RecalculationOnBeginDrag;
+            MultiplierCollider.OnEndDrag -= RecalculationOnEndDrag;
         }
 
         public void RecalculationOnEndDrag(GameObject multiplier, GameObject panel)

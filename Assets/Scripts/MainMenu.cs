@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Multipliers
 {
@@ -13,6 +14,7 @@ namespace Multipliers
 
         [Header("Other")]
         [SerializeField] private Button _resumeButton;
+
 
         private SceneTransition _sceneTransition;
 

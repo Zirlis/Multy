@@ -69,18 +69,17 @@ namespace Multipliers
 
             if (GameData.HardScore > 0)
             {
-                _hardScore.text = $"{GameData.HardScore}";
+                _hardScore.SetText($"{GameData.HardScore}");
             }
             if (GameData.MediumScore > 0)
             {
-                _mediumScore.text = $"{GameData.MediumScore}";
+                _mediumScore.SetText($"{GameData.MediumScore}");
             }
             if (GameData.EasyScore > 0)
             {
-                _easyScore.text = $"{GameData.EasyScore}";
+                _easyScore.SetText($"{GameData.EasyScore}");
             }
 
-            _lastGameScore.text = $"{GameData.LastGameScore}";
             SetLastGame(GameData.SelectedDifficulty);
 
             if(GameData.GameIsOver == false)

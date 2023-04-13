@@ -15,6 +15,7 @@ namespace Multipliers
 
         private void Abandon()
         {
+
             _saveManagerGameScene.Save();
             _sceneTransition.GoToMainScene();
         }

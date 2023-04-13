@@ -10,7 +10,8 @@ namespace Multipliers
     {
         [Header("Time")]
         private TextMeshProUGUI _timer;
-        public float TimeOnTimer = 100;
+        public float TimeOnTimer = 20f;
+        public float TimeOnLevel = 65f;
         private bool _stopTimer;
 
         [Header("Other")]
@@ -53,6 +54,16 @@ namespace Multipliers
             _stopTimer = true;
         }
 
+        public void AddTime()
+        {
+            TimeOnTimer += TimeOnLevel;
+        }
+
+        public void SetTimeOnTimer()
+        {
+            _timer.SetText($"{(int)TimeOnTimer}");
+        }
+
         private IEnumerator TimeIsTicking()
         {
             while(!_stopTimer)
@@ -60,7 +71,7 @@ namespace Multipliers
                 if (TimeOnTimer > 0)
                 {
                     TimeOnTimer -= Time.deltaTime;
-                    _timer.SetText($"{(int)TimeOnTimer}");
+                    SetTimeOnTimer();
                 }
                 else
                 {
