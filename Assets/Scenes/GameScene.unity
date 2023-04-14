@@ -4185,12 +4185,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeOnTimer: 100
+  TimeOnLevel: 65
   _plug: {fileID: 144562637}
-  _lossPanel: {fileID: 73383763}
+  _lossPanel: {fileID: 13479854}
   _levelGenerator: {fileID: 526370410}
   _newInLine: {fileID: 526370411}
   _saveManagerGameScene: {fileID: 526370408}
-  _scoreText: {fileID: 0}
+  _scoreText: {fileID: 73383764}
   _distance: 0
   MovementTime: 0.3
   _currentDistance: 0

@@ -36,7 +36,6 @@ namespace Multipliers
             GameData.MusicIsActive = _musicToggle.isOn;
 
             GameData.TimeOnTimer = _timer.TimeOnTimer;
-            GameData.DifficultyIndex = _levelGenerator.DifficultyIndex;
 
             GameData.FirstPanelMultipliers = _levelGenerator.FirstPanelMultipliers;
             GameData.SecondPanelMultipliers = _levelGenerator.SecondPanelMultipliers;
@@ -86,7 +85,6 @@ namespace Multipliers
             if (SecondaryInformation.IsContinuation)
             {
                 _timer.TimeOnTimer = GameData.TimeOnTimer;
-                _levelGenerator.DifficultyIndex = GameData.DifficultyIndex;
 
                 _levelGenerator.FirstPanelMultipliers = GameData.FirstPanelMultipliers;
                 _levelGenerator.SecondPanelMultipliers = GameData.SecondPanelMultipliers;

@@ -21,7 +21,7 @@ namespace Multipliers
         public bool LevelIsOver;
 
         public float TimeOnTimer;
-        public int DifficultyIndex;
+        public float DifficultyIndex;
 
         public List<int> FirstPanelMultipliers;
         public List<int> SecondPanelMultipliers;
@@ -59,7 +59,7 @@ namespace Multipliers
             LevelIsOver = false;
 
             TimeOnTimer = 0f;
-            DifficultyIndex = 0;
+            DifficultyIndex = 0f;
 
             FirstPanelMultipliers = new List<int>();
             SecondPanelMultipliers = new List<int>();

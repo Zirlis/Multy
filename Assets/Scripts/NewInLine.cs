@@ -146,6 +146,8 @@ namespace Multipliers
                 multiplier.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 CollisionWithSomethingOtherThanBack = false;
             }
+
+            SecondaryInformation.IsContinuation = false;
         }
 
         private void RecalculationOnBeginDrag(GameObject multiplier)

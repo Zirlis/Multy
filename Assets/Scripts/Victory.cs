@@ -38,6 +38,8 @@ namespace Multipliers
         }
         public void CheckVictory()
         {
+            var gameData = _saveManagerGameScene.GameData;
+
             bool first;
             bool second;
             bool third;
@@ -89,12 +91,44 @@ namespace Multipliers
                 }
 
                 _plug.SetActive(true);
-                _saveManagerGameScene.GameData.LastGameScore++;
-                _scoreText.SetText($"Score {_saveManagerGameScene.GameData.LastGameScore}");
+
+                if (!SecondaryInformation.IsContinuation)
+                {
+                    gameData.LastGameScore++;
+                }
+
+                switch(gameData.SelectedDifficulty)
+                {
+                    case 1:
+                        if (gameData.EasyScore < gameData.LastGameScore)
+                        {
+                            gameData.EasyScore = gameData.LastGameScore;
+                        }
+                        break;
+                    case 2:
+                        if (gameData.MediumScore < gameData.LastGameScore)
+                        {
+                            gameData.MediumScore = gameData.LastGameScore;
+                        }
+                        break;
+                    case 3:
+                        if (gameData.MediumScore < gameData.LastGameScore)
+                        {
+                            gameData.HardScore = gameData.LastGameScore;
+                        }
+                        break;
+                }
+
+                _scoreText.SetText($"Score {gameData.LastGameScore}");
                 StartCoroutine(VictoryPanelMovement());
-                
-                _saveManagerGameScene.GameData.LevelIsOver = true;
-                _timer.AddTime();
+
+                gameData.LevelIsOver = true;
+
+                if (!SecondaryInformation.IsContinuation)
+                {
+                    _timer.AddTime();
+                }
+
                 _timer.SetTimeOnTimer();
                 _saveManagerGameScene.Save();
             }

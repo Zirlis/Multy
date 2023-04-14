@@ -83,7 +83,6 @@ namespace Multipliers
         private SaveManagerGameScene _saveManagerGameScene;
         [HideInInspector] public List<int> AvailableMultipliers;
         private List<int> _levelMultipliers;
-        public int DifficultyIndex;
         public List<int> FirstPanelMultipliers;
         public List<int> SecondPanelMultipliers;
         public List<int> ThirdPanelMultipliers;
@@ -96,6 +95,7 @@ namespace Multipliers
             if (!SecondaryInformation.IsContinuation)
             {                
                 _saveManagerGameScene.GameData.LastGameScore = 0;
+                _saveManagerGameScene.GameData.DifficultyIndex = 0;
                 NewLevel();
             }
         }
@@ -114,30 +114,49 @@ namespace Multipliers
 
         private void GenerateAvailableMultipliers(int selectedDifficulty)
         {
+            var gameData = _saveManagerGameScene.GameData;
+            float reserveCount = 0f;
 
-            //жижа
             switch (selectedDifficulty)
             {
                 case 1:
-                    DifficultyIndex = 3;
+                    gameData.DifficultyIndex += 0.7f;
+                    if (gameData.DifficultyIndex < 3)
+                    {
+                        gameData.DifficultyIndex = 3;
+                    }
                     AvailableMultipliers.Add(2);
                     break;
                 case 2:
-                    DifficultyIndex = 5;
-                    //+1 у резерву
+                    gameData.DifficultyIndex += 1.4f;
+                    if (gameData.DifficultyIndex < 4)
+                    {
+                        gameData.DifficultyIndex = 5;
+                    }
+                    reserveCount++;
                     break;
                 case 3:
-                    DifficultyIndex = 7;
-                    //+2 к резерву
+                    gameData.DifficultyIndex += 2.1f;
+                    if (gameData.DifficultyIndex < 5)
+                    {
+                        gameData.DifficultyIndex = 5;
+                    }
+                    reserveCount += 2;
                     break;
             }
 
-            for (int i = 2; i <= DifficultyIndex; i++)
+            for (int i = 2; i <= gameData.DifficultyIndex; i++)
             {
                 AvailableMultipliers.Add(i);
             }
 
-            //добавить генерацию резерва
+            reserveCount += gameData.DifficultyIndex / 3;
+
+            while (ReserveMultipliers.Count < 8 && reserveCount > 0)
+            {
+                ReserveMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
+                reserveCount--;
+            }
         }
 
         public void GenerateLevel()
@@ -145,13 +164,32 @@ namespace Multipliers
             FirstPanelMultipliers.Clear();
             SecondPanelMultipliers.Clear();
             ThirdPanelMultipliers.Clear();
-            ReserveMultipliers.Clear();            
 
             FirstCompositionRight.SetText($"{GenerateLine(FirstPanelMultipliers)}");
             SecondCompositionRight.SetText($"{GenerateLine(SecondPanelMultipliers)}");
             ThirdCompositionRight.SetText($"{GenerateLine(ThirdPanelMultipliers)}");
 
-            AddReserv();
+            for(int i = 0; i < ReserveMultipliers.Count; i++)
+            {
+                _levelMultipliers.Add(ReserveMultipliers[i]);
+            }
+            ReserveMultipliers.Clear();
+
+            for (int i = 0; i < FirstPanelMultipliers.Count; i++)
+            {
+                _levelMultipliers.Add(FirstPanelMultipliers[i]);
+            }
+
+            for (int i = 0; i < SecondPanelMultipliers.Count; i++)
+            {
+                _levelMultipliers.Add(SecondPanelMultipliers[i]);
+            }
+
+            for (int i = 0; i < ThirdPanelMultipliers.Count; i++)
+            {
+                _levelMultipliers.Add(ThirdPanelMultipliers[i]);
+            }
+
             foreach (int multiplier in _levelMultipliers)
             {
                 SetMultipliers(multiplier);
@@ -265,123 +303,36 @@ namespace Multipliers
 
         private int GenerateLine(List<int> multipliers)
         {
-            int multiplier1 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
-            int multiplier2 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
-            int multiplier3 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
-            int multiplier4 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
-            int multiplier5;
-            int multiplier6;
-
-            if (UnityEngine.Random.Range(0, 2) == 0)
+            int[] mults = new int[6]
             {
-                multiplier5 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
+                AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)],
+                AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)],
+                AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)],
+                AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)],
+                AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)],
+                AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]
+            };        
 
-                if (UnityEngine.Random.Range(0, 2) == 0)
-                {
-                    multiplier6 = AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)];
+            int composition = 1;
 
-                    if(multiplier1 * multiplier2 * multiplier3 * multiplier4 * multiplier5 * multiplier6 <= 999999)
-                    {
-                        _levelMultipliers.Add(multiplier1);
-                        _levelMultipliers.Add(multiplier2);
-                        _levelMultipliers.Add(multiplier3);
-                        _levelMultipliers.Add(multiplier4);
-                        _levelMultipliers.Add(multiplier5);
-                        _levelMultipliers.Add(multiplier6);
-                        var composition = multiplier1 * multiplier2 * multiplier3 * multiplier4 * multiplier5 * multiplier6;
-
-                        multipliers.Add(multiplier1);
-                        multipliers.Add(multiplier2);
-                        multipliers.Add(multiplier3);
-                        multipliers.Add(multiplier4);
-                        multipliers.Add(multiplier5);
-                        multipliers.Add(multiplier6);
-                        
-                        return composition;
-                    }
-                    else
-                    {
-                        return GenerateLine(multipliers);
-                    }
-                }
-                else
-                {
-                    if (multiplier1 * multiplier2 * multiplier3 * multiplier4 * multiplier5 <= 999999)
-                    {
-                        _levelMultipliers.Add(multiplier1);
-                        _levelMultipliers.Add(multiplier2);
-                        _levelMultipliers.Add(multiplier3);
-                        _levelMultipliers.Add(multiplier4);
-                        _levelMultipliers.Add(multiplier5);
-
-                        var composition = multiplier1 * multiplier2 * multiplier3 * multiplier4 * multiplier5;
-
-                        multipliers.Add(multiplier1);
-                        multipliers.Add(multiplier2);
-                        multipliers.Add(multiplier3);
-                        multipliers.Add(multiplier4);
-                        multipliers.Add(multiplier5);
-
-                        return composition;
-                    }
-                    else
-                    {
-                        return GenerateLine(multipliers);
-                    }
-                }
-            }  
-            else
+            for (int i = 0; i < 6; i++)
             {
-
-                if (multiplier1 * multiplier2 * multiplier3 * multiplier4 <= 999999)
-                {
-                    _levelMultipliers.Add(multiplier1);
-                    _levelMultipliers.Add(multiplier2);
-                    _levelMultipliers.Add(multiplier3);
-                    _levelMultipliers.Add(multiplier4);
-
-                    var composition = multiplier1 * multiplier2 * multiplier3 * multiplier4;
-
-                    multipliers.Add(multiplier1);
-                    multipliers.Add(multiplier2);
-                    multipliers.Add(multiplier3);
-                    multipliers.Add(multiplier4);
-
-                    return composition;
-                }
-                else
+                composition *= mults[i];
+                if (composition > Math.Pow((_saveManagerGameScene.GameData.DifficultyIndex / 2) + 1, 5) * 2)
                 {
                     return GenerateLine(multipliers);
                 }
-            }            
-        }
-
-        private void AddReserv()
-        {
-            if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
-            {
-                _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
+                if (composition > Math.Pow((_saveManagerGameScene.GameData.DifficultyIndex / 2) + 1, 5) / 2)
                 {
-                    _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                    if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
+                    for (int j = 0; j <= i; j++)
                     {
-                        _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                        if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
-                        {
-                            _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                            if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
-                            {
-                                _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                                if (UnityEngine.Random.Range(0, 100) < DifficultyIndex)
-                                {
-                                    _levelMultipliers.Add(AvailableMultipliers[UnityEngine.Random.Range(0, AvailableMultipliers.Count)]);
-                                }
-                            }
-                        }
+                        multipliers.Add(mults[j]);
                     }
+                    return composition;
                 }
             }
+
+            return GenerateLine(multipliers);           
         }
 
         private void SetMultipliers(int multiplier)
