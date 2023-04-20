@@ -127,8 +127,8 @@ namespace Multipliers
 
             }
 
-            _soundsToggle.isOn = GameData.SoundsIsActive;
-            _musicToggle.isOn = GameData.MusicIsActive;
+            _soundsToggle.GetComponent<SoundsToggleInGameScene>().SetIsOn(GameData.SoundsIsActive);
+            _musicToggle.GetComponent<MusicToggleInGameScene>().SetIsOn(GameData.MusicIsActive);
         }
     }
 }
