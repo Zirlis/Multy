@@ -125,6 +125,29 @@ namespace Multipliers
                 _newInLine.Recalculation(_secondPanel);
                 _newInLine.Recalculation(_thirdPanel);
 
+                if (_firstPanel.transform.GetChild(11).gameObject.GetComponent<TextMeshProUGUI>().text ==
+                    _firstPanel.transform.GetChild(12).gameObject.GetComponent<TextMeshProUGUI>().text)
+                {
+                    _firstPanel.GetComponent<Animator>().Play($"Connected" +
+                        $"{_firstPanel.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
+                    _firstPanel.GetComponent<PanelChangeImage>().IsConnecteed = true;
+                }
+
+                if (_secondPanel.transform.GetChild(11).gameObject.GetComponent<TextMeshProUGUI>().text ==
+                    _secondPanel.transform.GetChild(12).gameObject.GetComponent<TextMeshProUGUI>().text)
+                {
+                    _secondPanel.GetComponent<Animator>().Play($"Connected" +
+                        $"{_secondPanel.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
+                    _secondPanel.GetComponent<PanelChangeImage>().IsConnecteed = true;
+                }
+
+                if (_thirdPanel.transform.GetChild(11).gameObject.GetComponent<TextMeshProUGUI>().text ==
+                    _thirdPanel.transform.GetChild(12).gameObject.GetComponent<TextMeshProUGUI>().text)
+                {
+                    _thirdPanel.GetComponent<Animator>().Play($"Connected" +
+                        $"{_thirdPanel.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
+                    _thirdPanel.GetComponent<PanelChangeImage>().IsConnecteed = true;
+                }
             }
 
             _soundsToggle.GetComponent<SoundsToggleInGameScene>().SetIsOn(GameData.SoundsIsActive);

@@ -460,15 +460,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6742805, g: 0.6886792, b: 0.2891153, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4102762423906f844b38b8f8077f3be2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -581,15 +581,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.23738538, g: 0.8301887, b: 0.21537916, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 5bbbdbbaa82d1624c8dd935ec44ccc9f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saveManager: {fileID: 131207392}
-  soundOnIcons:
+  _soundOnIcons:
   - {fileID: 21300000, guid: 6e839bb780756584dbfefdd9b91db171, type: 3}
   - {fileID: 21300000, guid: b637e2e078b50dd4fa68a74fb249d548, type: 3}
   - {fileID: 21300000, guid: 3c29370ea075b394fb0778be9cf7e931, type: 3}
@@ -717,7 +717,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 05a08949d332385418560608c85eef15, type: 3}
   - {fileID: 21300000, guid: 5106aa94a8dde1348a9126da112dc177, type: 3}
   - {fileID: 21300000, guid: b8fb94c289648a04e83e63f62b115431, type: 3}
-  soundOffIcons:
+  _soundOffIcons:
   - {fileID: 21300000, guid: c8dbbc37741d0e14986b77c6af89cd46, type: 3}
   - {fileID: 21300000, guid: c76c829906116714d93de46ef40a55a7, type: 3}
   - {fileID: 21300000, guid: 03b82e68d959a9143ba871be45501b41, type: 3}
@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your score in last game is
+  m_text: 'Score in last game:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.65
+  m_fontSize: 42.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saveManager: {fileID: 131207392}
-  musicOnIcons:
+  _musicOnIcons:
   - {fileID: 21300000, guid: da2a44dffe8bf564399651572961cd94, type: 3}
   - {fileID: 21300000, guid: 63b89e8b58c2bc34288b19ef7d3d4a30, type: 3}
   - {fileID: 21300000, guid: 64ca54e6ece78594db5f20dab4608f7e, type: 3}
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bd055bcb750b68647ac9b6de75e3b79c, type: 3}
   - {fileID: 21300000, guid: 17127e709727caa488dfb9c4293697f4, type: 3}
   - {fileID: 21300000, guid: 41c01451a7523684cb8dc7d9b221f57e, type: 3}
-  musicOffIcons:
+  _musicOffIcons:
   - {fileID: 21300000, guid: 5752bf6173360664e9e956e17b79b4c0, type: 3}
   - {fileID: 21300000, guid: b598b757e1ccb024184fd047f0282360, type: 3}
   - {fileID: 21300000, guid: d5ad87715865e3a4e90220cfcead5069, type: 3}
@@ -1540,6 +1540,7 @@ GameObject:
   - component: {fileID: 972947091}
   - component: {fileID: 972947090}
   - component: {fileID: 972947089}
+  - component: {fileID: 972947092}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -1562,8 +1563,8 @@ RectTransform:
   m_Father: {fileID: 1022940543}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.24274181, y: 0.12900001}
-  m_AnchorMax: {x: 0.7554946, y: 0.33100003}
+  m_AnchorMin: {x: 0.22524728, y: 0.086}
+  m_AnchorMax: {x: 0.80324733, y: 0.41700003}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1590,7 +1591,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.6431373, g: 0.6392157, b: 0.6392157, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1624,15 +1625,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6603774, g: 0.6198825, b: 0.6198825, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.87058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 582b608a3b3744e4aafcffed3b3d6b9a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1649,6 +1650,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972947087}
   m_CullTransparentMesh: 1
+--- !u!114 &972947092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972947087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a17684675396d4b8afafd9d73293e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resumeButtonSprites:
+  - {fileID: 21300000, guid: 582b608a3b3744e4aafcffed3b3d6b9a, type: 3}
+  - {fileID: 21300000, guid: 26cb12be1b2798b44bc4105e797adece, type: 3}
+  - {fileID: 21300000, guid: 6dae67a916c0d11478cf3bb3c1e6271a, type: 3}
+  - {fileID: 21300000, guid: 98c993b59325f0b4fa4b0617c2eed02c, type: 3}
+  - {fileID: 21300000, guid: 07dcf0431b8e95449861810c16ee2e87, type: 3}
 --- !u!1 &1022488291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1814,7 @@ GameObject:
   - component: {fileID: 1022940543}
   - component: {fileID: 1022940545}
   - component: {fileID: 1022940544}
+  - component: {fileID: 1022940546}
   m_Layer: 5
   m_Name: LastGameImage
   m_TagString: Untagged
@@ -1838,14 +1858,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3539516, g: 0.7735849, b: 0.3539516, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e03fc80572c6842448e0c17bf5fdcf08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1863,6 +1883,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022940542}
   m_CullTransparentMesh: 1
+--- !u!114 &1022940546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022940542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caaa3dce32500694a9359f4a6c59f23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scorePanelIcons:
+  - {fileID: 21300000, guid: e03fc80572c6842448e0c17bf5fdcf08, type: 3}
+  - {fileID: 21300000, guid: 62ee4668a689dab43a1f869b38baaf47, type: 3}
+  - {fileID: 21300000, guid: 680b19be496e05d42a142d1f37de649d, type: 3}
+  - {fileID: 21300000, guid: 16f70d5e34b15e4429a1dbc021fd3d82, type: 3}
+  - {fileID: 21300000, guid: 791ba74fa3a27ee448b2b45fb290f97b, type: 3}
+  _colors:
+  - {r: 0.3529412, g: 0.77254903, b: 0.3529412, a: 1}
+  - {r: 0.95686275, g: 0.9607843, b: 0.25882354, a: 1}
+  - {r: 1, g: 0.27450982, b: 0.23921569, a: 1}
+  _saveManager: {fileID: 131207392}
 --- !u!1 &1040879731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,7 +2099,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2101,8 +2144,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 637ae00a42608294392842ac19a876f9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2245,10 +2288,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hardButton: {fileID: 1212367216}
+  _hardButtonIcons:
+  - {fileID: 21300000, guid: 637ae00a42608294392842ac19a876f9, type: 3}
+  - {fileID: 21300000, guid: bd2c241d754e99848afd6655345257db, type: 3}
+  - {fileID: 21300000, guid: 0acf056adc8f39a4f91561a4ed3d6b7d, type: 3}
   _mediumButton: {fileID: 231440047}
+  _mediumButtonIcons:
+  - {fileID: 21300000, guid: 4102762423906f844b38b8f8077f3be2, type: 3}
+  - {fileID: 21300000, guid: f3073417202f4904a9fab0d924dd7407, type: 3}
+  - {fileID: 21300000, guid: 56509637acd8b74479ea567d4dfeb42d, type: 3}
   _easyButton: {fileID: 243297096}
-  _saveManager: {fileID: 131207392}
+  _easyButtonIcons:
+  - {fileID: 21300000, guid: 5bbbdbbaa82d1624c8dd935ec44ccc9f, type: 3}
+  - {fileID: 21300000, guid: e99262fae014c734f903fa1880c7466a, type: 3}
+  - {fileID: 21300000, guid: 34c428e90bf172d4b89ee1e8666515f0, type: 3}
   _resumeButton: {fileID: 972947089}
+  _saveManager: {fileID: 131207392}
 --- !u!1 &1932328662
 GameObject:
   m_ObjectHideFlags: 0

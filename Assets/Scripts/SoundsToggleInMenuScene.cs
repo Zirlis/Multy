@@ -7,9 +7,9 @@ namespace Multipliers
     public class SoundsToggleInMenuScene : MonoBehaviour
     {
         [SerializeField] private SaveManager _saveManager;
-        [SerializeField] private List<Sprite> soundOnIcons;
-        [SerializeField] private List<Sprite> soundOffIcons;
-        private int iconIndex = -1;
+        [SerializeField] private List<Sprite> _soundOnIcons;
+        [SerializeField] private List<Sprite> _soundOffIcons;
+        private int _iconIndex = -1;
 
 
         private void Awake()
@@ -31,18 +31,18 @@ namespace Multipliers
 
         private void SetImage(bool on)
         {
-            if (iconIndex == -1)
+            if (_iconIndex == -1)
             {
-                iconIndex = Random.Range(0, soundOnIcons.Count);
+                _iconIndex = Random.Range(0, _soundOnIcons.Count);
             }
 
             if (on)
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = soundOnIcons[iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _soundOnIcons[_iconIndex];
             }
             else
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = soundOffIcons[iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _soundOffIcons[_iconIndex];
             }
         }
     }

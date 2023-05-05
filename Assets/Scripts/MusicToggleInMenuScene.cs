@@ -7,9 +7,9 @@ namespace Multipliers
     public class MusicToggleInMenuScene : MonoBehaviour
     {
         [SerializeField] private SaveManager _saveManager;
-        [SerializeField] private List<Sprite> musicOnIcons;
-        [SerializeField] private List<Sprite> musicOffIcons;
-        private int iconIndex = -1;
+        [SerializeField] private List<Sprite> _musicOnIcons;
+        [SerializeField] private List<Sprite> _musicOffIcons;
+        private int _iconIndex = -1;
 
 
         private void Awake()
@@ -31,18 +31,18 @@ namespace Multipliers
 
         private void SetImage(bool on)
         {
-            if(iconIndex == -1)
+            if(_iconIndex == -1)
             {
-                iconIndex = Random.Range(0, musicOnIcons.Count);
+                _iconIndex = Random.Range(0, _musicOnIcons.Count);
             }
 
             if(on)
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = musicOnIcons[iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOnIcons[_iconIndex];
             }
             else
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = musicOffIcons[iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOffIcons[_iconIndex];
             }
         }
     }

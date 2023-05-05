@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using System.Collections.Generic;
 
 namespace Multipliers
 {
@@ -8,12 +8,15 @@ namespace Multipliers
     {
         [Header("ButtonsChoiceOfDifficulty")]
         [SerializeField] private Button _hardButton;
+        [SerializeField] private List<Sprite> _hardButtonIcons;
         [SerializeField] private Button _mediumButton;
+        [SerializeField] private List<Sprite> _mediumButtonIcons;
         [SerializeField] private Button _easyButton;
-        [SerializeField] private SaveManager _saveManager;
+        [SerializeField] private List<Sprite> _easyButtonIcons;
 
         [Header("Other")]
         [SerializeField] private Button _resumeButton;
+        [SerializeField] private SaveManager _saveManager;
 
 
         private SceneTransition _sceneTransition;
@@ -25,6 +28,13 @@ namespace Multipliers
             _mediumButton.onClick.AddListener(MediumDifficulty);
             _easyButton.onClick.AddListener(EasyDifficulty);
             _resumeButton.onClick.AddListener(ResumeGame);
+
+            _hardButton.gameObject.GetComponent<Image>().sprite = 
+                _hardButtonIcons[Random.Range(0, _hardButtonIcons.Count)];
+            _mediumButton.gameObject.GetComponent<Image>().sprite = 
+                _mediumButtonIcons[Random.Range(0, _mediumButtonIcons.Count)];
+            _easyButton.gameObject.GetComponent<Image>().sprite = 
+                _easyButtonIcons[Random.Range(0, _easyButtonIcons.Count)];
         }
 
         private void HardDifficulty()
