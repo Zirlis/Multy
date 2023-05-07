@@ -9755,7 +9755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1248086089, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
+  m_Sprite: {fileID: -1969331355, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9805,11 +9805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d179541647be30f4fb34a5ff5c0121e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelFirstImages:
-  - {fileID: -1248086089, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
-  _panelLastImages:
-  - {fileID: -410645855, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
-  ImagesVersion: 0
+  _animationCount: 1
+  PanelAnimationVersion: 0
   IsConnecteed: 0
 --- !u!1 &1233055697
 GameObject:
@@ -10021,7 +10018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1248086089, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
+  m_Sprite: {fileID: -1969331355, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10109,11 +10106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d179541647be30f4fb34a5ff5c0121e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelFirstImages:
-  - {fileID: -1248086089, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
-  _panelLastImages:
-  - {fileID: -410645855, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
-  ImagesVersion: 0
+  _animationCount: 1
+  PanelAnimationVersion: 0
   IsConnecteed: 0
 --- !u!1 &1262546946
 GameObject:
@@ -13708,7 +13702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1248086089, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
+  m_Sprite: {fileID: -1969331355, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13796,11 +13790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d179541647be30f4fb34a5ff5c0121e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelFirstImages:
-  - {fileID: -1248086089, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
-  _panelLastImages:
-  - {fileID: -410645855, guid: a083d1cf21c350b4691568ab1cccce4b, type: 3}
-  ImagesVersion: 0
+  _animationCount: 1
+  PanelAnimationVersion: 0
   IsConnecteed: 0
 --- !u!1 &1681839113
 GameObject:
