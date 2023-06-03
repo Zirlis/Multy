@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Multipliers
 {
@@ -17,10 +18,14 @@ namespace Multipliers
         [SerializeField] private LevelGenerator _levelGenerator;
         [SerializeField] private RectTransform _victoryPanel;
         [SerializeField] private Timer _timer;
+        [SerializeField] private List<Sprite> _nextLevelButtonIcons;
 
         private void Start()
         {
             GetComponent<Button>().onClick.AddListener(Invoke);
+
+            int _iconIndex = Random.Range(0, _nextLevelButtonIcons.Count);
+            gameObject.GetComponent<Image>().sprite = _nextLevelButtonIcons[_iconIndex];
         }
 
         private void Invoke()
