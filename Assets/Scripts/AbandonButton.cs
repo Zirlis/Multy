@@ -7,12 +7,12 @@ namespace Multipliers
     public class AbandonButton : MonoBehaviour
     {
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
-        private SceneTransition _sceneTransition;
         [SerializeField] private List<Sprite> _goBackButtonIcons;
+
+        [SerializeField] private LoadingPanelAnimation _loadingPanelAnimation;
 
         void Start()
         {
-            _sceneTransition = new SceneTransition();
             GetComponent<Button>().onClick.AddListener(Abandon);
 
             int _iconIndex = Random.Range(0, _goBackButtonIcons.Count);
@@ -23,7 +23,7 @@ namespace Multipliers
         {
 
             _saveManagerGameScene.Save();
-            _sceneTransition.GoToMainScene();
+            _loadingPanelAnimation.StartAnimation("MainScene");
         }
     }
 }

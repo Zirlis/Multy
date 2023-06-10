@@ -19,11 +19,10 @@ namespace Multipliers
         [SerializeField] private SaveManager _saveManager;
 
 
-        private SceneTransition _sceneTransition;
+        [SerializeField] private LoadingPanelAnimation _loadingPanelAnimation;
 
         private void Awake()
         {
-            _sceneTransition = new SceneTransition();
             _hardButton.onClick.AddListener(HardDifficulty);
             _mediumButton.onClick.AddListener(MediumDifficulty);
             _easyButton.onClick.AddListener(EasyDifficulty);
@@ -42,7 +41,7 @@ namespace Multipliers
             _saveManager.GameData.SelectedDifficulty = 3;
             _saveManager.Save();
             SecondaryInformation.IsContinuation = false;
-            _sceneTransition.GoToGameScene();            
+            _loadingPanelAnimation.StartAnimation("GameScene");
         }
 
         private void MediumDifficulty()
@@ -50,7 +49,7 @@ namespace Multipliers
             _saveManager.GameData.SelectedDifficulty = 2;
             _saveManager.Save();
             SecondaryInformation.IsContinuation = false;
-            _sceneTransition.GoToGameScene();
+            _loadingPanelAnimation.StartAnimation("GameScene");
         }
 
         private void EasyDifficulty()
@@ -58,13 +57,13 @@ namespace Multipliers
             _saveManager.GameData.SelectedDifficulty = 1;
             _saveManager.Save();
             SecondaryInformation.IsContinuation = false;
-            _sceneTransition.GoToGameScene();
+            _loadingPanelAnimation.StartAnimation("GameScene");
         }
 
         private void ResumeGame()
         {
             SecondaryInformation.IsContinuation = true;
-            _sceneTransition.GoToGameScene();
+            _loadingPanelAnimation.StartAnimation("GameScene");
         }
     }
 }

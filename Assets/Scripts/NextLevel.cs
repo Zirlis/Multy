@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Multipliers
 {
@@ -20,8 +21,19 @@ namespace Multipliers
         [SerializeField] private Timer _timer;
         [SerializeField] private List<Sprite> _nextLevelButtonIcons;
 
+        [Header("LoadingPanel")]
+        [SerializeField] private GameObject _loadingPanel;
+        private RectTransform _recTransform;
+        [SerializeField] private float _distance;
+        private float _centerPosition = 0f;
+        public float MovementTime = 1f;
+        [SerializeField] private float _currentDistance;
+
         private void Start()
         {
+            _recTransform = _loadingPanel.GetComponent<RectTransform>();
+            _distance = Screen.width * 2;
+
             GetComponent<Button>().onClick.AddListener(Invoke);
 
             int _iconIndex = Random.Range(0, _nextLevelButtonIcons.Count);
@@ -30,7 +42,22 @@ namespace Multipliers
 
         private void Invoke()
         {
-            //включить анимацию
+            StartCoroutine(PanelAnimation());
+        }
+
+        private IEnumerator PanelAnimation()
+        {
+            _loadingPanel.SetActive(true);
+            _recTransform.anchoredPosition = new Vector2(_distance, 0);
+
+            _currentDistance = _recTransform.anchoredPosition.x;
+            while (_currentDistance > _centerPosition)
+            {
+                _currentDistance -= _distance / MovementTime * Time.deltaTime;
+                _recTransform.anchoredPosition -= new Vector2(_distance / MovementTime * Time.deltaTime, 0);
+
+                yield return null;
+            }
 
             ClearLine(_firstPlane);
             ClearLine(_secondPlane);
@@ -41,10 +68,21 @@ namespace Multipliers
             _victoryPanel.anchoredPosition = new Vector2(0,
                 -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
 
-            //выключить анимацию
+            _recTransform.anchoredPosition = Vector3.zero;
+
+            _currentDistance = _recTransform.anchoredPosition.x;
+            while (_currentDistance > -_distance)
+            {
+                _currentDistance -= _distance / MovementTime * Time.deltaTime;
+                _recTransform.anchoredPosition -= new Vector2(_distance / MovementTime * Time.deltaTime, 0);
+
+                yield return null;
+            }
+
+            _loadingPanel.SetActive(false);
 
             _plug.SetActive(false);
-            
+
             _timer.StartTimer();
         }
 
