@@ -116,8 +116,11 @@ namespace Multipliers
 
                 if (_newInLine.LastTouched != null)
                 {
-                    if (_newInLine.LastTouched.GetComponent<TextMeshProUGUI>().text != "")
+                    var TMPOfLastTouched = _newInLine.LastTouched.GetComponent<TextMeshProUGUI>();
+
+                    if (TMPOfLastTouched.text != "")
                     {
+                        TMPOfLastTouched.SetText("");
                         _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
                         _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
                             _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);

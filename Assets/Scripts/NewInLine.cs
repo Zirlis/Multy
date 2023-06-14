@@ -148,6 +148,7 @@ namespace Multipliers
             }
 
             SecondaryInformation.IsContinuation = false;
+            SecondaryInformation.AnyMultiplierWasRaised = false;
         }
 
         private void RecalculationOnBeginDrag(GameObject multiplier)

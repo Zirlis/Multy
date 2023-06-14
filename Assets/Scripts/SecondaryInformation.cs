@@ -4,5 +4,6 @@ namespace Multipliers
     {
         public static bool IsContinuation;
         public static bool LoadingAnimationWasStarted;
+        public static bool AnyMultiplierWasRaised;
     }
 }

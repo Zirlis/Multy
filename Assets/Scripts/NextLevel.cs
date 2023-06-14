@@ -59,11 +59,20 @@ namespace Multipliers
                 yield return null;
             }
 
-            ClearLine(_firstPlane);
-            ClearLine(_secondPlane);
-            ClearLine(_thirdPlane);
-            ClearLine(_reserve);
+            ClearAllLines();
             _levelGenerator.NewLevel();
+
+            var firstPanelChangeImage = _firstPlane.GetComponent<PanelChangeImage>();
+            _firstPlane.GetComponent<Animator>().Play($"Unconnected{firstPanelChangeImage.PanelAnimationVersion}");
+            firstPanelChangeImage.IsConnecteed = false;
+
+            var secondPanelChangeImage = _secondPlane.GetComponent<PanelChangeImage>();
+            _secondPlane.GetComponent<Animator>().Play($"Unconnected{secondPanelChangeImage.PanelAnimationVersion}");
+            secondPanelChangeImage.IsConnecteed = false;
+
+            var thirdPanelChangeImage = _thirdPlane.GetComponent<PanelChangeImage>();
+            _thirdPlane.GetComponent<Animator>().Play($"Unconnected{thirdPanelChangeImage.PanelAnimationVersion}");
+            thirdPanelChangeImage.IsConnecteed = false;
 
             _victoryPanel.anchoredPosition = new Vector2(0,
                 -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
@@ -112,6 +121,14 @@ namespace Multipliers
                 transform.GetChild(11).gameObject.GetComponent<TextMeshProUGUI>().SetText("");
                 transform.GetChild(12).gameObject.GetComponent<TextMeshProUGUI>().SetText("");
             }
+        }
+
+        public void ClearAllLines()
+        {
+            ClearLine(_firstPlane);
+            ClearLine(_secondPlane);
+            ClearLine(_thirdPlane);
+            ClearLine(_reserve);
         }
     }
 }

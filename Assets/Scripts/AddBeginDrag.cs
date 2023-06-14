@@ -32,13 +32,14 @@ namespace Multipliers
 
         public void SetParentData()
         {
-            if (AllowBeginDrag)
+            if (AllowBeginDrag && !SecondaryInformation.AnyMultiplierWasRaised)
             {
                 var parentText = Original.GetComponent<TextMeshProUGUI>();
                 GetComponent<TextMeshProUGUI>().SetText($"{parentText.text}");
                 parentText.SetText("");
                 BeginDrag = true;
                 OnBeginDrag?.Invoke(gameObject);
+                SecondaryInformation.AnyMultiplierWasRaised = true;
             }
         }
     }

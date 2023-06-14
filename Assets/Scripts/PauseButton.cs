@@ -13,6 +13,7 @@ namespace Multipliers
         [SerializeField] private TextMeshProUGUI _currentScore;
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
         [SerializeField] private List<Sprite> _pauseButtonIcons;
+        [SerializeField] private NewInLine _newInLine;
 
         private void Awake()
         {
@@ -28,6 +29,19 @@ namespace Multipliers
 
             _currentScore.SetText($"{_saveManagerGameScene.GameData.LastGameScore}");
             _popupMenu.SetActive(true);
+
+            if (_newInLine.LastTouched != null)
+            {
+                var TMPOfLastTouched = _newInLine.LastTouched.GetComponent<TextMeshProUGUI>();
+
+                if (TMPOfLastTouched.text != "")
+                {
+                    _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
+                    _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
+                        _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                    _newInLine.CollisionWithSomethingOtherThanBack = false;
+                }
+            }
         }
     }
 }

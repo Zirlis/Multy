@@ -87,6 +87,7 @@ namespace Multipliers
         public List<int> SecondPanelMultipliers;
         public List<int> ThirdPanelMultipliers;
         public List<int> ReserveMultipliers;
+        [SerializeField] private NextLevel _nextLevel;
 
         void Start()
         {
@@ -97,52 +98,59 @@ namespace Multipliers
                 _saveManagerGameScene.GameData.LastGameScore = 0;
                 _saveManagerGameScene.GameData.DifficultyIndex = 0;
                 NewLevel();
-            }
+            }            
         }
 
         public void NewLevel()
         {
             AvailableMultipliers = new List<int>();
             _levelMultipliers = new List<int>();
-            GenerateAvailableMultipliers(_saveManagerGameScene.GameData.SelectedDifficulty);
+            GenerateAvailableMultipliers(_saveManagerGameScene.GameData.SelectedDifficulty, false);
             GenerateLevel();
-            
+
             _saveManagerGameScene.GameData.LevelIsOver = false;
             _saveManagerGameScene.GameData.GameIsOver = false;
-            _saveManagerGameScene.Save();
+            _saveManagerGameScene.Save();            
         }
 
-        private void GenerateAvailableMultipliers(int selectedDifficulty)
+        private void GenerateAvailableMultipliers(int selectedDifficulty, bool replay)
         {
             var gameData = _saveManagerGameScene.GameData;
             float reserveCount = 0f;
 
-            switch (selectedDifficulty)
+            if (!replay)
             {
-                case 1:
-                    gameData.DifficultyIndex += 0.7f;
-                    if (gameData.DifficultyIndex < 3)
-                    {
-                        gameData.DifficultyIndex = 3;
-                    }
-                    AvailableMultipliers.Add(2);
-                    break;
-                case 2:
-                    gameData.DifficultyIndex += 1.4f;
-                    if (gameData.DifficultyIndex < 4)
-                    {
-                        gameData.DifficultyIndex = 5;
-                    }
-                    reserveCount++;
-                    break;
-                case 3:
-                    gameData.DifficultyIndex += 2.1f;
-                    if (gameData.DifficultyIndex < 5)
-                    {
-                        gameData.DifficultyIndex = 5;
-                    }
-                    reserveCount += 2;
-                    break;
+                switch (selectedDifficulty)
+                {
+                    case 1:
+                        gameData.DifficultyIndex += 0.7f;
+                        if (gameData.DifficultyIndex < 3)
+                        {
+                            gameData.DifficultyIndex = 3;
+                        }
+                        break;
+                    case 2:
+                        gameData.DifficultyIndex += 1.4f;
+                        if (gameData.DifficultyIndex < 4)
+                        {
+                            gameData.DifficultyIndex = 5;
+                        }
+                        reserveCount++;
+                        break;
+                    case 3:
+                        gameData.DifficultyIndex += 2.1f;
+                        if (gameData.DifficultyIndex < 5)
+                        {
+                            gameData.DifficultyIndex = 5;
+                        }
+                        reserveCount += 2;
+                        break;
+                }
+            }
+
+            if(selectedDifficulty == 1)
+            {
+                AvailableMultipliers.Add(2);
             }
 
             for (int i = 2; i <= gameData.DifficultyIndex; i++)
@@ -298,6 +306,17 @@ namespace Multipliers
             else
             {
                 ThirdCompositionLeft.SetText("");
+            }            
+
+            if (FirstCompositionLeft.text == FirstCompositionRight.text || SecondCompositionLeft.text ==
+                SecondCompositionRight.text || ThirdCompositionLeft.text == ThirdCompositionRight.text)
+            {
+                _nextLevel.ClearAllLines();
+
+                AvailableMultipliers = new List<int>();
+                _levelMultipliers = new List<int>();
+                GenerateAvailableMultipliers(_saveManagerGameScene.GameData.SelectedDifficulty, true);
+                GenerateLevel();
             }
         }
 
