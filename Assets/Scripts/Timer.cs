@@ -10,8 +10,9 @@ namespace Multipliers
     {
         [Header("Time")]
         private TextMeshProUGUI _timer;
-        public float TimeOnTimer = 20f;
-        public float TimeOnLevel = 65f;
+        public float TimeOnTimer = 65f;
+        [SerializeField] private float TimeOnLevel = 25f;
+        [SerializeField] private float TimeOnLine = 10f;
         private bool _stopTimer;
 
         [Header("Other")]
@@ -54,9 +55,14 @@ namespace Multipliers
             _stopTimer = true;
         }
 
-        public void AddTime()
+        public void AddTimeOnLevel()
         {
             TimeOnTimer += TimeOnLevel;
+        }
+
+        public void AddTimeOnLine()
+        {
+            TimeOnTimer += TimeOnLine;
         }
 
         public void SetTimeOnTimer()

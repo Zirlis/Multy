@@ -8,7 +8,13 @@ namespace Multipliers
     {
         private TextMeshProUGUI _longText;
         private string[] _texts = 
-            {"0", "1", "2"};
+        {
+            "Very very very very very very very very very very very very very long and very very very very very very very very boring text",
+            "I know it's hard to believe, but I don't know how to draw",
+            "('.' )/",
+            "(^.^)/",
+            "(>_<)"
+        };
 
         void Start()
         {

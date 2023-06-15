@@ -49,6 +49,8 @@ namespace Multipliers
             bool second;
             bool third;
 
+            int numberOfSolvedLines = 0;
+
             if (_firstCompositionLeft.text == _firstCompositionRight.text)
             {
                 if (!_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
@@ -58,6 +60,7 @@ namespace Multipliers
                     _firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
                 }
                 first = true;
+                numberOfSolvedLines++;
             }
             else
             {
@@ -78,6 +81,7 @@ namespace Multipliers
                     _secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
                 }
                 second = true;
+                numberOfSolvedLines++;
             }
             else
             {
@@ -98,6 +102,7 @@ namespace Multipliers
                     _thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
                 }
                 third = true;
+                numberOfSolvedLines++;
             }
             else
             {
@@ -108,6 +113,24 @@ namespace Multipliers
                     _thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
                 }
                 third = false;
+            }
+
+            if (numberOfSolvedLines > 0)
+            {
+                if(gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == 0)
+                {
+                    gameData.LastGameScore += gameData.SelectedDifficulty;
+                    _timer.AddTimeOnLine();
+                }
+
+                if(numberOfSolvedLines > 1)
+                {
+                    if (gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == gameData.SelectedDifficulty)
+                    {
+                        gameData.LastGameScore += gameData.SelectedDifficulty;
+                        _timer.AddTimeOnLine();
+                    }
+                }
             }
 
             if (first && second && third)
@@ -132,7 +155,7 @@ namespace Multipliers
 
                 if (!SecondaryInformation.IsContinuation)
                 {
-                    gameData.LastGameScore++;
+                    gameData.LastGameScore += gameData.SelectedDifficulty;
                 }
 
                 switch(gameData.SelectedDifficulty)
@@ -164,7 +187,7 @@ namespace Multipliers
 
                 if (!SecondaryInformation.IsContinuation)
                 {
-                    _timer.AddTime();
+                    _timer.AddTimeOnLevel();
                 }
 
                 _timer.SetTimeOnTimer();

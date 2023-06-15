@@ -4209,8 +4209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e83fa1e48d834698affb0d237d926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeOnTimer: 100
-  TimeOnLevel: 65
+  TimeOnTimer: 65
+  TimeOnLevel: 25
   _plug: {fileID: 144562637}
   _lossPanel: {fileID: 13479854}
   _levelGenerator: {fileID: 526370410}
@@ -10094,7 +10094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -439835300, guid: 756a999b6632875499d5b816c16b13f5, type: 3}
+  m_Sprite: {fileID: 348350786, guid: 756a999b6632875499d5b816c16b13f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13785,7 +13785,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1029803639, guid: 3bf49b1ac4b5cc04ca62dab4b60c2015, type: 3}
+  m_Sprite: {fileID: 1374109239, guid: 3bf49b1ac4b5cc04ca62dab4b60c2015, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
