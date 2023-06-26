@@ -18,8 +18,8 @@ namespace Multipliers
         [SerializeField] private Button _resumeButton;
         [SerializeField] private SaveManager _saveManager;
 
+
         [SerializeField] private LoadingPanelAnimation _loadingPanelAnimation;
-        [SerializeField] private MusicVolumeDown _musicVolumeDown;
 
         private void Awake()
         {
@@ -42,7 +42,6 @@ namespace Multipliers
             _saveManager.Save();
             SecondaryInformation.IsContinuation = false;
             _loadingPanelAnimation.StartAnimation("GameScene");
-            _musicVolumeDown.StartVolumeDown();
         }
 
         private void MediumDifficulty()
@@ -51,7 +50,6 @@ namespace Multipliers
             _saveManager.Save();
             SecondaryInformation.IsContinuation = false;
             _loadingPanelAnimation.StartAnimation("GameScene");
-            _musicVolumeDown.StartVolumeDown();
         }
 
         private void EasyDifficulty()
@@ -60,14 +58,12 @@ namespace Multipliers
             _saveManager.Save();
             SecondaryInformation.IsContinuation = false;
             _loadingPanelAnimation.StartAnimation("GameScene");
-            _musicVolumeDown.StartVolumeDown();
         }
 
         private void ResumeGame()
         {
             SecondaryInformation.IsContinuation = true;
             _loadingPanelAnimation.StartAnimation("GameScene");
-            _musicVolumeDown.StartVolumeDown();
         }
     }
 }

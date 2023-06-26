@@ -58,11 +58,13 @@ namespace Multipliers
             }
 
             _storage.Save(GameData);
+            Debug.Log(GameData.MusicIsActive);
         }
 
         public void Load()
-        {            
+        {
             GameData = (GameData)_storage.Load(new GameData());
+            Debug.Log(GameData.MusicIsActive);
 
             _soundsToggle.gameObject.GetComponent<SoundsToggleInMenuScene>().SetIsOn(GameData.SoundsIsActive);
             _musicToggle.gameObject.GetComponent<MusicToggleInMenuScene>().SetIsOn(GameData.MusicIsActive);

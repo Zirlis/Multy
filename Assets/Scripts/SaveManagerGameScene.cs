@@ -82,13 +82,9 @@ namespace Multipliers
         {
             GameData = (GameData)_storage.Load(new GameData());
 
-            _soundsToggle.GetComponent<SoundsToggleInGameScene>().SetIsOn(GameData.SoundsIsActive);
-            _musicToggle.GetComponent<MusicToggleInGameScene>().SetIsOn(GameData.MusicIsActive);
-
             if (SecondaryInformation.IsContinuation)
             {
-                _timer.TimeOnTimer = GameData.TimeOnTimer + 1;
-                _timer.SetTimeOnTimer();
+                _timer.TimeOnTimer = GameData.TimeOnTimer;
 
                 _levelGenerator.FirstPanelMultipliers = GameData.FirstPanelMultipliers;
                 _levelGenerator.SecondPanelMultipliers = GameData.SecondPanelMultipliers;
@@ -152,7 +148,10 @@ namespace Multipliers
                         $"{_thirdPanel.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _thirdPanel.GetComponent<PanelChangeImage>().IsConnecteed = true;
                 }
-            }            
+            }
+
+            _soundsToggle.GetComponent<SoundsToggleInGameScene>().SetIsOn(GameData.SoundsIsActive);
+            _musicToggle.GetComponent<MusicToggleInGameScene>().SetIsOn(GameData.MusicIsActive);
         }
     }
 }

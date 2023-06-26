@@ -133,7 +133,7 @@ namespace Multipliers
                         gameData.DifficultyIndex += 1.4f;
                         if (gameData.DifficultyIndex < 4)
                         {
-                            gameData.DifficultyIndex = 4;
+                            gameData.DifficultyIndex = 5;
                         }
                         reserveCount++;
                         break;

@@ -20,7 +20,6 @@ namespace Multipliers
         [SerializeField] private RectTransform _victoryPanel;
         [SerializeField] private Timer _timer;
         [SerializeField] private List<Sprite> _nextLevelButtonIcons;
-        [SerializeField] private AudioPlayer _pageTurning;
 
         [Header("LoadingPanel")]
         [SerializeField] private GameObject _loadingPanel;
@@ -50,7 +49,6 @@ namespace Multipliers
         {
             _loadingPanel.SetActive(true);
             _recTransform.anchoredPosition = new Vector2(_distance, 0);
-            _pageTurning.PlayAudio();
 
             _currentDistance = _recTransform.anchoredPosition.x;
             while (_currentDistance > _centerPosition)

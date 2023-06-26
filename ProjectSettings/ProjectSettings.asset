@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Gamogus
+  companyName: Unknown Case
   productName: Multi
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -277,7 +277,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 973ca51794097ec459cb8b18045e084a, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -746,7 +746,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -760,11 +766,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 1b5c379f-7f65-43b7-8125-ff8ef0e1659a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Multi
+  organizationId: zirlis
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

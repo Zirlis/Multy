@@ -15,9 +15,6 @@ namespace Multipliers
 
         [HideInInspector] public GameObject LastTouched;
 
-        [SerializeField] private AudioPlayer _popIn;
-        [SerializeField] private AudioPlayer _popOut;
-
         private void Awake()
         {
             _movement = GetComponent<Movement>();
@@ -142,9 +139,7 @@ namespace Multipliers
                         break;
                 }
 
-                SecondaryInformation.AnyMultiplierWasRaised = false;
                 _saveManagerGameScene.Save();
-                _popIn.PlayAudio();
             }
             else
             {
@@ -152,7 +147,8 @@ namespace Multipliers
                 CollisionWithSomethingOtherThanBack = false;
             }
 
-            SecondaryInformation.IsContinuation = false;            
+            SecondaryInformation.IsContinuation = false;
+            SecondaryInformation.AnyMultiplierWasRaised = false;
         }
 
         private void RecalculationOnBeginDrag(GameObject multiplier)
@@ -175,8 +171,7 @@ namespace Multipliers
                             break;
                     }
                     Recalculation(multiplier.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
-                }
-                _popOut.PlayAudio();
+                }                
             }
         }
 

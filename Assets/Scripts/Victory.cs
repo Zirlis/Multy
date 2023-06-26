@@ -31,8 +31,6 @@ namespace Multipliers
         [SerializeField] private Timer _timer;
         [SerializeField] private NewInLine _newInLine;
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
-        [SerializeField] private AudioPlayer _penWriting;
-        [SerializeField] private AudioPlayer _pageTurning;
 
         [Header("Animator")]
         [SerializeField] private Animator _firstPanelAnimator;
@@ -60,7 +58,6 @@ namespace Multipliers
                     _firstPanelAnimator.Play($"Connecting" +
                         $"{_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
-                    _penWriting.PlayAudio();
                 }
                 first = true;
                 numberOfSolvedLines++;
@@ -72,7 +69,6 @@ namespace Multipliers
                     _firstPanelAnimator.Play($"Unconnecting" +
                         $"{_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
-                    _penWriting.PlayAudio();
                 }
                 first = false;
             }
@@ -83,7 +79,6 @@ namespace Multipliers
                     _secondPanelAnimator.Play($"Connecting" +
                         $"{_secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
-                    _penWriting.PlayAudio();
                 }
                 second = true;
                 numberOfSolvedLines++;
@@ -95,7 +90,6 @@ namespace Multipliers
                     _secondPanelAnimator.Play($"Unconnecting" +
                         $"{_secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
-                    _penWriting.PlayAudio();
                 }
                 second = false;
             }
@@ -106,7 +100,6 @@ namespace Multipliers
                     _thirdPanelAnimator.Play($"Connecting" +
                         $"{_thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
-                    _penWriting.PlayAudio();
                 }
                 third = true;
                 numberOfSolvedLines++;
@@ -118,69 +111,24 @@ namespace Multipliers
                     _thirdPanelAnimator.Play($"Unconnecting" +
                         $"{_thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
                     _thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
-                    _penWriting.PlayAudio();
                 }
                 third = false;
             }
 
             if (numberOfSolvedLines > 0)
             {
-                if(gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == 0 && !SecondaryInformation.IsContinuation)
+                if(gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == 0)
                 {
                     gameData.LastGameScore += gameData.SelectedDifficulty;
                     _timer.AddTimeOnLine();
-
-                    switch (gameData.SelectedDifficulty)
-                    {
-                        case 1:
-                            if (gameData.EasyScore < gameData.LastGameScore)
-                            {
-                                gameData.EasyScore = gameData.LastGameScore;
-                            }
-                            break;
-                        case 2:
-                            if (gameData.MediumScore < gameData.LastGameScore)
-                            {
-                                gameData.MediumScore = gameData.LastGameScore;
-                            }
-                            break;
-                        case 3:
-                            if (gameData.MediumScore < gameData.LastGameScore)
-                            {
-                                gameData.HardScore = gameData.LastGameScore;
-                            }
-                            break;
-                    }
                 }
 
                 if(numberOfSolvedLines > 1)
                 {
-                    if (gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == gameData.SelectedDifficulty && !SecondaryInformation.IsContinuation)
+                    if (gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == gameData.SelectedDifficulty)
                     {
                         gameData.LastGameScore += gameData.SelectedDifficulty;
                         _timer.AddTimeOnLine();
-
-                        switch (gameData.SelectedDifficulty)
-                        {
-                            case 1:
-                                if (gameData.EasyScore < gameData.LastGameScore)
-                                {
-                                    gameData.EasyScore = gameData.LastGameScore;
-                                }
-                                break;
-                            case 2:
-                                if (gameData.MediumScore < gameData.LastGameScore)
-                                {
-                                    gameData.MediumScore = gameData.LastGameScore;
-                                }
-                                break;
-                            case 3:
-                                if (gameData.MediumScore < gameData.LastGameScore)
-                                {
-                                    gameData.HardScore = gameData.LastGameScore;
-                                }
-                                break;
-                        }
                     }
                 }
             }
@@ -210,7 +158,7 @@ namespace Multipliers
                     gameData.LastGameScore += gameData.SelectedDifficulty;
                 }
 
-                switch (gameData.SelectedDifficulty)
+                switch(gameData.SelectedDifficulty)
                 {
                     case 1:
                         if (gameData.EasyScore < gameData.LastGameScore)
@@ -249,7 +197,6 @@ namespace Multipliers
 
         private IEnumerator VictoryPanelMovement()
         {
-            _pageTurning.PlayAudio();
             _currentDistance = 0f;
             while (_currentDistance < _distance)
             {
@@ -270,9 +217,6 @@ namespace Multipliers
             {
                 _victoryPanel.anchoredPosition = Vector2.zero;
                 _plug.SetActive(true);
-
-                _timer.TimeOnTimer--;
-                _timer.SetTimeOnTimer();
             }
             else
             {

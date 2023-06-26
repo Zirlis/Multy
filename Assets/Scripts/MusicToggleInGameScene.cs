@@ -11,11 +11,6 @@ namespace Multipliers
         [SerializeField] private List<Sprite> _musicOffIcons;
         private int _iconIndex = -1;
 
-        [Header("Audio")]
-        [SerializeField] private AudioSource _musicAudioSource;
-        [SerializeField] private AudioPlayer _popIn;
-        [SerializeField] private AudioPlayer _popOut;
-
 
         private void Awake()
         {
@@ -26,23 +21,11 @@ namespace Multipliers
         {
             _saveManager.Save();
             SetImage(on);
-
-            _musicAudioSource.mute = !on;
-
-            if (on)
-            {
-                _popOut.PlayAudio();
-            }
-            else
-            {
-                _popIn.PlayAudio();
-            }
         }
 
         public void SetIsOn(bool on)
         {
             GetComponent<Toggle>().isOn = on;
-            _musicAudioSource.mute = !on;
             SetImage(on);
         }
 

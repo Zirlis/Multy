@@ -14,7 +14,6 @@ namespace Multipliers
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
         [SerializeField] private List<Sprite> _pauseButtonIcons;
         [SerializeField] private NewInLine _newInLine;
-        [SerializeField] private AudioPlayer _pageTurning;
 
         private void Awake()
         {
@@ -27,7 +26,6 @@ namespace Multipliers
         private void OnPause()
         {
             _timer.StopTimer();
-            _pageTurning.PlayAudio();
 
             _currentScore.SetText($"{_saveManagerGameScene.GameData.LastGameScore}");
             _popupMenu.SetActive(true);

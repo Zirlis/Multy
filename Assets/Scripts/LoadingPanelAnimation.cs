@@ -12,8 +12,6 @@ namespace Multipliers
         private float _centerPosition = 0f;
         public float MovementTime = 1f;
         [SerializeField] private float _currentDistance;
-        [SerializeField] private AudioPlayer _pageTurning;
-        [SerializeField] private AudioSource _music;
 
         private void Start()
         {
@@ -42,7 +40,6 @@ namespace Multipliers
         {
             gameObject.SetActive(true);
             StartCoroutine(LoadingPanelStartMovement(sceneName));
-            _pageTurning.PlayAudio();
         }
 
         private IEnumerator LoadingPanelFinishMovement()
