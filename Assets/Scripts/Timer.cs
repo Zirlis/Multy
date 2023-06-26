@@ -22,6 +22,7 @@ namespace Multipliers
         [SerializeField] private NewInLine _newInLine;
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
         [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private AudioPlayer _pageTurning;
 
         [Header("LossPanelMovement")]
         [SerializeField] private float _distance;
@@ -117,6 +118,7 @@ namespace Multipliers
 
         private IEnumerator LossPanelMovement()
         {
+            _pageTurning.PlayAudio();
             _currentDistance = 0f;
             while (_currentDistance < _distance)
             {

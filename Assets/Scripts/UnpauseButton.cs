@@ -6,6 +6,7 @@ namespace Multipliers
 {
     public class UnpauseButton : MonoBehaviour
     {
+        [SerializeField] private AudioPlayer _pageTurning;
         [SerializeField] private Button _unpauseButton;
         [SerializeField] private GameObject _popupMenu;
         [SerializeField] private Timer _timer;
@@ -22,6 +23,7 @@ namespace Multipliers
         private void UnPause()
         {
             _popupMenu.SetActive(false);
+            _pageTurning.PlayAudio();
 
             _timer.StartTimer();
         }

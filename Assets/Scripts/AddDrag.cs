@@ -29,7 +29,7 @@ namespace Multipliers
 
         public void Move()
         {
-            if (_addBeginDrag.BeginDrag == true)
+            if (_addBeginDrag.BeginDrag)
             {
                 transform.position = Input.mousePosition;
             }

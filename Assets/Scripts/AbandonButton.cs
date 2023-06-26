@@ -10,6 +10,7 @@ namespace Multipliers
         [SerializeField] private List<Sprite> _goBackButtonIcons;
 
         [SerializeField] private LoadingPanelAnimation _loadingPanelAnimation;
+        [SerializeField] private MusicVolumeDown _musicVolumeDown;
 
         void Start()
         {
@@ -21,9 +22,9 @@ namespace Multipliers
 
         private void Abandon()
         {
-
             _saveManagerGameScene.Save();
             _loadingPanelAnimation.StartAnimation("MainScene");
+            _musicVolumeDown.StartVolumeDown();
         }
     }
 }
