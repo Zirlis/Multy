@@ -23,6 +23,7 @@ namespace Multipliers
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private AudioPlayer _pageTurning;
+        [SerializeField] private Ads _ads;
 
         [Header("LossPanelMovement")]
         [SerializeField] private float _distance;
@@ -130,7 +131,11 @@ namespace Multipliers
 
             _lossPanel.anchoredPosition = Vector2.zero;
 
-            //рекламка
+            if (SecondaryInformation.TimeAfterAd > 300)
+            {
+                _ads.ShowAd();
+                SecondaryInformation.TimeAfterAd = 0;
+            }
         }
 
         private void ReturnOfIntersections(Transform panelTransform, List<int> startPanelMultipliers)

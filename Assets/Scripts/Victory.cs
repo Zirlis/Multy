@@ -33,6 +33,7 @@ namespace Multipliers
         [SerializeField] private SaveManagerGameScene _saveManagerGameScene;
         [SerializeField] private AudioPlayer _penWriting;
         [SerializeField] private AudioPlayer _pageTurning;
+        [SerializeField] private Ads _ads;
 
         [Header("Animator")]
         [SerializeField] private Animator _firstPanelAnimator;
@@ -261,7 +262,11 @@ namespace Multipliers
 
             _victoryPanel.anchoredPosition = Vector2.zero;
 
-            //рекламка
+            if(SecondaryInformation.TimeAfterAd > 480)
+            {
+                _ads.ShowAd();
+                SecondaryInformation.TimeAfterAd = 0;
+            }
         }
 
         private void ChekContinuation()

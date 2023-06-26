@@ -123,14 +123,14 @@ namespace Multipliers
                 switch (selectedDifficulty)
                 {
                     case 1:
-                        gameData.DifficultyIndex += 0.7f;
+                        gameData.DifficultyIndex += 0.6f;
                         if (gameData.DifficultyIndex < 3)
                         {
                             gameData.DifficultyIndex = 3;
                         }
                         break;
                     case 2:
-                        gameData.DifficultyIndex += 1.4f;
+                        gameData.DifficultyIndex += 1.2f;
                         if (gameData.DifficultyIndex < 4)
                         {
                             gameData.DifficultyIndex = 4;
@@ -138,7 +138,7 @@ namespace Multipliers
                         reserveCount++;
                         break;
                     case 3:
-                        gameData.DifficultyIndex += 2.1f;
+                        gameData.DifficultyIndex += 1.8f;
                         if (gameData.DifficultyIndex < 5)
                         {
                             gameData.DifficultyIndex = 5;
