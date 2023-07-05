@@ -142,7 +142,6 @@ namespace Multipliers
                         break;
                 }
 
-                SecondaryInformation.AnyMultiplierWasRaised = false;
                 _saveManagerGameScene.Save();
                 _popIn.PlayAudio();
             }
@@ -152,6 +151,7 @@ namespace Multipliers
                 CollisionWithSomethingOtherThanBack = false;
             }
 
+            SecondaryInformation.AnyMultiplierWasRaised = false;
             SecondaryInformation.IsContinuation = false;            
         }
 
