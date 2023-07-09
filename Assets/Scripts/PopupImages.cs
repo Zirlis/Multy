@@ -16,7 +16,10 @@ namespace Multipliers
                 int spriteNumber = Random.Range(0, _popupSprites.Count);
                 _popupImages[Random.Range(0, _popupImages.Count)].sprite = _popupSprites[spriteNumber];
                 _popupSprites.RemoveAt(spriteNumber);
-                _popupImages[Random.Range(0, _popupImages.Count)].sprite = _popupSprites[Random.Range(0, _popupSprites.Count)];
+                if (Random.Range(0, 100) < 50)
+                {
+                    _popupImages[Random.Range(0, _popupImages.Count)].sprite = _popupSprites[Random.Range(0, _popupSprites.Count)];
+                }
             }
         }
 

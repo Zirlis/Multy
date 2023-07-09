@@ -60,7 +60,6 @@ namespace Multipliers
 
             gameObject.SetActive(false);
             SecondaryInformation.LoadingAnimationWasStarted = false;
-            //рекламка
         }
 
         private IEnumerator LoadingPanelStartMovement(string sceneName)
@@ -78,7 +77,6 @@ namespace Multipliers
 
             SecondaryInformation.LoadingAnimationWasStarted = true;
             SceneManager.LoadScene(sceneName);
-            //рекламка
         }
 
     }

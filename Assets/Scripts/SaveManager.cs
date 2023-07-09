@@ -90,22 +90,9 @@ namespace Multipliers
 
         private void SetLastGame(int lastGameDifficulty)
         {
-            //смена картинки от сложности
-
-            switch (lastGameDifficulty)
+            if(lastGameDifficulty == 0)
             {
-                case 3:
-                    //hard
-                    break;
-                case 2:
-                    //medium
-                    break;
-                case 1:
-                    //easy
-                    break;
-                case 0:
-                    _lastGameImage.SetActive(false);
-                    break;
+                _lastGameImage.SetActive(false);
             }
 
             _lastGameScore.SetText($"{GameData.LastGameScore}");
