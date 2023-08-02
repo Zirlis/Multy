@@ -36,6 +36,14 @@ namespace Multipliers
                 _easyButtonIcons[Random.Range(0, _easyButtonIcons.Count)];
         }
 
+        private void OnDestroy()
+        {
+            _hardButton.onClick.RemoveListener(HardDifficulty);
+            _mediumButton.onClick.RemoveListener(MediumDifficulty);
+            _easyButton.onClick.RemoveListener(EasyDifficulty);
+            _resumeButton.onClick.RemoveListener(ResumeGame);
+        }
+
         private void HardDifficulty()
         {
             _saveManager.GameData.SelectedDifficulty = 3;

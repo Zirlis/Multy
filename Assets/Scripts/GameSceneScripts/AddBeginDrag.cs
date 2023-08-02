@@ -12,6 +12,9 @@ namespace Multipliers
         public bool BeginDrag = false;
 
         public GameObject Original;
+
+        EventTrigger.Entry entry;
+
         private void Start()
         {
             if (!GetComponent<EventTrigger>())
@@ -24,10 +27,15 @@ namespace Multipliers
         public void Add()
         {
             EventTrigger trigger = GetComponent<EventTrigger>();
-            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.BeginDrag;
             entry.callback.AddListener((data) => SetParentData());
             trigger.triggers.Add(entry);
+        }
+
+        private void OnDestroy()
+        {
+            entry.callback.RemoveListener((data) => SetParentData());
         }
 
         public void SetParentData()

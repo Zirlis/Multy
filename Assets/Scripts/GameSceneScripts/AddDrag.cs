@@ -7,6 +7,8 @@ namespace Multipliers
     {
         private AddBeginDrag _addBeginDrag;
 
+        EventTrigger.Entry entry;
+
         private void Start()
         {
             if (!GetComponent<EventTrigger>())
@@ -21,10 +23,15 @@ namespace Multipliers
         public void Add()
         {
             EventTrigger trigger = GetComponent<EventTrigger>();
-            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.Drag;
             entry.callback.AddListener((data) => Move());
             trigger.triggers.Add(entry);
+        }
+
+        private void OnDestroy()
+        {
+            entry.callback.RemoveListener((data) => Move());
         }
 
         public void Move()

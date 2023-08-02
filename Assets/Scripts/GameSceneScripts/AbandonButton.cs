@@ -20,6 +20,11 @@ namespace Multipliers
             gameObject.GetComponent<Image>().sprite = _goBackButtonIcons[_iconIndex];
         }
 
+        private void OnDestroy()
+        {
+            GetComponent<Button>().onClick.RemoveListener(Abandon);
+        }
+
         private void Abandon()
         {
             _saveManagerGameScene.Save();

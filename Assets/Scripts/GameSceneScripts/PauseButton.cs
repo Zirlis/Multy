@@ -24,6 +24,11 @@ namespace Multipliers
             gameObject.GetComponent<Image>().sprite = _pauseButtonIcons[_iconIndex];
         }
 
+        private void OnDestroy()
+        {
+            _pauseButton.onClick.RemoveListener(OnPause);
+        }
+
         private void OnPause()
         {
             _timer.StopTimer();

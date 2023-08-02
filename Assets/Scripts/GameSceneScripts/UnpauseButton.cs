@@ -20,6 +20,11 @@ namespace Multipliers
             gameObject.GetComponent<Image>().sprite = _unpauseButtonIcons[_iconIndex];
         }
 
+        private void OnDestroy()
+        {
+            _unpauseButton.onClick.RemoveListener(UnPause);
+        }
+
         private void UnPause()
         {
             _popupMenu.SetActive(false);

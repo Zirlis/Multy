@@ -4,17 +4,15 @@ using UnityEngine.UI;
 
 namespace Multipliers
 {
-    public class SoundsToggleInMenuScene : MonoBehaviour
+    public class MusicToggleInGameScene : MonoBehaviour
     {
-        [SerializeField] private SaveManager _saveManager;
-        [SerializeField] private List<Sprite> _soundOnIcons;
-        [SerializeField] private List<Sprite> _soundOffIcons;
+        [SerializeField] private SaveManagerGameScene _saveManager;
+        [SerializeField] private List<Sprite> _musicOnIcons;
+        [SerializeField] private List<Sprite> _musicOffIcons;
         private int _iconIndex = -1;
 
         [Header("Audio")]
-        [SerializeField] private AudioSource _popInAudioSource;
-        [SerializeField] private AudioSource _popOutAudioSource;
-        [SerializeField] private AudioSource _pageTurningAudioSource;
+        [SerializeField] private AudioSource _musicAudioSource;
         [SerializeField] private AudioPlayer _popIn;
         [SerializeField] private AudioPlayer _popOut;
 
@@ -24,14 +22,17 @@ namespace Multipliers
             GetComponent<Toggle>().onValueChanged.AddListener(OnSwitch);
         }
 
+        private void OnDestroy()
+        {
+            GetComponent<Toggle>().onValueChanged.RemoveListener(OnSwitch);
+        }
+
         private void OnSwitch(bool on)
         {
             _saveManager.Save();
             SetImage(on);
 
-            _popInAudioSource.mute = !on;
-            _popOutAudioSource.mute = !on;
-            _pageTurningAudioSource.mute = !on;
+            _musicAudioSource.mute = !on;
 
             if (on)
             {
@@ -46,9 +47,7 @@ namespace Multipliers
         public void SetIsOn(bool on)
         {
             GetComponent<Toggle>().isOn = on;
-            _popInAudioSource.mute = !on;
-            _popOutAudioSource.mute = !on;
-            _pageTurningAudioSource.mute = !on;
+            _musicAudioSource.mute = !on;
             SetImage(on);
         }
 
@@ -56,16 +55,16 @@ namespace Multipliers
         {
             if (_iconIndex == -1)
             {
-                _iconIndex = Random.Range(0, _soundOnIcons.Count);
+                _iconIndex = Random.Range(0, _musicOnIcons.Count);
             }
 
             if (on)
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _soundOnIcons[_iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOnIcons[_iconIndex];
             }
             else
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _soundOffIcons[_iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOffIcons[_iconIndex];
             }
         }
     }

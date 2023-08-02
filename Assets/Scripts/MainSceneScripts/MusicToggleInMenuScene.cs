@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 namespace Multipliers
 {
-    public class MusicToggleInGameScene : MonoBehaviour
+    public class MusicToggleInMenuScene : MonoBehaviour
     {
-        [SerializeField] private SaveManagerGameScene _saveManager;
+        [SerializeField] private SaveManager _saveManager;
         [SerializeField] private List<Sprite> _musicOnIcons;
         [SerializeField] private List<Sprite> _musicOffIcons;
         private int _iconIndex = -1;
@@ -20,6 +20,11 @@ namespace Multipliers
         private void Awake()
         {
             GetComponent<Toggle>().onValueChanged.AddListener(OnSwitch);
+        }
+
+        private void OnDestroy()
+        {
+            GetComponent<Toggle>().onValueChanged.RemoveListener(OnSwitch);
         }
 
         private void OnSwitch(bool on)
@@ -48,18 +53,18 @@ namespace Multipliers
 
         private void SetImage(bool on)
         {
-            if (_iconIndex == -1)
+            if(_iconIndex == -1)
             {
                 _iconIndex = Random.Range(0, _musicOnIcons.Count);
             }
 
-            if (on)
+            if(on)
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOnIcons[_iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOnIcons[_iconIndex];                
             }
             else
             {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOffIcons[_iconIndex];
+                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOffIcons[_iconIndex];                
             }
         }
     }

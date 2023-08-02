@@ -41,6 +41,11 @@ namespace Multipliers
             gameObject.GetComponent<Image>().sprite = _nextLevelButtonIcons[_iconIndex];
         }
 
+        private void OnDestroy()
+        {
+            GetComponent<Button>().onClick.RemoveListener(Invoke);
+        }
+
         private void Invoke()
         {
             StartCoroutine(PanelAnimation());
