@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Multipliers
 {
@@ -12,19 +11,7 @@ namespace Multipliers
         void Start()
         {
             _longText = GetComponent<TextMeshProUGUI>();
-            NewText();
-            GetComponent<Button>().onClick.AddListener(NewText);
-        }
-
-        private void OnDestroy()
-        {
-            GetComponent<Button>().onClick.RemoveListener(NewText);
-        }
-
-        private void NewText()
-        {
-            int rand = Random.Range(0, _texts.Length);
-            _longText.SetText(_texts[rand]);
+            _longText.SetText(_texts[Random.Range(0, _texts.Length)]);
         }
     }
 }

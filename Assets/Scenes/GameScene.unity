@@ -4354,21 +4354,7 @@ MonoBehaviour:
   TimeOnTimer: 66
   TimeOnLevel: 26
   TimeOnLine: 10
-  _plug: {fileID: 144562637}
-  _lossPanel: {fileID: 13479854}
-  _levelGenerator: {fileID: 526370410}
-  _newInLine: {fileID: 526370411}
-  _saveManagerGameScene: {fileID: 526370408}
-  _scoreText: {fileID: 73383764}
-  _pageTurning: {fileID: 1917295479}
-  _ads: {fileID: 526370417}
-  _distance: 0
-  MovementTime: 0.3
-  _currentDistance: 0
-  _firstPanel: {fileID: 1188541060}
-  _secondPanel: {fileID: 1244546162}
-  _thirdPanel: {fileID: 1665596178}
-  _reserve: {fileID: 337571850}
+  _defeat: {fileID: 526370419}
 --- !u!1 &421848178
 GameObject:
   m_ObjectHideFlags: 0
@@ -4869,6 +4855,7 @@ GameObject:
   - component: {fileID: 526370418}
   - component: {fileID: 526370417}
   - component: {fileID: 526370416}
+  - component: {fileID: 526370419}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -4919,10 +4906,11 @@ MonoBehaviour:
   _timer: {fileID: 412634343}
   _levelGenerator: {fileID: 526370410}
   _newInLine: {fileID: 526370411}
-  _firstPanel: {fileID: 1188541059}
-  _secondPanel: {fileID: 1244546161}
-  _thirdPanel: {fileID: 1665596177}
-  _reservePanel: {fileID: 337571849}
+  _panels:
+  - {fileID: 1188541059}
+  - {fileID: 1244546161}
+  - {fileID: 1665596177}
+  - {fileID: 337571849}
 --- !u!4 &526370409
 Transform:
   m_ObjectHideFlags: 0
@@ -4952,58 +4940,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirstCompositionRight: {fileID: 1484966199}
   FirstCompositionLeft: {fileID: 193403302}
-  FirstMultiplier1: {fileID: 1866489748}
-  FirstMultiplier2: {fileID: 1390860472}
-  FirstMultiplier3: {fileID: 1542649404}
-  FirstMultiplier4: {fileID: 1681839115}
-  FirstMultiplier5: {fileID: 1342451952}
-  FirstMultiplier6: {fileID: 618714985}
-  FirstMultiplication12: {fileID: 518629366}
-  FirstMultiplication23: {fileID: 1233055697}
-  FirstMultiplication34: {fileID: 365693728}
-  FirstMultiplication45: {fileID: 1920831078}
-  FirstMultiplication56: {fileID: 1840668004}
+  FirstMultipliers:
+  - {fileID: 1866489748}
+  - {fileID: 1390860472}
+  - {fileID: 1542649404}
+  - {fileID: 1681839115}
+  - {fileID: 1342451952}
+  - {fileID: 618714985}
+  FirstMultiplications:
+  - {fileID: 518629366}
+  - {fileID: 1233055697}
+  - {fileID: 365693728}
+  - {fileID: 1920831078}
+  - {fileID: 1840668004}
   SecondCompositionRight: {fileID: 1385390480}
   SecondCompositionLeft: {fileID: 236686572}
-  SecondMultiplier1: {fileID: 1310611542}
-  SecondMultiplier2: {fileID: 1438822631}
-  SecondMultiplier3: {fileID: 702861095}
-  SecondMultiplier4: {fileID: 1921268743}
-  SecondMultiplier5: {fileID: 1802272258}
-  SecondMultiplier6: {fileID: 1292564212}
-  SecondMultiplication12: {fileID: 1523630239}
-  SecondMultiplication23: {fileID: 2060691976}
-  SecondMultiplication34: {fileID: 2047922219}
-  SecondMultiplication45: {fileID: 1900783865}
-  SecondMultiplication56: {fileID: 1832732184}
+  SecondMultipliers:
+  - {fileID: 1310611542}
+  - {fileID: 1438822631}
+  - {fileID: 702861095}
+  - {fileID: 1921268743}
+  - {fileID: 1802272258}
+  - {fileID: 1292564212}
+  SecondMultiplications:
+  - {fileID: 1523630239}
+  - {fileID: 2060691976}
+  - {fileID: 2047922219}
+  - {fileID: 1900783865}
+  - {fileID: 1832732184}
   ThirdCompositionRight: {fileID: 69506679}
   ThirdCompositionLeft: {fileID: 650744564}
-  ThirdMultiplier1: {fileID: 1507048955}
-  ThirdMultiplier2: {fileID: 770327026}
-  ThirdMultiplier3: {fileID: 538325961}
-  ThirdMultiplier4: {fileID: 636107025}
-  ThirdMultiplier5: {fileID: 989261349}
-  ThirdMultiplier6: {fileID: 135511754}
-  ThirdMultiplication12: {fileID: 1014224769}
-  ThirdMultiplication23: {fileID: 1413497995}
-  ThirdMultiplication34: {fileID: 685788263}
-  ThirdMultiplication45: {fileID: 788984395}
-  ThirdMultiplication56: {fileID: 781965459}
-  ReservMultiplier1: {fileID: 811784578}
-  ReservMultiplier2: {fileID: 708213192}
-  ReservMultiplier3: {fileID: 412290803}
-  ReservMultiplier4: {fileID: 1607325095}
-  ReservMultiplier5: {fileID: 2018330566}
-  ReservMultiplier6: {fileID: 449028698}
-  ReservMultiplier7: {fileID: 1115470051}
-  ReservMultiplier8: {fileID: 1725285915}
-  ReservMultiplier9: {fileID: 476717142}
-  ReservMultiplier10: {fileID: 1816086037}
+  ThirdMultipliers:
+  - {fileID: 1507048955}
+  - {fileID: 770327026}
+  - {fileID: 538325961}
+  - {fileID: 636107025}
+  - {fileID: 989261349}
+  - {fileID: 135511754}
+  ThirdMultiplications:
+  - {fileID: 1014224769}
+  - {fileID: 1413497995}
+  - {fileID: 685788263}
+  - {fileID: 788984395}
+  - {fileID: 781965459}
+  ReserveMultipliers:
+  - {fileID: 811784578}
+  - {fileID: 708213192}
+  - {fileID: 412290803}
+  - {fileID: 1607325095}
+  - {fileID: 2018330566}
+  - {fileID: 449028698}
+  - {fileID: 1115470051}
+  - {fileID: 1725285915}
+  - {fileID: 476717142}
+  - {fileID: 1816086037}
   AvailableMultipliers: 
-  FirstPanelMultipliers: 
-  SecondPanelMultipliers: 
-  ThirdPanelMultipliers: 
-  ReserveMultipliers: 
   _nextLevel: {fileID: 703483720}
 --- !u!114 &526370411
 MonoBehaviour:
@@ -5155,6 +5146,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d268519431eb3f41b34abfcc351ac3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &526370419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526370407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368ce34a15b7534499a31971b3e8a059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distance: 0
+  MovementTime: 2
+  _currentDistance: 0
+  _newInLine: {fileID: 526370411}
+  _saveManager: {fileID: 526370408}
+  _timer: {fileID: 412634343}
+  _levelGenerator: {fileID: 526370410}
+  _ads: {fileID: 526370417}
+  _firstPanel: {fileID: 1188541060}
+  _secondPanel: {fileID: 1244546162}
+  _thirdPanel: {fileID: 1665596178}
+  _reserve: {fileID: 337571850}
+  _plug: {fileID: 144562637}
+  _lossPanel: {fileID: 13479854}
+  _scoreText: {fileID: 73383764}
+  _pageTurning: {fileID: 1467921612}
 --- !u!1 &538325959
 GameObject:
   m_ObjectHideFlags: 0
@@ -8738,6 +8757,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c5c4f06f0ab8b9c44adb520e4ae9b713, type: 3}
   - {fileID: 21300000, guid: 7a94e83c6d623af41b34fc5ef47c22e4, type: 3}
   - {fileID: 21300000, guid: fa7283219ed1e024d9b4e2c249ca3cae, type: 3}
+  _toggleImage: {fileID: 1807645114}
   _musicAudioSource: {fileID: 1346218263}
   _popIn: {fileID: 738413951}
   _popOut: {fileID: 321792580}
@@ -10159,15 +10179,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 52145b7bbac3a2743bacbeb92926cb19, type: 3}
   - {fileID: 21300000, guid: e5f7b7d38ece3f54faa225273ef0f898, type: 3}
   - {fileID: 21300000, guid: 6dd0aa9dad8d4de4db08a882ad20c7ea, type: 3}
-  _popInAudioSource: {fileID: 738413952}
-  _popOutAudioSource: {fileID: 321792581}
-  _pageTurning01AudioSource: {fileID: 1917295480}
-  _pageTurning02AudioSource: {fileID: 1150897729}
-  _pageTurning03AudioSource: {fileID: 637996169}
-  _pageTurning04AudioSource: {fileID: 1467921613}
-  _multiplierInAudioSource: {fileID: 848851484}
-  _multiplierOutAudioSource: {fileID: 1603568224}
-  _penWritingAudioSource: {fileID: 1667993408}
+  _toggleImage: {fileID: 1980811512}
+  _sounds:
+  - {fileID: 1917295480}
+  - {fileID: 1150897729}
+  - {fileID: 637996169}
+  - {fileID: 1467921613}
+  - {fileID: 738413952}
+  - {fileID: 321792581}
+  - {fileID: 848851484}
+  - {fileID: 1603568224}
+  - {fileID: 1667993408}
   _popIn: {fileID: 738413951}
   _popOut: {fileID: 321792580}
 --- !u!1 &1150897726
@@ -10227,7 +10249,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9c5a3ddd379b4444ebbb7c0a7d968ccb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12478,7 +12500,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3ee6d3b46ad28714fab0f68b6104d8d1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

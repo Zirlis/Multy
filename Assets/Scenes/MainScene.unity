@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 131207392}
   - component: {fileID: 131207393}
   - component: {fileID: 131207394}
+  - component: {fileID: 131207395}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -255,6 +256,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7bf4838b41b4041b874758f56dedab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &131207395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131207390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a929cee0d5dc8046a4764d2c49a1e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _difficultyButtons:
+  - {fileID: 972947089}
+  - {fileID: 243297096}
+  - {fileID: 231440047}
+  - {fileID: 1212367216}
+  _resumeButtonImages:
+  - {fileID: 21300000, guid: 582b608a3b3744e4aafcffed3b3d6b9a, type: 3}
+  - {fileID: 21300000, guid: 26cb12be1b2798b44bc4105e797adece, type: 3}
+  - {fileID: 21300000, guid: 6dae67a916c0d11478cf3bb3c1e6271a, type: 3}
+  - {fileID: 21300000, guid: 98c993b59325f0b4fa4b0617c2eed02c, type: 3}
+  - {fileID: 21300000, guid: 07dcf0431b8e95449861810c16ee2e87, type: 3}
+  _easyButtonImages:
+  - {fileID: 21300000, guid: 5bbbdbbaa82d1624c8dd935ec44ccc9f, type: 3}
+  - {fileID: 21300000, guid: e99262fae014c734f903fa1880c7466a, type: 3}
+  - {fileID: 21300000, guid: 34c428e90bf172d4b89ee1e8666515f0, type: 3}
+  _mediumButtonImages:
+  - {fileID: 21300000, guid: 4102762423906f844b38b8f8077f3be2, type: 3}
+  - {fileID: 21300000, guid: f3073417202f4904a9fab0d924dd7407, type: 3}
+  - {fileID: 21300000, guid: 56509637acd8b74479ea567d4dfeb42d, type: 3}
+  _hardButtonImages:
+  - {fileID: 21300000, guid: 637ae00a42608294392842ac19a876f9, type: 3}
+  - {fileID: 21300000, guid: bd2c241d754e99848afd6655345257db, type: 3}
+  - {fileID: 21300000, guid: 0acf056adc8f39a4f91561a4ed3d6b7d, type: 3}
+  _scorePanel: {fileID: 1022940544}
+  _scorePanelImages:
+  - {fileID: 21300000, guid: e03fc80572c6842448e0c17bf5fdcf08, type: 3}
+  - {fileID: 21300000, guid: 62ee4668a689dab43a1f869b38baaf47, type: 3}
+  - {fileID: 21300000, guid: 680b19be496e05d42a142d1f37de649d, type: 3}
+  - {fileID: 21300000, guid: 16f70d5e34b15e4429a1dbc021fd3d82, type: 3}
+  - {fileID: 21300000, guid: 791ba74fa3a27ee448b2b45fb290f97b, type: 3}
+  _colors:
+  - {r: 0.3529412, g: 0.77254903, b: 0.3529412, a: 1}
+  - {r: 0.95686275, g: 0.9607843, b: 0.25882354, a: 1}
+  - {r: 1, g: 0.27450982, b: 0.23921569, a: 1}
+  _saveManager: {fileID: 131207392}
 --- !u!1 &159025090
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +591,7 @@ GameObject:
   - component: {fileID: 231440049}
   - component: {fileID: 231440048}
   - component: {fileID: 231440047}
+  - component: {fileID: 231440050}
   m_Layer: 5
   m_Name: ButtonMedium
   m_TagString: Untagged
@@ -652,6 +701,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231440045}
   m_CullTransparentMesh: 1
+--- !u!114 &231440050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231440045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5dc2bfba698e34ea8a74b6f3e7420f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 131207392}
+  _loadingPanelAnimation: {fileID: 481529795}
+  _musicVolumeDown: {fileID: 1170257706}
+  difficulty: 2
 --- !u!1 &243297094
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +729,7 @@ GameObject:
   - component: {fileID: 243297098}
   - component: {fileID: 243297097}
   - component: {fileID: 243297096}
+  - component: {fileID: 243297099}
   m_Layer: 5
   m_Name: ButtonEasy
   m_TagString: Untagged
@@ -773,6 +839,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243297094}
   m_CullTransparentMesh: 1
+--- !u!114 &243297099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243297094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5dc2bfba698e34ea8a74b6f3e7420f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 131207392}
+  _loadingPanelAnimation: {fileID: 481529795}
+  _musicVolumeDown: {fileID: 1170257706}
+  difficulty: 1
 --- !u!1 &260391948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1141,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 52145b7bbac3a2743bacbeb92926cb19, type: 3}
   - {fileID: 21300000, guid: e5f7b7d38ece3f54faa225273ef0f898, type: 3}
   - {fileID: 21300000, guid: 6dd0aa9dad8d4de4db08a882ad20c7ea, type: 3}
+  _toggleImage: {fileID: 523102288}
   _popInAudioSource: {fileID: 159025093}
   _popOutAudioSource: {fileID: 631557195}
   _pageTurningAudioSource: {fileID: 1575280006}
@@ -1701,7 +1784,6 @@ GameObject:
   - component: {fileID: 688633302}
   - component: {fileID: 688633301}
   - component: {fileID: 688633303}
-  - component: {fileID: 688633304}
   m_Layer: 5
   m_Name: DailyText
   m_TagString: Untagged
@@ -1878,50 +1960,6 @@ MonoBehaviour:
   - Drink water
   - It's not that simple
   - ...
---- !u!114 &688633304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688633299}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 688633301}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &887091060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +2082,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c5c4f06f0ab8b9c44adb520e4ae9b713, type: 3}
   - {fileID: 21300000, guid: 7a94e83c6d623af41b34fc5ef47c22e4, type: 3}
   - {fileID: 21300000, guid: fa7283219ed1e024d9b4e2c249ca3cae, type: 3}
+  _toggleImage: {fileID: 2060390520}
   _musicAudioSource: {fileID: 1170257703}
   _popIn: {fileID: 159025092}
   _popOut: {fileID: 631557194}
@@ -2060,6 +2099,7 @@ GameObject:
   - component: {fileID: 972947090}
   - component: {fileID: 972947089}
   - component: {fileID: 972947092}
+  - component: {fileID: 972947093}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -2187,6 +2227,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6dae67a916c0d11478cf3bb3c1e6271a, type: 3}
   - {fileID: 21300000, guid: 98c993b59325f0b4fa4b0617c2eed02c, type: 3}
   - {fileID: 21300000, guid: 07dcf0431b8e95449861810c16ee2e87, type: 3}
+--- !u!114 &972947093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972947087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5dc2bfba698e34ea8a74b6f3e7420f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 131207392}
+  _loadingPanelAnimation: {fileID: 481529795}
+  _musicVolumeDown: {fileID: 1170257706}
+  difficulty: 0
 --- !u!1 &1022488291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,7 +2389,6 @@ GameObject:
   - component: {fileID: 1022940543}
   - component: {fileID: 1022940545}
   - component: {fileID: 1022940544}
-  - component: {fileID: 1022940546}
   m_Layer: 5
   m_Name: LastGameImage
   m_TagString: Untagged
@@ -2402,29 +2457,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022940542}
   m_CullTransparentMesh: 1
---- !u!114 &1022940546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022940542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caaa3dce32500694a9359f4a6c59f23c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scorePanelIcons:
-  - {fileID: 21300000, guid: e03fc80572c6842448e0c17bf5fdcf08, type: 3}
-  - {fileID: 21300000, guid: 62ee4668a689dab43a1f869b38baaf47, type: 3}
-  - {fileID: 21300000, guid: 680b19be496e05d42a142d1f37de649d, type: 3}
-  - {fileID: 21300000, guid: 16f70d5e34b15e4429a1dbc021fd3d82, type: 3}
-  - {fileID: 21300000, guid: 791ba74fa3a27ee448b2b45fb290f97b, type: 3}
-  _colors:
-  - {r: 0.3529412, g: 0.77254903, b: 0.3529412, a: 1}
-  - {r: 0.95686275, g: 0.9607843, b: 0.25882354, a: 1}
-  - {r: 1, g: 0.27450982, b: 0.23921569, a: 1}
-  _saveManager: {fileID: 131207392}
 --- !u!1 &1040879731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,7 +2639,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b270129a4ce723b4e852648db213c1ec, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2741,6 +2773,7 @@ GameObject:
   - component: {fileID: 1212367218}
   - component: {fileID: 1212367217}
   - component: {fileID: 1212367216}
+  - component: {fileID: 1212367219}
   m_Layer: 5
   m_Name: ButtonHard
   m_TagString: Untagged
@@ -2850,6 +2883,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212367214}
   m_CullTransparentMesh: 1
+--- !u!114 &1212367219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212367214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5dc2bfba698e34ea8a74b6f3e7420f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 131207392}
+  _loadingPanelAnimation: {fileID: 481529795}
+  _musicVolumeDown: {fileID: 1170257706}
+  difficulty: 3
 --- !u!1 &1447438577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,7 +2911,6 @@ GameObject:
   - component: {fileID: 1447438580}
   - component: {fileID: 1447438579}
   - component: {fileID: 1447438578}
-  - component: {fileID: 1447438582}
   m_Layer: 5
   m_Name: CanvasButtons
   m_TagString: Untagged
@@ -2964,37 +3012,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1447438582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447438577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a062e119cc7bbd4a8b487fda92a0d6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hardButton: {fileID: 1212367216}
-  _hardButtonIcons:
-  - {fileID: 21300000, guid: 637ae00a42608294392842ac19a876f9, type: 3}
-  - {fileID: 21300000, guid: bd2c241d754e99848afd6655345257db, type: 3}
-  - {fileID: 21300000, guid: 0acf056adc8f39a4f91561a4ed3d6b7d, type: 3}
-  _mediumButton: {fileID: 231440047}
-  _mediumButtonIcons:
-  - {fileID: 21300000, guid: 4102762423906f844b38b8f8077f3be2, type: 3}
-  - {fileID: 21300000, guid: f3073417202f4904a9fab0d924dd7407, type: 3}
-  - {fileID: 21300000, guid: 56509637acd8b74479ea567d4dfeb42d, type: 3}
-  _easyButton: {fileID: 243297096}
-  _easyButtonIcons:
-  - {fileID: 21300000, guid: 5bbbdbbaa82d1624c8dd935ec44ccc9f, type: 3}
-  - {fileID: 21300000, guid: e99262fae014c734f903fa1880c7466a, type: 3}
-  - {fileID: 21300000, guid: 34c428e90bf172d4b89ee1e8666515f0, type: 3}
-  _resumeButton: {fileID: 972947089}
-  _saveManager: {fileID: 131207392}
-  _loadingPanelAnimation: {fileID: 481529795}
-  _musicVolumeDown: {fileID: 1170257706}
 --- !u!1 &1575280004
 GameObject:
   m_ObjectHideFlags: 0

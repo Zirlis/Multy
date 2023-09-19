@@ -11,101 +11,99 @@ namespace Multipliers
         private Vector3 _firstMultiplier2;
 
         [SerializeField] private float _distance;
-        public float MovementTime = 0.5f;
+        [SerializeField] private float MovementTime = 0.5f;
         [SerializeField] private float _currentDistance;
 
         private LevelGenerator _levelGenerator;
+
+        private GameObject _original;
+        private int _siblingIndex;
+        private BoxCollider2D _panelCollider;
+        private GameObject _originalMultiplicator;
+        private List<RectTransform> _requiringRelocation;
 
         private void Start()
         {
             _levelGenerator = GetComponent<LevelGenerator>();
 
-            _firstMultiplier1 = _levelGenerator.FirstMultiplier1.gameObject.transform.position;
-            _firstMultiplier2 = _levelGenerator.FirstMultiplier2.gameObject.transform.position;
+            _firstMultiplier1 = _levelGenerator.FirstMultipliers[0].gameObject.transform.position;
+            _firstMultiplier2 = _levelGenerator.FirstMultipliers[1].gameObject.transform.position;
             _distance =_firstMultiplier1.x - _firstMultiplier2.x;
         }
 
-        public void Coroutine(GameObject obj)
+        public void Coroutine(GameObject multiplier)
         {
-            StartCoroutine(MovementOnLine(obj));
+            StartCoroutine(MovementOnLine(multiplier));
         }
 
-        private IEnumerator MovementOnLine (GameObject obj)
+        private IEnumerator MovementOnLine (GameObject multiplier)
         {
-            var parent = obj.GetComponent<AddBeginDrag>().Original;
+            _requiringRelocation = new List<RectTransform>();
+            _original = multiplier.GetComponent<AddBeginDrag>().Original;
 
-            var originalMultiplicator = parent.transform.parent.GetChild(obj.transform.GetSiblingIndex() + 6).gameObject;
-            originalMultiplicator.SetActive(false);
-
-            for (int i = obj.transform.GetSiblingIndex(); i < 5; i++)
-            {
-                parent.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText
-                    (parent.transform.parent.GetChild(i+1).gameObject.GetComponent<TextMeshProUGUI>().text);
-            }
-
-            parent.transform.parent.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>().SetText("");
-
+            BlockingChanges(multiplier);
             _currentDistance = 0f;
-            List<RectTransform> requiringRelocation = new List<RectTransform>();
 
-            var panelCollider = parent.transform.parent.GetComponent<BoxCollider2D>();
-            panelCollider.enabled = false;            
-
-            for (int i = 5; i > obj.transform.GetSiblingIndex(); i--)
+            for (int i = 5; i > multiplier.transform.GetSiblingIndex(); i--)
             {
-                obj.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText
-                        (parent.transform.parent.GetChild(i - 1).gameObject.GetComponent<TextMeshProUGUI>().text);
-                requiringRelocation.Add(obj.transform.parent.GetChild(i).gameObject.GetComponent<RectTransform>());
-                if (i != 5)
-                {
-                    requiringRelocation.Add(parent.transform.parent.GetChild(i + 6).gameObject.GetComponent<RectTransform>());
-                }
-            }
-
-            for (int i = 0; i < 6; i++)
-            {
-                if (i != obj.transform.GetSiblingIndex())
-                {
-                    obj.transform.parent.GetChild(i).gameObject.GetComponent<AddBeginDrag>().AllowBeginDrag = false;
-                }
-            }
-
-            int siblingIndex = obj.transform.GetSiblingIndex();
-            if (siblingIndex != 0 && siblingIndex != obj.transform.parent.childCount - 1)
-            {
-                if (obj.GetComponent<AddBeginDrag>().Original.transform.parent.GetChild(obj.transform.GetSiblingIndex()).gameObject
-                    .GetComponent<TextMeshProUGUI>().text == "")
-                {
-                    obj.GetComponent<AddBeginDrag>().Original.transform.parent.GetChild(obj.transform.GetSiblingIndex() + 5).gameObject.SetActive(false);
-                }
-            }                    
-
-            for (int i = 5; i >= obj.transform.GetSiblingIndex(); i--)
-            {
-                parent.transform.parent.GetChild(i).gameObject.SetActive(false);
+                multiplier.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText
+                        (_original.transform.parent.GetChild(i - 1).gameObject.GetComponent<TextMeshProUGUI>().text);
+                _requiringRelocation.Add(multiplier.transform.parent.GetChild(i).gameObject.GetComponent<RectTransform>());
+                if (i != 5)                
+                    _requiringRelocation.Add(_original.transform.parent.GetChild(i + 6).gameObject.GetComponent<RectTransform>());                
             }
 
             while (_currentDistance < _distance)
             {
                 _currentDistance += _distance / MovementTime * Time.deltaTime;
 
-                foreach (RectTransform rectTransform in requiringRelocation)
-                {
+                foreach (RectTransform rectTransform in _requiringRelocation)                
                     rectTransform.anchoredPosition += new Vector2(_distance / MovementTime * Time.deltaTime, 0);
-                }
+                
 
                 yield return null;
             }
 
-            foreach (RectTransform rectTransform in requiringRelocation)
-            {
+            foreach (RectTransform rectTransform in _requiringRelocation)            
                 rectTransform.anchoredPosition = Vector2.zero;
-            }
+            
 
-            for (int i = 5; i >= obj.transform.GetSiblingIndex(); i--)
-            {
-                parent.transform.parent.GetChild(i).gameObject.SetActive(true);
-            }
+            UnblockingChanges(multiplier);
+        }
+
+        private void BlockingChanges(GameObject multiplier)
+        {            
+            _originalMultiplicator = _original.transform.parent.GetChild(multiplier.transform.GetSiblingIndex() + 6).gameObject;
+            _originalMultiplicator.SetActive(false);
+
+            for (int i = multiplier.transform.GetSiblingIndex(); i < 5; i++)            
+                _original.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().SetText
+                    (_original.transform.parent.GetChild(i + 1).gameObject.GetComponent<TextMeshProUGUI>().text);            
+
+            _original.transform.parent.GetChild(5).gameObject.GetComponent<TextMeshProUGUI>().SetText("");
+
+            _panelCollider = _original.transform.parent.GetComponent<BoxCollider2D>();
+            _panelCollider.enabled = false;
+
+            for (int i = 0; i < 6; i++)            
+                if (i != multiplier.transform.GetSiblingIndex())
+                    multiplier.transform.parent.GetChild(i).gameObject.GetComponent<AddBeginDrag>().AllowBeginDrag = false;            
+
+            _siblingIndex = multiplier.transform.GetSiblingIndex();
+            Transform multipiersParent = multiplier.GetComponent<AddBeginDrag>().Original.transform.parent;
+
+            if (_siblingIndex != 0 && _siblingIndex != multiplier.transform.parent.childCount - 1
+                && multipiersParent.GetChild(multiplier.transform.GetSiblingIndex()).gameObject.GetComponent<TextMeshProUGUI>().text == "")
+                   multipiersParent.GetChild(multiplier.transform.GetSiblingIndex() + 5).gameObject.SetActive(false);
+
+            for (int i = 5; i >= multiplier.transform.GetSiblingIndex(); i--)
+                _original.transform.parent.GetChild(i).gameObject.SetActive(false);
+        }
+
+        private void UnblockingChanges(GameObject obj)
+        {
+            for (int i = 5; i >= obj.transform.GetSiblingIndex(); i--)            
+                _original.transform.parent.GetChild(i).gameObject.SetActive(true);            
 
             for (int i = 0; i < 6; i++)
             {
@@ -116,21 +114,14 @@ namespace Multipliers
                     cloneInPanel.GetComponent<TextMeshProUGUI>().SetText("");
                 }
 
-                if(i!=0)
-                {
-                    if(parent.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().text == "")
-                    {
-                        parent.transform.parent.GetChild(i+5).gameObject.SetActive(false);
-                    }
-                }
+                if (i != 0 && _original.transform.parent.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().text == "")
+                    _original.transform.parent.GetChild(i + 5).gameObject.SetActive(false);
             }
 
-            if (siblingIndex != 5 && parent.transform.parent.GetChild(siblingIndex + 1).gameObject.GetComponent<TextMeshProUGUI>().text != "")
-            {
-                originalMultiplicator.SetActive(true);
-            }
+            if (_siblingIndex != 5 && _original.transform.parent.GetChild(_siblingIndex + 1).gameObject.GetComponent<TextMeshProUGUI>().text != "")
+                _originalMultiplicator.SetActive(true);
 
-            panelCollider.enabled = true;
+            _panelCollider.enabled = true;
         }
     }
 }

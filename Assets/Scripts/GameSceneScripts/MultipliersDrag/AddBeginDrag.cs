@@ -17,15 +17,9 @@ namespace Multipliers
 
         private void Start()
         {
-            if (!GetComponent<EventTrigger>())
-            {
+            if (!GetComponent<EventTrigger>())            
                 gameObject.AddComponent<EventTrigger>();
-            }
-            Add();
-        }
 
-        public void Add()
-        {
             EventTrigger trigger = GetComponent<EventTrigger>();
             entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.BeginDrag;

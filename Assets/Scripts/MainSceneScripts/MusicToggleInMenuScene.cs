@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +6,10 @@ namespace Multipliers
     public class MusicToggleInMenuScene : MonoBehaviour
     {
         [SerializeField] private SaveManager _saveManager;
-        [SerializeField] private List<Sprite> _musicOnIcons;
-        [SerializeField] private List<Sprite> _musicOffIcons;
-        private int _iconIndex = -1;
+        [SerializeField] private Sprite[] _musicOnIcons = new Sprite[10];
+        [SerializeField] private Sprite[] _musicOffIcons = new Sprite[10];
+        [SerializeField] private Image _toggleImage;
+        private int _iconIndex;
 
         [Header("Audio")]
         [SerializeField] private AudioSource _musicAudioSource;
@@ -20,6 +20,7 @@ namespace Multipliers
         private void Awake()
         {
             GetComponent<Toggle>().onValueChanged.AddListener(OnSwitch);
+            _iconIndex = Random.Range(0, _musicOnIcons.Length);
         }
 
         private void OnDestroy()
@@ -30,42 +31,33 @@ namespace Multipliers
         private void OnSwitch(bool on)
         {
             _saveManager.Save();
-            SetImage(on);
 
             _musicAudioSource.mute = !on;
 
             if (on)
             {
+                _toggleImage.sprite = _musicOnIcons[_iconIndex];
                 _popOut.PlayAudio();
             }
             else
             {
+                _toggleImage.sprite = _musicOffIcons[_iconIndex];
                 _popIn.PlayAudio();
             }
         }
 
-        public void SetIsOn(bool on)
+        public void OnSwitch(bool on, bool doNotMakeASave)
         {
             GetComponent<Toggle>().isOn = on;
             _musicAudioSource.mute = !on;
-            SetImage(on);
-        }
 
-        private void SetImage(bool on)
-        {
-            if(_iconIndex == -1)
-            {
-                _iconIndex = Random.Range(0, _musicOnIcons.Count);
-            }
-
-            if(on)
-            {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOnIcons[_iconIndex];                
-            }
+            if (on)
+                _toggleImage.sprite = _musicOnIcons[_iconIndex];
             else
-            {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _musicOffIcons[_iconIndex];                
-            }
+                _toggleImage.sprite = _musicOffIcons[_iconIndex];
+            
+            if(!doNotMakeASave)
+                _saveManager.Save();
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Multipliers
 {
-    public class AddEndDrag : MonoBehaviour
+    public class AddDrag : MonoBehaviour
     {
         private AddBeginDrag _addBeginDrag;
 
@@ -11,14 +11,13 @@ namespace Multipliers
 
         private void Start()
         {
-            if (!GetComponent<EventTrigger>())
-            {
+            if (!GetComponent<EventTrigger>())            
                 gameObject.AddComponent<EventTrigger>();
-            }
+
             EventTrigger trigger = GetComponent<EventTrigger>();
             entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.EndDrag;
-            entry.callback.AddListener((data) => EndDrag());
+            entry.eventID = EventTriggerType.Drag;
+            entry.callback.AddListener((data) => Move());
             trigger.triggers.Add(entry);
 
             _addBeginDrag = GetComponent<AddBeginDrag>();
@@ -26,13 +25,13 @@ namespace Multipliers
 
         private void OnDestroy()
         {
-            entry.callback.RemoveListener((data) => EndDrag());
+            entry.callback.RemoveListener((data) => Move());
         }
 
-        public void EndDrag()
+        public void Move()
         {
-            _addBeginDrag.BeginDrag = false;
-            GetComponent<BoxCollider2D>().enabled = true;
+            if (_addBeginDrag.BeginDrag)            
+                transform.position = Input.mousePosition;            
         }
     }
 }

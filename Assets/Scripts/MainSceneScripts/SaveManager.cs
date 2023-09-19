@@ -30,32 +30,17 @@ namespace Multipliers
             GameData.SoundsIsActive = _soundsToggle.isOn;
             GameData.MusicIsActive = _musicToggle.isOn;
 
-            if (_hardScore.text != "")
-            {
-                if (Int32.Parse(_hardScore.text) > 0)
-                {
-                    GameData.HardScore = Int32.Parse(_hardScore.text);
-                }
-            }
-            if (_mediumScore.text != "")
-            {
-                if (Int32.Parse(_mediumScore.text) > 0)
-                {
-                    GameData.MediumScore = Int32.Parse(_mediumScore.text);
-                }
-            }
-            if (_easyScore.text != "")
-            {
-                if (Int32.Parse(_easyScore.text) > 0)
-                {
-                    GameData.EasyScore = Int32.Parse(_easyScore.text);
-                }
-            }
+            if (_hardScore.text != "" && Int32.Parse(_hardScore.text) > 0)               
+                GameData.HardScore = Int32.Parse(_hardScore.text);                
+            
+            if (_mediumScore.text != "" && Int32.Parse(_mediumScore.text) > 0)               
+                GameData.MediumScore = Int32.Parse(_mediumScore.text);                
+            
+            if (_easyScore.text != "" && Int32.Parse(_easyScore.text) > 0)
+                GameData.EasyScore = Int32.Parse(_easyScore.text);
 
-            if (_lastGameScore.text != "")
-            {
-                GameData.LastGameScore = Int32.Parse(_lastGameScore.text);
-            }
+            if (_lastGameScore.text != "")            
+                GameData.LastGameScore = Int32.Parse(_lastGameScore.text);            
 
             _storage.Save(GameData);
         }
@@ -64,42 +49,24 @@ namespace Multipliers
         {            
             GameData = (GameData)_storage.Load(new GameData());
 
-            _soundsToggle.gameObject.GetComponent<SoundsToggleInMenuScene>().SetIsOn(GameData.SoundsIsActive);
-            _musicToggle.gameObject.GetComponent<MusicToggleInMenuScene>().SetIsOn(GameData.MusicIsActive);
+            _soundsToggle.gameObject.GetComponent<SoundsToggleInMenuScene>().OnSwitch(GameData.SoundsIsActive, true);
+            _musicToggle.gameObject.GetComponent<MusicToggleInMenuScene>().OnSwitch(GameData.MusicIsActive, true);
 
-            if (GameData.HardScore > 0)
-            {
-                _hardScore.SetText($"{GameData.HardScore}");
-            }
-            if (GameData.MediumScore > 0)
-            {
+            if (GameData.HardScore > 0)            
+                _hardScore.SetText($"{GameData.HardScore}"); 
+            
+            if (GameData.MediumScore > 0)            
                 _mediumScore.SetText($"{GameData.MediumScore}");
-            }
-            if (GameData.EasyScore > 0)
-            {
+            
+            if (GameData.EasyScore > 0)            
                 _easyScore.SetText($"{GameData.EasyScore}");
-            }
 
-            SetLastGame(GameData.SelectedDifficulty);
-
-            if(GameData.GameIsOver == false)
-            {
-                _resumeButton.SetActive(true);
-            }
-        }
-
-        private void SetLastGame(int lastGameDifficulty)
-        {
-            if(lastGameDifficulty == 0)
-            {
+            if (GameData.SelectedDifficulty == 0)
                 _lastGameImage.SetActive(false);
-            }
-
-            _lastGameScore.SetText($"{GameData.LastGameScore}");
-
-            if(!GameData.GameIsOver)
+            else
             {
-                _resumeButton.SetActive(true);
+                _lastGameScore.SetText($"{GameData.LastGameScore}");
+                _resumeButton.SetActive(!GameData.GameIsOver);
             }
         }
     }

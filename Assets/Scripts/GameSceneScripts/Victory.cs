@@ -40,211 +40,144 @@ namespace Multipliers
         [SerializeField] private Animator _secondPanelAnimator;
         [SerializeField] private Animator _thirdPanelAnimator;
 
+        private int numberOfSolvedLines;
+        private GameData _gameData;
+
         private void Start()
         {
             ChekContinuation();
+            _gameData = _saveManagerGameScene.GameData;
         }
+
+        private void ChekContinuation()
+        {
+            if (SecondaryInformation.IsContinuation && _saveManagerGameScene.GameData.LevelIsOver)
+            {
+                _victoryPanel.anchoredPosition = Vector2.zero;
+                _plug.SetActive(true);
+
+                _timer.TimeOnTimer--;
+                _timer.SetTimeOnTimer();
+            }
+            else
+            {
+                _victoryPanel.anchoredPosition = new Vector2(0,
+                -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
+                _distance = -_victoryPanel.anchoredPosition.y;
+            }
+        }
+
         public void CheckVictory()
         {
-            var gameData = _saveManagerGameScene.GameData;
+            numberOfSolvedLines = 0;
 
-            bool first;
-            bool second;
-            bool third;
-
-            int numberOfSolvedLines = 0;
-
-            if (_firstCompositionLeft.text == _firstCompositionRight.text)
-            {
-                if (!_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
-                {
-                    _firstPanelAnimator.Play($"Connecting" +
-                        $"{_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
-                    _firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
-                    _penWriting.PlayAudio();
-                }
-                first = true;
-                numberOfSolvedLines++;
-            }
-            else
-            {
-                if (_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
-                {
-                    _firstPanelAnimator.Play($"Unconnecting" +
-                        $"{_firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
-                    _firstCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
-                    _penWriting.PlayAudio();
-                }
-                first = false;
-            }
-            if (_secondCompositionLeft.text == _secondCompositionRight.text)
-            {
-                if (!_secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
-                {
-                    _secondPanelAnimator.Play($"Connecting" +
-                        $"{_secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
-                    _secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
-                    _penWriting.PlayAudio();
-                }
-                second = true;
-                numberOfSolvedLines++;
-            }
-            else
-            {
-                if (_secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
-                {
-                    _secondPanelAnimator.Play($"Unconnecting" +
-                        $"{_secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
-                    _secondCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
-                    _penWriting.PlayAudio();
-                }
-                second = false;
-            }
-            if (_thirdCompositionLeft.text == _thirdCompositionRight.text)
-            {
-                if (!_thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
-                {
-                    _thirdPanelAnimator.Play($"Connecting" +
-                        $"{_thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
-                    _thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
-                    _penWriting.PlayAudio();
-                }
-                third = true;
-                numberOfSolvedLines++;
-            }
-            else
-            {
-                if (_thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
-                {
-                    _thirdPanelAnimator.Play($"Unconnecting" +
-                        $"{_thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
-                    _thirdCompositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
-                    _penWriting.PlayAudio();
-                }
-                third = false;
-            }
+            PanelAnimation(_firstCompositionLeft, _firstCompositionRight, _firstPanelAnimator);
+            PanelAnimation(_secondCompositionLeft, _secondCompositionRight, _secondPanelAnimator);
+            PanelAnimation(_thirdCompositionLeft, _thirdCompositionRight, _thirdPanelAnimator);
+            
 
             if (numberOfSolvedLines > 0)
-            {
-                if(gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == 0 && !SecondaryInformation.IsContinuation)
-                {
-                    gameData.LastGameScore += gameData.SelectedDifficulty;
-                    _timer.AddTimeOnLine();
+                ScoringPoint(0);
 
-                    switch (gameData.SelectedDifficulty)
-                    {
-                        case 1:
-                            if (gameData.EasyScore < gameData.LastGameScore)
-                            {
-                                gameData.EasyScore = gameData.LastGameScore;
-                            }
-                            break;
-                        case 2:
-                            if (gameData.MediumScore < gameData.LastGameScore)
-                            {
-                                gameData.MediumScore = gameData.LastGameScore;
-                            }
-                            break;
-                        case 3:
-                            if (gameData.MediumScore < gameData.LastGameScore)
-                            {
-                                gameData.HardScore = gameData.LastGameScore;
-                            }
-                            break;
-                    }
-                }
+            if (numberOfSolvedLines > 1)
+                ScoringPoint(_gameData.SelectedDifficulty);
 
-                if(numberOfSolvedLines > 1)
-                {
-                    if (gameData.LastGameScore % (3 * gameData.SelectedDifficulty) == gameData.SelectedDifficulty && !SecondaryInformation.IsContinuation)
-                    {
-                        gameData.LastGameScore += gameData.SelectedDifficulty;
-                        _timer.AddTimeOnLine();
-
-                        switch (gameData.SelectedDifficulty)
-                        {
-                            case 1:
-                                if (gameData.EasyScore < gameData.LastGameScore)
-                                {
-                                    gameData.EasyScore = gameData.LastGameScore;
-                                }
-                                break;
-                            case 2:
-                                if (gameData.MediumScore < gameData.LastGameScore)
-                                {
-                                    gameData.MediumScore = gameData.LastGameScore;
-                                }
-                                break;
-                            case 3:
-                                if (gameData.MediumScore < gameData.LastGameScore)
-                                {
-                                    gameData.HardScore = gameData.LastGameScore;
-                                }
-                                break;
-                        }
-                    }
-                }
-            }
-
-            if (first && second && third)
+            if (numberOfSolvedLines == 3)
             {
                 _timer.StopTimer();
 
                 if (_newInLine.LastTouched != null)
-                {
-                    var TMPOfLastTouched = _newInLine.LastTouched.GetComponent<TextMeshProUGUI>();
-
-                    if (TMPOfLastTouched.text != "")
-                    {
-                        TMPOfLastTouched.SetText("");
-                        _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
-                        _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
-                            _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
-                        _newInLine.CollisionWithSomethingOtherThanBack = false;
-                    }
-                }
+                    CheckLastTouch();                
 
                 _plug.SetActive(true);
 
-                if (!SecondaryInformation.IsContinuation)
-                {
-                    gameData.LastGameScore += gameData.SelectedDifficulty;
-                }
+                if (!SecondaryInformation.IsContinuation)                
+                    _gameData.LastGameScore += _gameData.SelectedDifficulty;
+                
+                UpdatingTheRecord();
 
-                switch (gameData.SelectedDifficulty)
-                {
-                    case 1:
-                        if (gameData.EasyScore < gameData.LastGameScore)
-                        {
-                            gameData.EasyScore = gameData.LastGameScore;
-                        }
-                        break;
-                    case 2:
-                        if (gameData.MediumScore < gameData.LastGameScore)
-                        {
-                            gameData.MediumScore = gameData.LastGameScore;
-                        }
-                        break;
-                    case 3:
-                        if (gameData.MediumScore < gameData.LastGameScore)
-                        {
-                            gameData.HardScore = gameData.LastGameScore;
-                        }
-                        break;
-                }
-
-                _scoreText.SetText($"Score {gameData.LastGameScore}");
+                _scoreText.SetText($"Score {_gameData.LastGameScore}");
                 StartCoroutine(VictoryPanelMovement());
 
-                gameData.LevelIsOver = true;
+                _gameData.LevelIsOver = true;
 
-                if (!SecondaryInformation.IsContinuation)
-                {
+                if (!SecondaryInformation.IsContinuation)                
                     _timer.AddTimeOnLevel();
-                }
+                
 
                 _timer.SetTimeOnTimer();
                 _saveManagerGameScene.Save();
+            }
+        }
+
+        private void PanelAnimation(TextMeshProUGUI compositionLeft, TextMeshProUGUI compositionRight, Animator panelAnimator)
+        {
+            if (compositionLeft.text == compositionRight.text)
+            {
+                if (!compositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
+                {
+                    panelAnimator.Play($"Connecting" +
+                        $"{compositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
+                    compositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = true;
+                    _penWriting.PlayAudio();
+                }
+                numberOfSolvedLines++;
+            }
+            else
+            {
+                if (compositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed)
+                {
+                    panelAnimator.Play($"Unconnecting" +
+                        $"{compositionLeft.transform.parent.GetComponent<PanelChangeImage>().PanelAnimationVersion}");
+                    compositionLeft.transform.parent.GetComponent<PanelChangeImage>().IsConnecteed = false;
+                    _penWriting.PlayAudio();
+                }
+            }
+        }
+
+        private void ScoringPoint(int remains)
+        {
+            if (_gameData.LastGameScore % (3 * _gameData.SelectedDifficulty) == remains && !SecondaryInformation.IsContinuation)
+            {
+                _gameData.LastGameScore += _gameData.SelectedDifficulty;
+                _timer.AddTimeOnLine();
+                UpdatingTheRecord();
+            }
+        }
+
+        private void UpdatingTheRecord()
+        {
+            switch (_gameData.SelectedDifficulty)
+            {
+                case 1:
+                    if (_gameData.EasyScore < _gameData.LastGameScore)
+                        _gameData.EasyScore = _gameData.LastGameScore;
+
+                    break;
+                case 2:
+                    if (_gameData.MediumScore < _gameData.LastGameScore)
+                        _gameData.MediumScore = _gameData.LastGameScore;
+
+                    break;
+                case 3:
+                    if (_gameData.HardScore < _gameData.LastGameScore)
+                        _gameData.HardScore = _gameData.LastGameScore;
+
+                    break;
+            }
+        }
+
+        private void CheckLastTouch()
+        {
+            var TMPOfLastTouched = _newInLine.LastTouched.GetComponent<TextMeshProUGUI>();
+
+            if (TMPOfLastTouched.text != "")
+            {
+                TMPOfLastTouched.SetText("");
+                _newInLine.LastTouched.GetComponent<AddBeginDrag>().BeginDrag = false;
+                _newInLine.RecalculationOnEndDrag(_newInLine.LastTouched,
+                    _newInLine.LastTouched.GetComponent<AddBeginDrag>().Original.transform.parent.gameObject);
+                _newInLine.CollisionWithSomethingOtherThanBack = false;
             }
         }
 
@@ -267,24 +200,6 @@ namespace Multipliers
                 _ads.ShowAd();
                 SecondaryInformation.TimeAfterAd = 0;
             }
-        }
-
-        private void ChekContinuation()
-        {
-            if(SecondaryInformation.IsContinuation && _saveManagerGameScene.GameData.LevelIsOver)
-            {
-                _victoryPanel.anchoredPosition = Vector2.zero;
-                _plug.SetActive(true);
-
-                _timer.TimeOnTimer--;
-                _timer.SetTimeOnTimer();
-            }
-            else
-            {
-                _victoryPanel.anchoredPosition = new Vector2(0,
-                -Screen.height * (_victoryPanel.anchorMax.y - _victoryPanel.anchorMin.y));
-                _distance = -_victoryPanel.anchoredPosition.y;
-            }
-        }
+        }        
     }
 }

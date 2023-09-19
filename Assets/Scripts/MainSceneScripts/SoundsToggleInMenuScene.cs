@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,21 +6,22 @@ namespace Multipliers
     public class SoundsToggleInMenuScene : MonoBehaviour
     {
         [SerializeField] private SaveManager _saveManager;
-        [SerializeField] private List<Sprite> _soundOnIcons;
-        [SerializeField] private List<Sprite> _soundOffIcons;
-        private int _iconIndex = -1;
+        [SerializeField] private Sprite[] _soundOnIcons = new Sprite[10];
+        [SerializeField] private Sprite[] _soundOffIcons = new Sprite[10];
+        [SerializeField] private Image _toggleImage;
+        private int _iconIndex;
 
         [Header("Audio")]
         [SerializeField] private AudioSource _popInAudioSource;
         [SerializeField] private AudioSource _popOutAudioSource;
         [SerializeField] private AudioSource _pageTurningAudioSource;
         [SerializeField] private AudioPlayer _popIn;
-        [SerializeField] private AudioPlayer _popOut;
-
+        [SerializeField] private AudioPlayer _popOut;        
 
         private void Awake()
         {
             GetComponent<Toggle>().onValueChanged.AddListener(OnSwitch);
+            _iconIndex = Random.Range(0, _soundOnIcons.Length);
         }
 
         private void OnDestroy()
@@ -32,7 +32,6 @@ namespace Multipliers
         private void OnSwitch(bool on)
         {
             _saveManager.Save();
-            SetImage(on);
 
             _popInAudioSource.mute = !on;
             _popOutAudioSource.mute = !on;
@@ -41,37 +40,29 @@ namespace Multipliers
             if (on)
             {
                 _popOut.PlayAudio();
+                _toggleImage.sprite = _soundOnIcons[_iconIndex];
             }
             else
             {
                 _popIn.PlayAudio();
+                _toggleImage.sprite = _soundOffIcons[_iconIndex];
             }
         }
 
-        public void SetIsOn(bool on)
+        public void OnSwitch(bool on, bool doNotMakeASave)
         {
             GetComponent<Toggle>().isOn = on;
             _popInAudioSource.mute = !on;
             _popOutAudioSource.mute = !on;
             _pageTurningAudioSource.mute = !on;
-            SetImage(on);
-        }
-
-        private void SetImage(bool on)
-        {
-            if (_iconIndex == -1)
-            {
-                _iconIndex = Random.Range(0, _soundOnIcons.Count);
-            }
 
             if (on)
-            {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _soundOnIcons[_iconIndex];
-            }
+                _toggleImage.sprite = _soundOnIcons[_iconIndex];
             else
-            {
-                gameObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = _soundOffIcons[_iconIndex];
-            }
+                _toggleImage.sprite = _soundOffIcons[_iconIndex];
+
+            if (!doNotMakeASave)
+                _saveManager.Save();
         }
     }
 }

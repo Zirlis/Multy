@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Multipliers
 {
@@ -16,10 +15,8 @@ namespace Multipliers
             if(AvailableVersion == null || AvailableVersion.Count == 0)
             {
                 AvailableVersion = new List<int>();
-                for (int i = 0; i < _animationCount; i++)
-                {
-                    AvailableVersion.Add(i);
-                }
+                for (int i = 0; i < _animationCount; i++)                
+                    AvailableVersion.Add(i);                
             }
 
             PanelAnimationVersion = AvailableVersion[Random.Range(0, AvailableVersion.Count)];
